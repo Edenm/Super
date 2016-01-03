@@ -22,6 +22,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="info.slidingmenu.SearchTabActivity"
+            android:label="@string/app_name"
+            android:clickable="true">
+        </activity>
+        <activity
+            android:name="info.slidingmenu.SuperTabActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name="info.slidingmenu.ComparisonTabActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name="info.slidingmenu.ChooseProductActivity"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:id="@+id/linearLayout2">
+
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="310dp"
+        android:layout_height="201dp"
+        android:id="@+id/listViewBestSuper"
+        android:layout_marginTop="62dp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:id="@+id/txtTitleSuper"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/linearLayout2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnMoreSuper"
+        android:text="טען סופרים נוספים"
+        android:layout_below="@+id/listViewBestSuper"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
