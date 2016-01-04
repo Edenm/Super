@@ -138,7 +138,7 @@ public class MainActivity extends TabActivity {
 		mTabHost.addTab(ts2);
 
 		TabHost.TabSpec ts1 = mTabHost.newTabSpec("1");
-		intent=new Intent(this, WhatsHotFragment.SearchTabActivity.class);
+		intent=new Intent(this, SearchTabActivity.class);
 		ts1.setContent(intent);
 		ts1.setIndicator("רשימה");
 		mTabHost.addTab(ts1);
