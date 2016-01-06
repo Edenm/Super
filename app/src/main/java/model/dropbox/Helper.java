@@ -1,4 +1,4 @@
-package model;
+package model.dropbox;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,6 +24,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
+import model.Item;
+import model.ModelLogic;
+import model.SuperMarket;
 
 public class Helper {
 
@@ -115,7 +119,7 @@ public class Helper {
 			try{
 				JSONArray mapSupers = new JSONArray();
 
-				for (SuperMarket sm : ml.data.supers.values()) {
+				for (SuperMarket sm : ml.getSysData().getSupers().values()) {
 					JSONObject smJson = new JSONObject();
 					smJson.put("name", sm.getName());
 					smJson.put("adress", sm.getAdress());

@@ -52,4 +52,8 @@ public class ModelLogic {
 		}
 	}
 
+	public SysData getSysData(){
+		return data;
+	}
+
 }

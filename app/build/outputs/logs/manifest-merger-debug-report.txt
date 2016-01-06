@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:2:1-44:12
+ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:2:1-48:12
 	xmlns:android
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -24,7 +24,7 @@ ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifes
 		INJECTED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml
 application
-ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:11:5-42:19
+ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:11:5-46:19
 	android:label
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:14:9-41
 	android:allowBackup
@@ -33,12 +33,12 @@ ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifes
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:13:9-45
 	android:theme
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:15:9-40
-activity#view.MainActivity
+activity#model.dropbox.DBSuper
 ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:16:9-24:20
 	android:label
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:18:13-45
 	android:name
-		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:17:13-45
+		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:17:13-49
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
@@ -49,29 +49,35 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:22:27-74
-activity#view.SearchTabActivity
-ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:25:9-29:20
+activity#view.MainActivity
+ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:25:9-28:20
 	android:label
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:27:13-45
-	android:clickable
-		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:26:13-50
-activity#view.SuperTabActivity
-ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:30:9-33:20
+		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:26:13-45
+activity#view.SearchTabActivity
+ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:29:9-33:20
 	android:label
-		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:32:13-45
+		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:31:13-45
+	android:clickable
+		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:32:13-37
 	android:name
-		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:31:13-49
-activity#view.ComparisonTabActivity
+		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:30:13-50
+activity#view.SuperTabActivity
 ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:34:9-37:20
 	android:label
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:36:13-45
 	android:name
-		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:35:13-54
-activity#view.ChooseProductActivity
+		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:35:13-49
+activity#view.ComparisonTabActivity
 ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:38:9-41:20
 	android:label
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:40:13-45
 	android:name
 		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:39:13-54
+activity#view.ChooseProductActivity
+ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:42:9-45:20
+	android:label
+		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:44:13-45
+	android:name
+		ADDED from C:\Users\Eden\AndroidStudioProjects\Super\app\src\main\AndroidManifest.xml:43:13-54

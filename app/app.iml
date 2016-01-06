@@ -90,5 +90,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="module" module-name="json" exported="" />
+    <orderEntry type="module" module-name="dropbox-android-sdk-1.6.3" exported="" />
   </component>
 </module>
