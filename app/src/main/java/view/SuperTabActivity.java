@@ -26,8 +26,8 @@ import view.adapter.CustomListAdapter;
 public class SuperTabActivity extends Activity {
     ListView list;
     //String[] itemname = {"חלב דל לקטוז תנובה", "גבינה בולגרית גד", "חומוס אחלה 500 גרם","שמן זית יד מרדכי","קוקה קולה"};
-    String[] price = {"5.55", "14.80", "10.0","34.3","5.99"};
-    Integer[] imgid = { R.drawable.dallaktoz, R.drawable.bulgarit, R.drawable.hummus_classic, R.drawable.olive_oil,R.drawable.cocacola};
+    //String[] price = {"5.55", "14.80", "10.0","34.3","5.99"};
+    //Integer[] imgid = { R.drawable.dallaktoz, R.drawable.bulgarit, R.drawable.hummus_classic, R.drawable.olive_oil,R.drawable.cocacola};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +38,25 @@ public class SuperTabActivity extends Activity {
         superName.setText("רמי לוי שיווק השקמה - נשר");
 
         ModelLogic ml = ModelLogic.getInstance();
-        SuperMarket sm= new SuperMarket("רמי לוי", "המושבה 7 נשר");
-        ml.addNewSuperMarket(sm);
-        Helper.readJasonFile(ml);
 
-        ArrayList <String> itemsName = new ArrayList <String>();
-        String[] itemname = new String[5];
+        //Helper.readXmlFile(ml, "Ramilevi.xml");
+        //Helper.writeJasonFileForItem(ml);
+        //Helper.writeJasonFileForSuper(ml);
+        
+
+        ArrayList <Item> items = new ArrayList <Item>();
+
         for(Item i:ml.data.getItems().values()) {
-            itemsName.add(i.getItemName());
+            items.add(i);
         }
 
-        for(int i=0 ; i<5 ;i++) {
-            itemname[i]=itemsName.get(i) ;
+        String[] itemname = new String[items.size()];
+        String[] price = new String[items.size()];
+        Integer[] imgid = new Integer[items.size()];
+        for(int i=0 ; i < items.size() ;i++) {
+            itemname[i]=items.get(i).getItemName() ;
+            price[i]=items.get(i).getItemPrice().toString() ;
+            imgid[i]= R.drawable.no_image;
         }
 
 

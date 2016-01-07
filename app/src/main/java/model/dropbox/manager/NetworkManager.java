@@ -54,6 +54,7 @@ public class NetworkManager {
     private static NetworkManager instance = null;
     private List<NetworkListener> listeners = new ArrayList<NetworkListener>();
 
+
     public static NetworkManager getInstance() {
         if (instance == null) {
             instance = new NetworkManager();
@@ -66,7 +67,9 @@ public class NetworkManager {
         loadResFile();
     }
 
-
+    public Map<String, String> getmFileNames(){
+        return mFileNames;
+    }
 
     public String getAppDirName() {
         return appDirName;
@@ -130,7 +133,7 @@ public class NetworkManager {
     }
 
 
-    private File getAppDir() {
+    public File getAppDir() {
         // create app dir on local storage
         if (!mDir.exists()) {
             mDir.mkdirs();

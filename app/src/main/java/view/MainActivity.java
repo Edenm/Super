@@ -1,6 +1,10 @@
 package view;
 
 import ViewLogic.slidingmenu.R;
+import model.ModelLogic;
+import model.SuperMarket;
+import model.dropbox.DBSuper;
+import model.dropbox.Helper;
 import view.adapter.NavDrawerListAdapter;
 import view.model.NavDrawerItem;
 
@@ -42,6 +46,8 @@ public class MainActivity extends TabActivity {
 	private NavDrawerListAdapter adapter;
 
 	TabHost mTabHost;
+
+	private static final int REQ_CHOICE=1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +122,8 @@ public class MainActivity extends TabActivity {
 			// on first time display view for first nav item
 			displayView(0);
 		}
+
+		initializeDB();
 	}
 
 	private void setTabs()
@@ -144,6 +152,24 @@ public class MainActivity extends TabActivity {
 		mTabHost.addTab(ts1);
 
 		mTabHost.setCurrentTab(1);
+	}
+
+	private void initializeDB()
+	{
+		//Intent intent = new Intent(this , DBSuper.class);
+		//startActivity(intent);
+
+		ModelLogic ml= ModelLogic.getInstance();
+		SuperMarket sm= new SuperMarket("רמי לוי", "המושבה 7 נשר");
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+		super.onActivityResult(requestCode, resultCode, intent);
+		if (resultCode==REQ_CHOICE){
+
+		}
 	}
 
 	/**

@@ -28,13 +28,16 @@ import org.w3c.dom.Element;
 import model.Item;
 import model.ModelLogic;
 import model.SuperMarket;
+import model.dropbox.manager.NetworkManager;
 
 public class Helper {
 
-		public static void readXmlFile(ModelLogic ml, String name)
+		public static void readXmlFile(ModelLogic ml, String fileName)
 		{
 			 try {
-					File fXmlFile = new File(name);
+				 	//NetworkManager nm = NetworkManager.getInstance();
+				    //String localUrl = nm.getmFileNames().get(fileName);
+					File fXmlFile = new File("/storage/emulated/0/dbSuperZol/", fileName);//new File(name);
 					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 					Document doc = dBuilder.parse(fXmlFile);
@@ -223,9 +226,9 @@ public class Helper {
 			//if (Environment)
 			try {
 
-				File rootDir = new File("C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/assets/");
+				File file = new File("/storage/emulated/0/dbSuperZol/", fileName);//new File(name);
 
-				fis = new FileInputStream(new File(rootDir, fileName));
+				fis = new FileInputStream(file);
 				br = new BufferedReader(new InputStreamReader(fis));
 				
 				String line = "";

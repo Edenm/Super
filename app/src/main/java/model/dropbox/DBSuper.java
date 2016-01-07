@@ -14,6 +14,7 @@ import model.dropbox.manager.*;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -35,16 +36,9 @@ public class DBSuper extends Activity implements NetworkListener {
 
         NetworkManager.getInstance().downloadResources();
 
-        ModelLogic ml= ModelLogic.getInstance();
-        SuperMarket sm= new SuperMarket("רמי לוי", "המושבה 7 נשר");
-        ml.addNewSuperMarket(sm);
-
-        //Helper.readXmlFile(ml, "Ramilevi.xml");
-       // Helper.writeJasonFileForItem(ml);
-        //Helper.writeJasonFileForSuper(ml);
-
-       // byte [] bytes = NetworkManager.getInstance().getUrl("Ramilevi.xml");
-
+        Intent intent = new Intent();
+        setResult(1, intent);
+        finish();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package model;
 
+import model.dropbox.Helper;
+
 public class ModelLogic {
 	
 	private static ModelLogic instance = null;
@@ -9,6 +11,7 @@ public class ModelLogic {
 	public static ModelLogic getInstance(){
 		if	(instance == null){
 			instance = new ModelLogic();
+			Helper.readJasonFile(instance);
 		}
 		return instance;
 	}
