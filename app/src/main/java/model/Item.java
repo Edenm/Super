@@ -102,7 +102,7 @@ public class Item {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Item) {
-			if (((Item)obj).itemCode.equals(getItemCode()))
+			if (((Item)obj).itemCode.equals(getItemName()))
 			{
 				return true;
 			}

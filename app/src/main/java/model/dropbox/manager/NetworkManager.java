@@ -37,6 +37,9 @@ package model.dropbox.manager;
 
         import android.os.Environment;
 
+        import model.ModelLogic;
+        import model.dropbox.Helper;
+
 public class NetworkManager {
 
     private static final String APP_KEY = "vqh379j1v54b5n9";

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layoutDirection="rtl"
+        android:layout_weight="0.14">
+
+        <TextView
+            android:id="@+id/prodName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:layoutDirection="rtl"
+            android:text="Product"
+            android:layout_column="24"
+            android:layout_gravity="right|center_vertical" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:src="@drawable/info"
+                android:background="@color/white"
+                android:layout_gravity="left|center_vertical" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/prodImg"
+        android:padding="5dp"
+        android:layoutDirection="rtl"
+        android:layout_weight="0.10" />
+
+</LinearLayout><!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/supermarketlist.xml -->

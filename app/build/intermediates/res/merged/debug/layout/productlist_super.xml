@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/prodImg"
+        android:padding="5dp"
+        android:layoutDirection="rtl" />
+
+    <TableLayout
+        android:layout_width="115dp"
+        android:layout_height="55dp"
+        android:layout_gravity="left|top">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ש''ח"
+                android:id="@+id/txtNis"
+                android:layout_column="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  "
+                android:id="@+id/textSpace"
+                android:layout_column="4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:id="@+id/priceTxt"
+                android:layoutDirection="rtl"
+                android:layout_column="5"
+                android:layout_gravity="center_horizontal|top" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/prodName"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:layoutDirection="rtl"
+        android:text="Product"
+        android:layout_column="24"
+        android:layout_gravity="left|top" />
+
+
+</LinearLayout><!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/productlist_super.xml -->
