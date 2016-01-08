@@ -89,8 +89,8 @@
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
-    <orderEntry type="module" module-name="json" exported="" />
-    <orderEntry type="module" module-name="json_simple-1.1" exported="" />
-    <orderEntry type="module" module-name="dropbox-android-sdk-1.6.3" exported="" />
+    <orderEntry type="library" exported="" name="dropbox-android-sdk-1.6.3" level="project" />
+    <orderEntry type="library" exported="" name="json_simple-1.1" level="project" />
+    <orderEntry type="library" exported="" name="json-20140107" level="project" />
   </component>
 </module>

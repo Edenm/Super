@@ -1,2 +1,0 @@
-configurations.create("default")
-artifacts.add("default", file('json-20140107.jar'))

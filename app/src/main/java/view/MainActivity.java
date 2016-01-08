@@ -156,8 +156,8 @@ public class MainActivity extends TabActivity {
 
 	private void initializeDB()
 	{
-		//Intent intent = new Intent(this , DBSuper.class);
-		//startActivity(intent);
+		Intent intent = new Intent(this , DBSuper.class);
+		startActivity(intent);
 
 		ModelLogic ml= ModelLogic.getInstance();
 		SuperMarket sm= new SuperMarket("רמי לוי", "המושבה 7 נשר");

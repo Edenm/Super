@@ -27,7 +27,6 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     public CustomListAdapter(Activity context,Integer[] imgid, String[] itemname, String[] price, String pListType) {
         super(context, R.layout.productlist_quantity, itemname);
-        // TODO Auto-generated constructor stub
 
         this.context=context;
         this.itemname=itemname;
