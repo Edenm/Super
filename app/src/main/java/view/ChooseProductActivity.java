@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import ViewLogic.slidingmenu.R;
 import model.Item;
 import model.Helper;
+import model.ModelLogic;
 import view.adapter.CustomListAdapter;
 
 public class ChooseProductActivity extends Activity {
@@ -35,11 +36,15 @@ public class ChooseProductActivity extends Activity {
 
 
         loadData(wordToSearch);
+        //loadData();
     }
 
     private void loadData(String wordToSearch){
 
-        ArrayList<Item> items = new ArrayList<Item>(Helper.getAllResultByWord(wordToSearch));
+       // ModelLogic ml = ModelLogic.getInstance();
+        //ArrayList<Item> items = new ArrayList<Item>(ml.getSysData().getItems().values());
+
+       ArrayList<Item> items = new ArrayList<Item>(Helper.getAllResultByWord(wordToSearch));
 
         String[] itemname = new String[items.size()];
         String[] price = new String[items.size()];

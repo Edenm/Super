@@ -15,12 +15,12 @@
             android:background="@drawable/remove"
             android:layout_gravity="left|bottom" />
 
-        <Button
+        <!--Button
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:background="@drawable/pencil"
             android:id="@+id/btnEdit"
-            android:layout_gravity="right|bottom" />
+            android:layout_gravity="right|bottom" /-->
     </FrameLayout>
 
     <ImageView

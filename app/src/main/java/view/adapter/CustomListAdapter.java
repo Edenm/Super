@@ -5,6 +5,7 @@ package view.adapter;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import ViewLogic.slidingmenu.*;
 import model.Item;
 import model.MarketList;
 import model.ModelLogic;
+import view.ChooseProductActivity;
 
 /**
  * Created by MOR on 12/24/2015.
@@ -32,6 +34,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     private Button btnIncremrnt;
     private Button btnDecrement;
+    private Button btnEditQuantity;
 
     public CustomListAdapter(Activity context,Integer[] imgid, String[] itemname, String[] price, String pListType) {
         super(context, R.layout.productlist_quantity, itemname);
@@ -68,10 +71,11 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         imageView.setImageResource(imgid[position]);
 
         if (pListType.equals("quantity"))
-                        setListeners();
+            setListeners();
 
         return rowView;
     };
+
 
     private void setListeners(){
         btnIncremrnt = (Button) rowView.findViewById(R.id.btnInc);

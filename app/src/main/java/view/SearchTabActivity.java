@@ -9,8 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,8 +24,9 @@ import view.adapter.CustomListAdapter;
 
 public class SearchTabActivity extends Activity {
 
-    ListView list;
-    SearchView productSearchView;
+    private ListView list;
+    private SearchView productSearchView;
+    private Button btnEditQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class SearchTabActivity extends Activity {
 
         list = (ListView) findViewById(R.id.listViewSearch);
         productSearchView = (SearchView) findViewById(R.id.searchView);
+
+
 
         setListeners();
         loadData();
@@ -63,9 +68,25 @@ public class SearchTabActivity extends Activity {
                 price[i] = items.get(i).getItemPrice().toString();
                 imgid[i] = R.drawable.no_image;
             }
+
+            /*btnEditQuantity = (Button) findViewById(R.id.btnEdit);
+
+            btnEditQuantity.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
+
+                    View parent = (View) v.getParent();
+                    TextView txtTitle = (TextView) (parent).findViewById(R.id.prodName);
+                    String itemName = txtTitle.getText().toString();
+                    quantityIntent.putExtra("word", itemName);
+                    startActivity(quantityIntent);
+                }
+            });*/
+
         }
 
-        else {
+       else {
             itemname = new String[1];
             price = new String[1];
             imgid = new Integer[1];
@@ -87,9 +108,13 @@ public class SearchTabActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
+                TextView txtTitle = (TextView) (parent).findViewById(R.id.prodName);
+                String itemName = txtTitle.getText().toString();
+                quantityIntent.putExtra("word", itemName);
                 startActivity(quantityIntent);
             }
         });
+
 
         productSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -108,6 +133,8 @@ public class SearchTabActivity extends Activity {
         });
 
     }
+
+
 
 }
 
