@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -22,23 +23,18 @@ import view.adapter.CustomListAdapter;
 public class SearchTabActivity extends Activity {
 
     ListView list;
-
+    SearchView productSearchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_search);
 
+        list = (ListView) findViewById(R.id.listViewSearch);
+        productSearchView = (SearchView) findViewById(R.id.searchView);
+
+        setListeners();
         loadData();
-
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
-                startActivity(quantityIntent);
-            }
-        });
     }
 
     @Override
@@ -81,8 +77,36 @@ public class SearchTabActivity extends Activity {
 
 
         CustomListAdapter adapter = new CustomListAdapter(this, imgid, itemname, price, "list");
-        list = (ListView) findViewById(R.id.listViewSearch);
+
         list.setAdapter(adapter);
+    }
+
+    private void setListeners(){
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
+                startActivity(quantityIntent);
+            }
+        });
+
+        productSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
+                quantityIntent.putExtra("word",query);
+                startActivity(quantityIntent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return false;
+            }
+        });
+
     }
 
 }

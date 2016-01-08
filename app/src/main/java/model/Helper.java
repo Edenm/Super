@@ -1,4 +1,4 @@
-package model.dropbox;
+package model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,6 +11,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map.Entry;
 
@@ -256,5 +257,17 @@ public class Helper {
 			}
 			return sb.toString();
 		}
+
+	public static ArrayList <Item> getAllResultByWord(String word){
+		ArrayList <Item> items = new ArrayList <Item>();
+
+		for (Item item:ModelLogic.getInstance().getSysData().getItems().values())
+		{
+			if (item.getItemName().contains(word)){
+				items.add(item);
+			}
+		}
+		return items;
+	}
 }
 

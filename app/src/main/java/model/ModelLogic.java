@@ -1,7 +1,5 @@
 package model;
 
-import model.dropbox.Helper;
-
 public class ModelLogic {
 	
 	private static ModelLogic instance = null;

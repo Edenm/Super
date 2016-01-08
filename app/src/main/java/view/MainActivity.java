@@ -3,8 +3,6 @@ package view;
 import ViewLogic.slidingmenu.R;
 import model.ModelLogic;
 import model.SuperMarket;
-import model.dropbox.DBSuper;
-import model.dropbox.Helper;
 import view.adapter.NavDrawerListAdapter;
 import view.model.NavDrawerItem;
 

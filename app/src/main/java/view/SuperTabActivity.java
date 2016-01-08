@@ -16,10 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import ViewLogic.slidingmenu.R;
-import model.dropbox.Helper;
 import model.Item;
 import model.ModelLogic;
-import model.SuperMarket;
 import view.adapter.CustomListAdapter;
 
 

@@ -68,12 +68,12 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         imageView.setImageResource(imgid[position]);
 
         if (pListType.equals("quantity"))
-                        setListeners(position);
+                        setListeners();
 
         return rowView;
     };
 
-    private void setListeners(final int position){
+    private void setListeners(){
         btnIncremrnt = (Button) rowView.findViewById(R.id.btnInc);
         btnDecrement = (Button) rowView.findViewById(R.id.btnDec);
 
