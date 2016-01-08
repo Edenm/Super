@@ -156,11 +156,11 @@ public class MainActivity extends TabActivity {
 
 	private void initializeDB()
 	{
-		Intent intent = new Intent(this , DBSuper.class);
-		startActivity(intent);
+		//Intent intent = new Intent(this , DBSuper.class);
+		//startActivity(intent);
 
-		ModelLogic ml= ModelLogic.getInstance();
-		SuperMarket sm= new SuperMarket("רמי לוי", "המושבה 7 נשר");
+//		ModelLogic ml= ModelLogic.getInstance();
+//		SuperMarket sm= new SuperMarket("רמי לוי", "המושבה 7 נשר");
 
 	}
 
@@ -168,7 +168,6 @@ public class MainActivity extends TabActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (resultCode==REQ_CHOICE){
-
 		}
 	}
 
