@@ -1,0 +1,75 @@
+
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:text="SuperZol"
+        android:id="@+id/labelTxt"
+        android:textColor="#0000A0"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal|top" />
+
+    <ImageView
+        android:layout_width="339dp"
+        android:layout_height="454dp"
+        android:id="@+id/imageView"
+        android:layout_gravity="center"
+        android:src="@drawable/background_super"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:id="@+id/linearLayout"
+        android:layout_gravity="left|bottom">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:hint="Email"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/mail"/>
+
+        <EditText
+            android:id="@+id/etPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:padding="10dp"
+            android:hint="Password"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:password="true"
+            android:drawableLeft="@drawable/password"/>
+        <Button
+            android:id="@+id/btnSingIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="4dp"
+            android:text="Sign Up"
+            android:textStyle="bold"
+            android:onClick="setOnSignUpListerner" />
+    </LinearLayout>
+</FrameLayout>
+<!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/activity_login.xml -->
