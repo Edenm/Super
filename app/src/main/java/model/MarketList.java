@@ -27,7 +27,7 @@ public class MarketList {
         return items;
     }
 
-    public void addItemToMarketList(Item item){
+    public void increaseCountOfItemMarketList(Item item){
         if( items.containsKey(item) )
         {
             items.put(item, items.get(item)+1);
@@ -38,7 +38,22 @@ public class MarketList {
         }
     }
 
-    public void RemoveItemToMarketList(Item item, Integer count){
+    public void decreaseCountOfItemMarketList(Item item, Integer count){
         items.put(item, count);
+        if (count == 0){
+            removeItemFromMarketList(item.getItemName());
+        }
+    }
+
+    public void removeItemFromMarketList(String itemName){
+        Item temp = new Item(itemName);
+        items.remove(temp);
+    }
+
+    public Integer getQuantity (String product)
+    {
+        Item temp = new Item(product);
+        Integer amount = items.get(temp);
+        return amount == null ? 0: amount;
     }
 }

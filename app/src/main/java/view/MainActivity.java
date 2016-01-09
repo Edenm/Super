@@ -149,24 +149,13 @@ public class MainActivity extends TabActivity {
 		ts1.setIndicator("רשימה");
 		mTabHost.addTab(ts1);
 
-		mTabHost.setCurrentTab(0);
+		mTabHost.setCurrentTab(2);
 	}
 
 	private void initializeDB()
 	{
-		//Intent intent = new Intent(this , DBSuper.class);
-		//startActivity(intent);
-
 		ModelLogic ml= ModelLogic.getInstance();
 		SuperMarket sm= new SuperMarket("רמי לוי", "המושבה 7 נשר");
-
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent){
-		super.onActivityResult(requestCode, resultCode, intent);
-		if (resultCode==REQ_CHOICE){
-		}
 	}
 
 	/**

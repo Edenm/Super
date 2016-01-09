@@ -10,9 +10,13 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import ViewLogic.slidingmenu.R;
 import model.Item;
 import model.Helper;
+import model.MarketList;
 import model.ModelLogic;
 import view.adapter.CustomListAdapter;
 
@@ -30,16 +34,37 @@ public class ChooseProductActivity extends Activity {
         searchProduct= (TextView)findViewById(R.id.txtSearchProduct);
 
         Intent intent = getIntent();
+        String type = intent.getStringExtra("type");
         String wordToSearch = intent.getStringExtra("word");
 
-        searchProduct.setText(wordToSearch);
+        if (type.equals("MarketList")){
+            searchProduct.setText("רשימת קניות");
+            loadDataByMarketList();
+        }
+        else{
+            searchProduct.setText(wordToSearch);
+            loadDataByWord(wordToSearch);
+        }
 
 
-        loadData(wordToSearch);
-        //loadData();
+//        switch (type){
+//            case "MarketList": searchProduct.setText("רשימת קניות");
+//                               loadDataByMarketList();
+//                               break;
+//            case "Word":       searchProduct.setText(wordToSearch);
+//                               loadDataByWord(wordToSearch);
+//                               break;
+//            default:
+//                break;
+//        }
+
+
+
+
+
     }
 
-    private void loadData(String wordToSearch){
+    private void loadDataByWord(String wordToSearch){
 
        // ModelLogic ml = ModelLogic.getInstance();
         //ArrayList<Item> items = new ArrayList<Item>(ml.getSysData().getItems().values());
@@ -58,5 +83,27 @@ public class ChooseProductActivity extends Activity {
         CustomListAdapter adapter= new CustomListAdapter(this,  imgid,itemname, price,"quantity");
         list.setAdapter(adapter);
     }
+
+    private void loadDataByMarketList(){
+
+        MarketList ml = MarketList.getInstance();
+
+
+        int counter = 0;
+        HashMap<Item,Integer> listItem =  ml.getItems();
+        String[] itemname = new String[listItem.size()];
+        String[] price = new String[listItem.size()];
+        Integer[] imgid = new Integer[listItem.size()];
+        for(Map.Entry<Item,Integer> i:listItem.entrySet()) {
+            itemname[counter] = i.getKey().getItemName();
+            price[counter] = i.getKey().getItemPrice().toString();
+            imgid[counter] = R.drawable.no_image;
+            counter++;
+        }
+
+        CustomListAdapter adapter= new CustomListAdapter(this,  imgid,itemname, price,"quantity");
+        list.setAdapter(adapter);
+    }
+
 
 }

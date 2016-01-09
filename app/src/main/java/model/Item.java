@@ -26,6 +26,10 @@ public class Item {
 		private Map <SuperMarket,Float> prices;
 
 
+	public Item(String name){
+		this.itemName = name;
+	}
+
 	public Item(Date priceUpdateDate, String itemCode, String name,
 			String manufacturerName, String manufacturerItemDescription,
 			String qnitQty, Float quantity, Float itemPrice) {
@@ -110,7 +114,8 @@ public class Item {
 		return false;
 	}
 	
-	public void addUpdatePriceToItem(SuperMarket sp, Float price){
+	public void addUpdatePriceToItem(SuperMarket sp, Float price)
+	{
 		prices.put(sp, price);
 	}
 	

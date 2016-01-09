@@ -49,7 +49,6 @@ public class CustomListAdapter extends ArrayAdapter<String> {
     public View getView(int position,View view,ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
 
-
         if (pListType.equals("list"))
             rowView=inflater.inflate(R.layout.productlist, null,true);
         if (pListType.equals("quantity"))
@@ -70,9 +69,19 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         txtTitle.setText(itemname[position]);
         imageView.setImageResource(imgid[position]);
 
-        if (pListType.equals("quantity"))
+        if (pListType.equals("quantity")) {
+            View nextChild = ((ViewGroup)rowView).getChildAt(1);
+            nextChild = ((ViewGroup)nextChild).getChildAt(1);
+            nextChild = ((ViewGroup)nextChild).getChildAt(1);
+            TextView txtCounter = (TextView) nextChild.findViewById(R.id.txtCounter);
+            String name = txtTitle.getText().toString();
+            String count = MarketList.getInstance().getQuantity(name).toString();
+            txtCounter.setText(count);
             setListeners();
+        }
 
+        if (pListType.equals("list"))
+            setRemoveProductListener();
 
         return rowView;
     };
@@ -100,7 +109,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 Item tempItem = ml.getSysData().getItems().get(itemName);
 
                 MarketList tempMarketList = MarketList.getInstance();
-                tempMarketList.addItemToMarketList(tempItem);
+                tempMarketList.increaseCountOfItemMarketList(tempItem);
             }
         });
 
@@ -118,15 +127,37 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                     txtCounter.setText(count.toString());
                 }
 
-
                 String itemName = txtTitle.getText().toString();
 
                 ModelLogic ml = ModelLogic.getInstance();
                 Item tempItem = ml.getSysData().getItems().get(itemName);
 
                 MarketList tempMarketList = MarketList.getInstance();
-                tempMarketList.RemoveItemToMarketList(tempItem, count);
+                tempMarketList.decreaseCountOfItemMarketList(tempItem, count);
             }
+        });
+    }
+
+    private void setRemoveProductListener()
+    {
+        Button btnRemoveProduct = (Button)rowView.findViewById(R.id.btnRemove);
+
+        btnRemoveProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View parent = (View) v.getParent();
+                View grantFather = (View) parent.getParent();
+                TextView txtTitle = (TextView) (grantFather).findViewById(R.id.prodName);
+                String itemName = txtTitle.getText().toString();
+
+                ModelLogic ml = ModelLogic.getInstance();
+                Item tempItem = ml.getSysData().getItems().get(itemName);
+
+                MarketList tempMarketList = MarketList.getInstance();
+                tempMarketList.removeItemFromMarketList(itemName);
+
+            }
+
         });
     }
 
