@@ -20,7 +20,7 @@
             android:layoutDirection="rtl"
             android:baselineAligned="true"
             android:queryHint="חפש מוצר"
-            android:background="@color/haki"/>
+            android:background="@color/counter_text_color"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,4 +40,4 @@
 
     </LinearLayout>
 </RelativeLayout>
-<!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/activity_tab_search.xml -->
+<!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/layout/activity_tab_search.xml -->

@@ -20,7 +20,7 @@
             android:layoutDirection="rtl"
             android:baselineAligned="true"
             android:queryHint="חפש סופר"
-            android:background="@color/haki"/>
+            android:background="@color/counter_text_color"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -37,4 +37,4 @@
             android:id="@+id/listViewSuper" />
 
     </LinearLayout>
-</RelativeLayout><!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/activity_tab_super.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/layout/activity_tab_super.xml -->

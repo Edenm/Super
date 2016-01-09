@@ -20,7 +20,7 @@
             android:layoutDirection="rtl"
             android:baselineAligned="true"
             android:queryHint="חפש סופר"
-            android:background="@color/haki"/>
+            android:background="@color/counter_text_color"/>
 
         <TextView
             android:layout_width="match_parent"
