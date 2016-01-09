@@ -4,25 +4,28 @@
     android:weightSum="1"
     android:layoutDirection="rtl">
 
-    <Button
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnDec"
-        android:background="@drawable/dec"/>
+
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnInc"
+            android:background="@drawable/inc"/>
 
     <TextView
-        android:layout_width="40dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:textAlignment="center"
         android:id="@+id/txtCounter"
         android:text="0"
         android:textSize="@dimen/activity_horizontal_margin"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal|top" />
 
     <Button
         android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btnInc"
-        android:background="@drawable/inc"/>
+        android:id="@+id/btnDec"
+        android:background="@drawable/dec" />
+
 </LinearLayout>
-<!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/layout/partial_incdec.xml -->
+<!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/partial_incdec.xml -->

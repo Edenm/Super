@@ -6,28 +6,34 @@
 
     <ImageView
         android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_height="72dp"
         android:id="@+id/prodImg"
         android:padding="5dp"
-        android:layoutDirection="rtl"
-        android:layout_weight="0.10" />
+        android:layoutDirection="rtl" />
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="89dp"
-        android:layout_weight="0.04">
+        android:layout_height="74dp"
+        android:layout_weight="0.15">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price"
+            android:textStyle="bold"
             android:id="@+id/priceTxt"
             android:layoutDirection="rtl"
             android:layout_column="1" />
 
+        <include layout="@layout/partial_incdec"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.03"
+            android:layout_gravity="right|bottom" />
+
         <TextView
             android:id="@+id/prodName"
-            android:layout_width="wrap_content"
+            android:layout_width="257dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textStyle="bold"
@@ -36,13 +42,7 @@
             android:layout_column="24"
             android:layout_gravity="right|top" />
 
-        <include layout="@layout/partial_incdec"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_weight="0.03"
-            android:layout_gravity="center" />
-
     </FrameLayout>
 
 
-</LinearLayout><!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/layout/productlist_quantity.xml -->
+</LinearLayout><!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/productlist_quantity.xml -->

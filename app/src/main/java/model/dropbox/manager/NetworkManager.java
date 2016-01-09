@@ -156,7 +156,7 @@ public class NetworkManager {
 
                 notifyAllDownloadsStarted();
 
-                String mErrorMsg = "OK";
+                String mErrorMsg = "All data is up to date";
 
                 try {
 

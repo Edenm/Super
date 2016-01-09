@@ -81,7 +81,7 @@ public class MainActivity extends TabActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		// What's hot, We  will add a counter here
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
-		
+
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -149,7 +149,7 @@ public class MainActivity extends TabActivity {
 		ts1.setIndicator("רשימה");
 		mTabHost.addTab(ts1);
 
-		mTabHost.setCurrentTab(1);
+		mTabHost.setCurrentTab(0);
 	}
 
 	private void initializeDB()

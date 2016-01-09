@@ -10,6 +10,7 @@ import ViewLogic.slidingmenu.R;
 import model.ModelLogic;
 import model.SuperMarket;
 import model.dropbox.manager.*;
+import view.MainActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -36,9 +37,6 @@ public class DBSuper extends Activity implements NetworkListener {
 
         NetworkManager.getInstance().downloadResources();
 
-        Intent intent = new Intent();
-        setResult(1, intent);
-        finish();
     }
 
     @Override
@@ -74,8 +72,9 @@ public class DBSuper extends Activity implements NetworkListener {
             }
         });
 
-
-        uploadFile();
+        Intent mainIntent = new Intent(this,MainActivity.class);
+        startActivity(mainIntent);
+        //uploadFile();
 
 
     }
