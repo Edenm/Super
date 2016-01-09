@@ -23,4 +23,7 @@ dependencies {
     compile files('C:/Users/Eden/AndroidStudioProjects/Super/libs/dropbox-android-sdk-1.6.3.jar')
     compile files('C:/Users/Eden/AndroidStudioProjects/Super/libs/json-20140107.jar')
     compile files('C:/Users/Eden/AndroidStudioProjects/Super/libs/json_simple-1.1.jar')
+    compile files('C:/Users/MOR/AndroidStudioProjects/Super/libs/dropbox-android-sdk-1.6.3.jar')
+    compile files('C:/Users/MOR/AndroidStudioProjects/Super/libs/json-20140107.jar')
+    compile files('C:/Users/MOR/AndroidStudioProjects/Super/libs/json_simple-1.1.jar')
 }

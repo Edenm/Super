@@ -73,6 +73,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         if (pListType.equals("quantity"))
             setListeners();
 
+
         return rowView;
     };
 

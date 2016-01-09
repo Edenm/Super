@@ -94,7 +94,7 @@ public class Item {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((itemCode == null) ? 0 : itemCode.hashCode());
+				+ ((itemName == null) ? 0 : itemName.hashCode());
 		return result;
 	}
 
@@ -102,7 +102,7 @@ public class Item {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Item) {
-			if (((Item)obj).itemCode.equals(getItemName()))
+			if (((Item)obj).itemName.equals(getItemName()))
 			{
 				return true;
 			}

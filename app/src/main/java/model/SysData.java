@@ -23,7 +23,7 @@ public class SysData {
 	}
 
 	public void addItem(Item item){
-		items.put(item.getItemCode(), item);
+		items.put(item.getItemName(), item);
 	}
 	
 	public void addSuperMarket(SuperMarket sm){
