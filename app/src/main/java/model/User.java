@@ -13,5 +13,11 @@ public class User {
         this.password = pass;
     }
 
+    public String getUserName(){return userName;}
+
+    public String getPassword(){return password;}
+
+
+
 
 }

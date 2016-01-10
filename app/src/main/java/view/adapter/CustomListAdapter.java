@@ -18,6 +18,7 @@ import model.Item;
 import model.MarketList;
 import model.ModelLogic;
 import view.ChooseProductActivity;
+import view.SearchTabActivity;
 
 /**
  * Created by MOR on 12/24/2015.
@@ -47,6 +48,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
     }
 
     public View getView(int position,View view,ViewGroup parent) {
+
         LayoutInflater inflater=context.getLayoutInflater();
 
         if (pListType.equals("list"))
@@ -156,9 +158,11 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 MarketList tempMarketList = MarketList.getInstance();
                 tempMarketList.removeItemFromMarketList(itemName);
 
+                ((SearchTabActivity) context).loadData();
             }
-
         });
+
+
     }
 
 }

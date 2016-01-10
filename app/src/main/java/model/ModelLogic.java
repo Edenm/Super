@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * the ModelLogic class is a Singelton contains SysData
+ * and manage all the DB.
+ * add or remove Objects from our DB is managed here.
+ */
+
 public class ModelLogic {
 	
 	private static ModelLogic instance = null;
@@ -18,7 +24,8 @@ public class ModelLogic {
 		super();
 		data= new SysData();
 	}
-	
+
+	/** Add item to items DB **/
 	public void addNewItem(Item item, String superMarketAdress){
 		SuperMarket sm = data.getSupers().get(superMarketAdress);
 		if (!data.getItems().containsKey(item.getItemCode())){
@@ -31,7 +38,8 @@ public class ModelLogic {
 			existItem.addUpdatePriceToItem(sm, item.getItemPrice());
 		}
 	}
-	
+
+	/** Add Super to SuperMarket DB **/
 	public void addNewSuperMarket(SuperMarket sm){
 		if (!data.getSupers().containsKey(sm.getAdress())){
 			data.addSuperMarket(sm);

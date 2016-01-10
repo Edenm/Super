@@ -29,6 +29,7 @@ public class SearchTabActivity extends Activity {
     private ListView list;
     private SearchView productSearchView;
     private Button btnEditQuantity;
+    //private ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,9 @@ public class SearchTabActivity extends Activity {
         productSearchView = (SearchView) findViewById(R.id.searchView);
 
 
-        setListeners();
+
         loadData();
+        setListeners();
     }
 
     @Override
@@ -49,7 +51,7 @@ public class SearchTabActivity extends Activity {
         loadData();
     }
 
-    private void loadData(){
+    public void loadData(){
         MarketList ml = MarketList.getInstance();
 
 
@@ -84,6 +86,8 @@ public class SearchTabActivity extends Activity {
         CustomListAdapter adapter = new CustomListAdapter(this, imgid, itemname, price, "list");
 
         list.setAdapter(adapter);
+
+        //adapter.notifyDataSetChanged();
     }
 
     private void setListeners(){
@@ -94,11 +98,13 @@ public class SearchTabActivity extends Activity {
                 Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
                 //TextView txtTitle = (TextView) (parent).findViewById(R.id.prodName);
                 //String itemName = txtTitle.getText().toString();
-                quantityIntent.putExtra("type","MarketList");
+                quantityIntent.putExtra("type", "MarketList");
                 quantityIntent.putExtra("word", "1");
                 startActivity(quantityIntent);
             }
         });
+
+
 
 
         productSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -116,9 +122,13 @@ public class SearchTabActivity extends Activity {
 
                 return false;
             }
+
+
         });
 
     }
+
+
 
 
 

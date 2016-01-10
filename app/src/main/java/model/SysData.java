@@ -3,12 +3,16 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * SysData class included all DataBase of items and supers.
+ * TBD - save all users in DB.
+ *
+ */
 public class SysData {
 
-	Map <String,User> users;
 	Map <String,Item> items;
 	Map <String,SuperMarket> supers;
+	Map <String,User> users;
 	
 	public SysData() {
 		items= new HashMap<String,Item>();

@@ -3,14 +3,20 @@ package model;
 import java.util.HashMap;
 
 /**
- * Created by Eden on 08-Jan-16.
+ *  this class included singelton of MarketList of user.
+ *  all is choices are saving in this singelton.
+ *  for each user we create a new Market list.
+ *  TBD - save the MarketList for resume.
  */
+
 public class MarketList {
 
     public static MarketList instance;
 
+    /** all Chosen items of user and quantity of each item **/
     HashMap <Item,Integer> items;
-    
+
+    /**Singelton**/
     public static MarketList getInstance(){
         if	(instance == null){
             instance = new MarketList();
@@ -27,6 +33,11 @@ public class MarketList {
         return items;
     }
 
+    /**
+     * increasing the cohsen quantity of specific item
+     * @param item
+     *
+     */
     public void increaseCountOfItemMarketList(Item item){
         if( items.containsKey(item) )
         {
@@ -38,6 +49,11 @@ public class MarketList {
         }
     }
 
+    /**
+     * decreaing the chosen quantity of specific product
+     * @param item
+     * @param count
+     */
     public void decreaseCountOfItemMarketList(Item item, Integer count){
         items.put(item, count);
         if (count == 0){
@@ -45,11 +61,20 @@ public class MarketList {
         }
     }
 
+    /**
+     * remove specific item from marketList
+     * @param itemName
+     */
     public void removeItemFromMarketList(String itemName){
         Item temp = new Item(itemName);
         items.remove(temp);
     }
 
+    /**
+     * get the chosen quantity from specific item
+     * @param product
+     * @return
+     */
     public Integer getQuantity (String product)
     {
         Item temp = new Item(product);
