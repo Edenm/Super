@@ -1,9 +1,7 @@
 package view.adapter;
 
-import view.model.NavDrawerItem;
-
+import view.NavDrawerItem;
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;

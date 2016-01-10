@@ -31,13 +31,20 @@ import model.ModelLogic;
 import model.SuperMarket;
 import model.dropbox.manager.NetworkManager;
 
+/**
+ * This class is handle in all read and write local db from files in device into db in app
+ */
 public class Helper {
 
+	/**
+	 * This method get instance of model logic and the name of xml file,
+	 * The method read all the data from the xml into the model logic Structures
+	 * @param ml
+	 * @param fileName
+	 */
 		public static void readXmlFile(ModelLogic ml, String fileName)
 		{
 			 try {
-				 	//NetworkManager nm = NetworkManager.getInstance();
-				    //String localUrl = nm.getmFileNames().get(fileName);
 					File fXmlFile = new File("/storage/emulated/0/dbSuperZol/", fileName);//new File(name);
 					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -75,8 +82,13 @@ public class Helper {
 				    e.printStackTrace();
 				 }
 		}
-		
-		/* The function write json file of all items */
+
+	/**
+	 * This method get instance of model logic,
+	 * The method write all the data of items to the json file of the items (Items.txt) from the model logic Structures
+	 * @use writeFile(String st, String fileName) to write data to new file
+	 * @param ml
+	 */
 		public static void writeJasonFileForItem(ModelLogic ml)
 		{
 			try {
@@ -116,7 +128,13 @@ public class Helper {
 
 			}
 		}
-		
+
+	/**
+	 * This method get instance of model logic,
+	 * The method write all the data of supers to the json file of the supermarkets (Supermarkets.txt) from the model logic Structures
+	 * @use writeFile(String st, String fileName) to write data to new file
+	 * @param ml
+	 */
 		/* The function write json file of all Supers */
 		public static void writeJasonFileForSuper(ModelLogic ml)
 		{
@@ -135,7 +153,15 @@ public class Helper {
 
 			}
 		}
-		
+
+	/**
+	 * This method get instance of model logic,
+	 * The method read all the data of supers and items from
+	 * the json file of the supermarkets (Supermarkets.txt) and the json file of the items (Items.txt)
+	 * to the model logic Structures
+	 * @use  readFile(String fileName) to get the all data (as string) from file
+	 * @param ml
+	 */
 		public static void readJasonFile(ModelLogic ml){
 			JSONTokener readFrom; 
 			JSONArray jsonItems;
@@ -188,14 +214,18 @@ public class Helper {
 				ex.printStackTrace();
 			}
 		}
-		
+
+	/**
+	 * This method get string and create local file with that string
+	 * @param st
+	 * @param fileName
+	 */
 		private static void writeFile(String st, String fileName){
 			FileOutputStream fos = null;
 			PrintWriter pw = null;
-			
-			//if (Environment)
+
 			try {
-				File rootDir = new File("C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/assets/");
+				File rootDir = new File("/storage/emulated/0/dbSuperZol/");
 			
 				fos = new FileOutputStream(new File(rootDir, fileName));
 				pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(fos)));
@@ -218,13 +248,16 @@ public class Helper {
 					
 			}
 		}
-		
+
+	/**
+	 * This method get file name and return all the data in this file as a string
+	 * @param fileName
+	 */
 		private static String readFile(String fileName){
 			FileInputStream fis = null;
 			BufferedReader br = null;
 			StringBuffer sb = new StringBuffer();
 
-			//if (Environment)
 			try {
 
 				File file = new File("/storage/emulated/0/dbSuperZol/", fileName);//new File(name);
@@ -257,17 +290,5 @@ public class Helper {
 			}
 			return sb.toString();
 		}
-
-	public static ArrayList <Item> getAllResultByWord(String word){
-		ArrayList <Item> items = new ArrayList <Item>();
-
-		for (Item item:ModelLogic.getInstance().getSysData().getItems().values())
-		{
-			if (item.getItemName().contains(word)){
-				items.add(item);
-			}
-		}
-		return items;
-	}
 }
 

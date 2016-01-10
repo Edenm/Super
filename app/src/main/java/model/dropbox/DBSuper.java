@@ -7,11 +7,8 @@ package model.dropbox;
 import java.io.File;
 
 import ViewLogic.slidingmenu.R;
-import model.ModelLogic;
-import model.SuperMarket;
 import model.dropbox.manager.*;
 import view.MainActivity;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -19,8 +16,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+/** This class is the connector activity that downloading all files from dropbox after the login
+ * This class show rendering on the screen until finish downloading */
 public class DBSuper extends Activity implements NetworkListener {
-    private static final String TAG = "DBRoulette";
+    private static final String TAG = "DBAuper";
     private Context ctx = null;
     private ProgressDialog dialog = null;
 

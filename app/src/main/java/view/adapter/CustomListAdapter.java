@@ -1,11 +1,11 @@
 package view.adapter;
 
+
 /**
- * Created by Eden on 03-Jan-16.
+ * Created by MOR on 12/24/2015.
  */
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,26 +17,38 @@ import ViewLogic.slidingmenu.*;
 import model.Item;
 import model.MarketList;
 import model.ModelLogic;
-import view.ChooseProductActivity;
 import view.SearchTabActivity;
 
 /**
- * Created by MOR on 12/24/2015.
+ * This class is a helper class to create diffrent type of custom list item
  */
 public class CustomListAdapter extends ArrayAdapter<String> {
 
+    /** The context of callback activity*/
     private final Activity context;
+    /** Contains the name of item*/
     private final String[] itemname;
+    /** Contains the image of item*/
     private final Integer[] imgid;
+    /** Contains the price of item*/
     private final String [] price;
+    /** The type of list we want to create */
     private String pListType;
-
+    /** One view of list item */
     private View rowView= null;
-
+    /** Button increment */
     private Button btnIncremrnt;
+    /** Button decrement */
     private Button btnDecrement;
-    private Button btnEditQuantity;
 
+    /**
+     * Full cto'r
+     * @param context
+     * @param imgid
+     * @param itemname
+     * @param price
+     * @param pListType
+     */
     public CustomListAdapter(Activity context,Integer[] imgid, String[] itemname, String[] price, String pListType) {
         super(context, R.layout.productlist_quantity, itemname);
 
@@ -47,6 +59,13 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         this.pListType=pListType;
     }
 
+    /**
+     * @param position
+     * @param view
+     * @param parent
+     * @return view of one list item
+     */
+    @Override
     public View getView(int position,View view,ViewGroup parent) {
 
         LayoutInflater inflater=context.getLayoutInflater();
@@ -88,7 +107,9 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         return rowView;
     };
 
-
+    /**
+     * The function set listener to buttons btnIncremrnt and btnDecrement
+     */
     private void setListeners(){
         btnIncremrnt = (Button) rowView.findViewById(R.id.btnInc);
         btnDecrement = (Button) rowView.findViewById(R.id.btnDec);
@@ -140,6 +161,9 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         });
     }
 
+    /**
+     *  The function set listener to button btnRemoveProduct
+     */
     private void setRemoveProductListener()
     {
         Button btnRemoveProduct = (Button)rowView.findViewById(R.id.btnRemove);

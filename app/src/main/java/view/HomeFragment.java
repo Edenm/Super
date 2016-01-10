@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 
 import ViewLogic.slidingmenu.R;
 
+/**
+ * TBD
+ */
 public class HomeFragment extends Fragment {
 	
 	public HomeFragment(){}

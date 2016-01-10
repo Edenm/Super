@@ -21,7 +21,6 @@ package model.dropbox.manager;
         import java.util.Iterator;
         import java.util.List;
         import java.util.Map;
-
         import com.dropbox.client2.DropboxAPI;
         import com.dropbox.client2.DropboxAPI.DropboxFileInfo;
         import com.dropbox.client2.DropboxAPI.Entry;
@@ -34,9 +33,11 @@ package model.dropbox.manager;
         import com.dropbox.client2.exception.DropboxServerException;
         import com.dropbox.client2.exception.DropboxUnlinkedException;
         import com.dropbox.client2.session.AppKeyPair;
-
         import android.os.Environment;
 
+/**
+ * This class is responsable on connect with dropbox and to be synchronize with new data
+ */
 public class NetworkManager {
 
     private static final String APP_KEY = "vqh379j1v54b5n9";
@@ -46,7 +47,7 @@ public class NetworkManager {
     private String appDirName = Environment.getExternalStorageDirectory() + "/dbSuperZol";
     private File mDir = new File(appDirName);
     private String appDirNameOnDropbox = "/SuperZolData/";
-    private File resListFile;
+    private File dbListFile;
     private Map<String, String> mFileNames = new HashMap<String, String>();
     private HashMap<String, String> md5LookUpTable = new HashMap<String, String>();
     private HashMap<String, String> localmd5Table = new HashMap<String, String>();
@@ -282,15 +283,15 @@ public class NetworkManager {
     }
 
     public void loadResFile() {
-        String resListFileName = "res_list";
+        String dbListFileName = "DB_list";
 
-        resListFile = new File(getAppDir(), resListFileName);
+        dbListFile = new File(getAppDir(), dbListFileName);
 
         BufferedReader br = null;
 
-        if (resListFile.exists()) {
+        if (dbListFile.exists()) {
             try {
-                br = new BufferedReader(new FileReader(resListFile));
+                br = new BufferedReader(new FileReader(dbListFile));
                 String line = null;
                 while ((line = br.readLine()) != null) {
                     String[] vals = line.split("\t");
@@ -313,7 +314,7 @@ public class NetworkManager {
             }
         } else {
             try {
-                resListFile.createNewFile();
+                dbListFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -322,10 +323,10 @@ public class NetworkManager {
 
     public void saveResFile() {
         if (mDir != null) {
-            File resListFile = new File(mDir, "res_list");
+            File dbListFile = new File(mDir, "DB_list");
             BufferedWriter bw = null;
             try {
-                bw = new BufferedWriter(new FileWriter(resListFile, false));
+                bw = new BufferedWriter(new FileWriter(dbListFile, false));
 
                 for (Iterator<String> iterator = mFileNames.keySet().iterator(); iterator.hasNext();) {
                     String url = (String) iterator.next();

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * the ModelLogic class is a Singelton contains SysData
  * and manage all the DB.
@@ -12,6 +14,10 @@ public class ModelLogic {
 	
 	public SysData data;
 
+	/**
+	 * singletone function
+	 * @return instance of ModelLogic
+	 */
 	public static ModelLogic getInstance(){
 		if	(instance == null){
 			instance = new ModelLogic();
@@ -19,13 +25,21 @@ public class ModelLogic {
 		}
 		return instance;
 	}
-	
+
+	/**
+	 * private cto'r
+	 */
 	private ModelLogic() {
 		super();
 		data= new SysData();
 	}
 
-	/** Add item to items DB **/
+	/**
+	 * This methd get item and adress of supermarket.
+	 * the method add the item to DB
+	 * @param item
+	 * @param superMarketAdress
+	 */
 	public void addNewItem(Item item, String superMarketAdress){
 		SuperMarket sm = data.getSupers().get(superMarketAdress);
 		if (!data.getItems().containsKey(item.getItemCode())){
@@ -39,13 +53,20 @@ public class ModelLogic {
 		}
 	}
 
-	/** Add Super to SuperMarket DB **/
+	/**
+	 * This methd get supermarket.
+	 * the method add the supermarket to DB
+	 * @param sm
+	 */
 	public void addNewSuperMarket(SuperMarket sm){
 		if (!data.getSupers().containsKey(sm.getAdress())){
 			data.addSuperMarket(sm);
 		}
 	}
-	
+
+	/**
+	 * The method print all data in system.
+	 */
 	public void printDataBase(){
 		
 		System.out.println("All items: ");
@@ -61,8 +82,28 @@ public class ModelLogic {
 		}
 	}
 
+	/**
+	 * @return reference of sysData
+	 */
 	public SysData getSysData(){
 		return data;
+	}
+
+	/**
+	 * This method get word to search.
+	 * @param word
+	 * @return The method retunr list of items that contains that word inside
+	 */
+	public static ArrayList<Item> getAllResultByWord(String word){
+		ArrayList <Item> items = new ArrayList <Item>();
+
+		for (Item item:ModelLogic.getInstance().getSysData().getItems().values())
+		{
+			if (item.getItemName().contains(word)){
+				items.add(item);
+			}
+		}
+		return items;
 	}
 
 }

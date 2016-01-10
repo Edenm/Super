@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 
 /**
+ * This class is represent one item in system
  * Item class included all data about item like name, code, price ...
  * is also contains HashMap with all supermarkets that have this item, and the item price
  * in each supermarket.
@@ -16,10 +17,10 @@ public class Item {
 /*1 */	private Date priceUpdateDate;				//	<PriceUpdateDate>2015-12-29 08:15</PriceUpdateDate>
 /*2 */	private String itemCode;					//    <ItemCode>16000177710</ItemCode>
 /*3 */												//    <ItemType>1</ItemType>
-/*4 */	private String itemName;						//    <ItemName>נייצ'ר וואלי פירות+שקד5י</ItemName>
+/*4 */	private String itemName;					//    <ItemName>נייצ'ר וואלי פירות+שקד5י</ItemName>
 /*5 */	private String manufacturerName;			//    <ManufacturerName>ג'נרל מילס</ManufacturerName>
 /*6 */												//    <ManufactureCountry>US</ManufactureCountry>
-/*7 */	private String manufacturerItemDescription;//    <ManufacturerItemDescription>חטיף נייצ'ר ואלי</ManufacturerItemDescription>
+/*7 */	private String manufacturerItemDescription; //    <ManufacturerItemDescription>חטיף נייצ'ר ואלי</ManufacturerItemDescription>
 /*8 */	private String unitQty;						//    <UnitQty>גרמים</UnitQty>
 /*9 */	private Float quantity;						//    <Quantity>175.00</Quantity>
 /*10 */												//    <bIsWeighted>0</bIsWeighted>
@@ -29,14 +30,30 @@ public class Item {
 /*14 */												//    <UnitOfMeasurePrice>9.09</UnitOfMeasurePrice>
 /*15 */												//    <AllowDiscount>1</AllowDiscount>
 /*16 */												//    <ItemStatus>1</ItemStatus>
-		private Map <SuperMarket,Float> prices;
 
-	//semi- constructor
-	public Item(String name){
+	/** This map contains all prices of this item in all supers */
+	private Map <SuperMarket,Float> prices;
+
+	/**
+	 * Partial cto'r
+	 * @param name
+	 */
+	public Item(String name)
+	{
 		this.itemName = name;
 	}
 
-	//constructor
+	/**
+	 * Full cto'r
+	 * @param priceUpdateDate
+	 * @param itemCode
+	 * @param name
+	 * @param manufacturerName
+	 * @param manufacturerItemDescription
+	 * @param qnitQty
+	 * @param quantity
+	 * @param itemPrice
+	 */
 	public Item(Date priceUpdateDate, String itemCode, String name,
 			String manufacturerName, String manufacturerItemDescription,
 			String qnitQty, Float quantity, Float itemPrice) {
@@ -57,57 +74,80 @@ public class Item {
 	}
 
 	/**
-	 * Getter and Setter
-	 * @return
+	 * @return priceUpdateDate
 	 */
-	public Date getPriceUpdateDate() {
+	public Date getPriceUpdateDate()
+	{
 		return priceUpdateDate;
 	}
 
-
-	public String getItemCode() {
+	/**
+	 * @return itemCode
+	 */
+	public String getItemCode()
+	{
 		return itemCode;
 	}
 
-
-	public String getItemName() {
+	/**
+	 * @return itemName
+	 */
+	public String getItemName()
+	{
 		return itemName;
 	}
 
-
-	public String getManufacturerName() {
+	/**
+	 * @return manufacturerName
+	 */
+	public String getManufacturerName()
+	{
 		return manufacturerName;
 	}
 
-
-	public String getManufacturerItemDescription() {
+	/**
+	 * @return manufacturerItemDescription
+	 */
+	public String getManufacturerItemDescription()
+	{
 		return manufacturerItemDescription;
 	}
 
-
-	public String getUnitQty() {
+	/**
+	 * @return unitQty
+	 */
+	public String getUnitQty()
+	{
 		return unitQty;
 	}
 
-
-	public Float getQuantity() {
+	/**
+	 * @return quantity
+	 */
+	public Float getQuantity()
+	{
 		return quantity;
 	}
 
-
-	public Float getItemPrice() {
+	/**
+	 * @return itemPrice
+	 */
+	public Float getItemPrice()
+	{
 		return itemPrice;
 	}
 
-	
-
-	public Map<SuperMarket, Float> getPrices() {
+	/**
+	 * @return prices
+	 */
+	public Map<SuperMarket, Float> getPrices()
+	{
 		return prices;
 	}
 
 	/**
-	 * hashCode
-	 * @return
+	 * HashCode function
+	 * @return HashCode result
 	 */
 	@Override
 	public int hashCode() {
@@ -119,7 +159,6 @@ public class Item {
 	}
 
 	/**
-	 *
 	 * @param obj
 	 * @return true if two object are equals according to itemName
 	 */
@@ -136,10 +175,8 @@ public class Item {
 
 	/**
 	 * if the item exists update is price if needed else add this item.
-	 *
 	 * @param sp
 	 * @param price
-	 *
 	 *  */
 	public void addUpdatePriceToItem(SuperMarket sp, Float price)
 	{
@@ -163,22 +200,25 @@ public class Item {
 	}
 
 
+	/**
+	 * @return string that represent item
+	 */
 	@Override
 	public String toString() {
 		return "Item [ItemCode=" + itemCode + ", name=" + itemName +
 				 ", quantity=" + quantity+" "+unitQty + ", itemPrice="
 				+ itemPrice + "\n prices=" + pricesToString() + "]";
 	}
-	
-	
+
+	/**
+	 * @return All the prices of the item in string
+	 */
 	public String pricesToString(){
 		String pricesString = "";
-		
 		for(Entry<SuperMarket,Float> entry : prices.entrySet()){
 			pricesString += "Super Name: "+entry.getKey().getName()+ " Adress: "+entry.getKey().getAdress()+
 								" Price: "+entry.getValue() +"\n";
 		}
-		
 		return pricesString;
 	}
 	

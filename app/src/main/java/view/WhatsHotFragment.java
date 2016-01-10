@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+/**
+ * TBD
+ */
 public class WhatsHotFragment extends Fragment {
 	
 	public WhatsHotFragment(){}

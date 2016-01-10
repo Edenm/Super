@@ -1,4 +1,4 @@
-package view.model;
+package view;
 
 public class NavDrawerItem {
 	

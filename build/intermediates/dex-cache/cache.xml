@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Eden\AndroidStudioProjects\Super\libs\json_simple-1.1.jar"
+        jar="C:\Users\Eden\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="5e303a03d04e6788dddfa3655272580ae0fc13bb">
-        <dex dex="C:\Users\Eden\AndroidStudioProjects\Super\app\build\intermediates\pre-dexed\debug\json_simple-1.1-a67b29128fc71ee2ff6e82e40c0d4365fb0e8b30.jar" />
-    </item>
-    <item
-        jar="C:\Users\Eden\AndroidStudioProjects\Super\libs\json-20140107.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d1ffca6e2482b002702c6a576166fd685e3370e3">
-        <dex dex="C:\Users\Eden\AndroidStudioProjects\Super\app\build\intermediates\pre-dexed\debug\json-20140107-e7078d44d312ba7ee2e674c7d3cf710ca303a5ec.jar" />
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="C:\Users\Eden\AndroidStudioProjects\Super\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-64a601e475bf48600097578761817462924a7442.jar" />
     </item>
     <item
         jar="C:\Users\Eden\AndroidStudioProjects\Super\libs\dropbox-android-sdk-1.6.3.jar"
@@ -23,11 +16,18 @@
         <dex dex="C:\Users\Eden\AndroidStudioProjects\Super\app\build\intermediates\pre-dexed\debug\dropbox-android-sdk-1.6.3-8ff9ad1b0c4f965e6044520904f018805ca0d44f.jar" />
     </item>
     <item
-        jar="C:\Users\Eden\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jar="C:\Users\Eden\AndroidStudioProjects\Super\libs\json-20140107.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="C:\Users\Eden\AndroidStudioProjects\Super\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-64a601e475bf48600097578761817462924a7442.jar" />
+        sha1="d1ffca6e2482b002702c6a576166fd685e3370e3">
+        <dex dex="C:\Users\Eden\AndroidStudioProjects\Super\app\build\intermediates\pre-dexed\debug\json-20140107-e7078d44d312ba7ee2e674c7d3cf710ca303a5ec.jar" />
+    </item>
+    <item
+        jar="C:\Users\Eden\AndroidStudioProjects\Super\libs\json_simple-1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5e303a03d04e6788dddfa3655272580ae0fc13bb">
+        <dex dex="C:\Users\Eden\AndroidStudioProjects\Super\app\build\intermediates\pre-dexed\debug\json_simple-1.1-a67b29128fc71ee2ff6e82e40c0d4365fb0e8b30.jar" />
     </item>
 
 </items>

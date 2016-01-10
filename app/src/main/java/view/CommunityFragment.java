@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 
 import ViewLogic.slidingmenu.R;
 
+/**
+ * TBD
+ */
 public class CommunityFragment extends Fragment {
 	
 	public CommunityFragment(){}

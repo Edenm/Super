@@ -12,10 +12,19 @@ import model.dropbox.DBSuper;
 /**
  * Created by Eden on 09-Jan-16.
  */
+
+/**
+ * This activity is represent the functionality of login
+ */
 public class LoginActivity extends Activity {
 
+    /** The button signup */
     Button signup;
 
+    /**
+     * on create
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -26,7 +35,9 @@ public class LoginActivity extends Activity {
         signup.setOnClickListener(signUpListener);
     }
 
-
+    /**
+     * Listener of signup button
+     */
     private View.OnClickListener signUpListener = new View.OnClickListener()
     {
         @Override

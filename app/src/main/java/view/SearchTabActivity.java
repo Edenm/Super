@@ -12,45 +12,51 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import ViewLogic.slidingmenu.R;
 import model.Item;
 import model.MarketList;
-import model.ModelLogic;
 import view.adapter.CustomListAdapter;
 
+/**
+ * This activity is represent the functionality of search item in DB and manage market list
+ */
 public class SearchTabActivity extends Activity {
 
+    /** The market list */
     private ListView list;
+    /** The search view for search item */
     private SearchView productSearchView;
-    private Button btnEditQuantity;
-    //private ;
 
+
+    /**
+     * On create
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_search);
-
         list = (ListView) findViewById(R.id.listViewSearch);
         productSearchView = (SearchView) findViewById(R.id.searchView);
-
-
 
         loadData();
         setListeners();
     }
 
+    /**
+     * On resume
+     */
     @Override
     protected void onResume() {
         super.onResume();
         loadData();
     }
 
+    /**
+     * Load all the data of search tab activity
+     */
     public void loadData(){
         MarketList ml = MarketList.getInstance();
 
@@ -67,29 +73,13 @@ public class SearchTabActivity extends Activity {
             counter++;
         }
 
-            /*btnEditQuantity = (Button) findViewById(R.id.btnEdit);
-
-            btnEditQuantity.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
-
-                    View parent = (View) v.getParent();
-                    TextView txtTitle = (TextView) (parent).findViewById(R.id.prodName);
-                    String itemName = txtTitle.getText().toString();
-                    quantityIntent.putExtra("word", itemName);
-                    startActivity(quantityIntent);
-                }
-            });*/
-
-
         CustomListAdapter adapter = new CustomListAdapter(this, imgid, itemname, price, "list");
-
         list.setAdapter(adapter);
-
-        //adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Set listenes of the list and of product in list
+     */
     private void setListeners(){
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -103,9 +93,6 @@ public class SearchTabActivity extends Activity {
                 startActivity(quantityIntent);
             }
         });
-
-
-
 
         productSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -122,8 +109,6 @@ public class SearchTabActivity extends Activity {
 
                 return false;
             }
-
-
         });
 
     }

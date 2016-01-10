@@ -7,31 +7,43 @@ package view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import ViewLogic.slidingmenu.R;
 import model.Item;
-import model.Helper;
 import model.MarketList;
 import model.ModelLogic;
 import view.adapter.CustomListAdapter;
 
+/**
+ * This activity is represent the functionality of increase and decrease the amount of the items in the item list
+ */
 public class ChooseProductActivity extends Activity {
 
+    /** The list item */
     ListView list;
+    /** The search view */
     TextView searchProduct;
+    /** The button to return last activity */
+    Button btnBack;
 
+    /**
+     * on create
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_product);
 
         list = (ListView) findViewById(R.id.listView);
-        searchProduct= (TextView)findViewById(R.id.txtSearchProduct);
+        searchProduct = (TextView)findViewById(R.id.txtSearchProduct);
+        btnBack = (Button)findViewById(R.id.btnReturn);
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
@@ -42,10 +54,11 @@ public class ChooseProductActivity extends Activity {
             loadDataByMarketList();
         }
         else{
-            searchProduct.setText(wordToSearch);
+            searchProduct.setText(" חיפוש: "+wordToSearch);
             loadDataByWord(wordToSearch);
         }
 
+        setListener();
 
 //        switch (type){
 //            case "MarketList": searchProduct.setText("רשימת קניות");
@@ -58,18 +71,15 @@ public class ChooseProductActivity extends Activity {
 //                break;
 //        }
 
-
-
-
-
     }
 
+    /**
+     * The method is load all data in that activity by search word
+     * @param wordToSearch
+     */
     private void loadDataByWord(String wordToSearch){
 
-       // ModelLogic ml = ModelLogic.getInstance();
-        //ArrayList<Item> items = new ArrayList<Item>(ml.getSysData().getItems().values());
-
-       ArrayList<Item> items = new ArrayList<Item>(Helper.getAllResultByWord(wordToSearch));
+       ArrayList<Item> items = new ArrayList<Item>(ModelLogic.getInstance().getAllResultByWord(wordToSearch));
 
         String[] itemname = new String[items.size()];
         String[] price = new String[items.size()];
@@ -84,10 +94,12 @@ public class ChooseProductActivity extends Activity {
         list.setAdapter(adapter);
     }
 
+    /**
+     * The method is load all data in that activity by marketlist
+     */
     private void loadDataByMarketList(){
 
         MarketList ml = MarketList.getInstance();
-
 
         int counter = 0;
         HashMap<Item,Integer> listItem =  ml.getItems();
@@ -106,4 +118,15 @@ public class ChooseProductActivity extends Activity {
     }
 
 
+    /**
+     * This method contains set of listeners
+     */
+    private void setListener(){
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 }

@@ -8,15 +8,18 @@ import java.util.HashMap;
  *  for each user we create a new Market list.
  *  TBD - save the MarketList for resume.
  */
-
 public class MarketList {
 
+    /** keep the instance of MarketList */
     public static MarketList instance;
 
     /** all Chosen items of user and quantity of each item **/
     HashMap <Item,Integer> items;
 
-    /**Singelton**/
+    /**
+     * singletone function
+     * @return instance of MarketList
+     */
     public static MarketList getInstance(){
         if	(instance == null){
             instance = new MarketList();
@@ -24,11 +27,17 @@ public class MarketList {
         return instance;
     }
 
+    /**
+     * Private cto'r
+     */
     private MarketList() {
         super();
         items= new HashMap<Item, Integer>();
     }
 
+    /**
+     * @return items
+     */
     public HashMap<Item, Integer> getItems(){
         return items;
     }
@@ -36,7 +45,6 @@ public class MarketList {
     /**
      * increasing the cohsen quantity of specific item
      * @param item
-     *
      */
     public void increaseCountOfItemMarketList(Item item){
         if( items.containsKey(item) )

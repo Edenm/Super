@@ -4,7 +4,6 @@ import ViewLogic.slidingmenu.R;
 import model.ModelLogic;
 import model.SuperMarket;
 import view.adapter.NavDrawerListAdapter;
-import view.model.NavDrawerItem;
 
 import java.util.ArrayList;
 
@@ -25,28 +24,37 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TabHost;
 
+/**
+ * This class is manage all tabs and fragment in the app
+ */
 public class MainActivity extends TabActivity {
+	/** The DrawerLayout */
 	private DrawerLayout mDrawerLayout;
+	/** The list view of drawer */
 	private ListView mDrawerList;
+	/** The action bar drawer toggle */
 	private ActionBarDrawerToggle mDrawerToggle;
 
-	// nav drawer title
+	/** nav drawer title */
 	private CharSequence mDrawerTitle;
 
-	// used to store app title
+	/** used to store app title */
 	private CharSequence mTitle;
 
-	// slide menu items
+	/** slide menu items */
 	private String[] navMenuTitles;
 	private TypedArray navMenuIcons;
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
 
+	/** The tab host */
 	TabHost mTabHost;
 
-	private static final int REQ_CHOICE=1;
-
+	/**
+	 * On create
+	 * @param savedInstanceState
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -124,6 +132,9 @@ public class MainActivity extends TabActivity {
 		initializeDB();
 	}
 
+	/**
+	 * Create and sets all tabs in tabhost
+	 */
 	private void setTabs()
 	{
 
@@ -152,6 +163,9 @@ public class MainActivity extends TabActivity {
 		mTabHost.setCurrentTab(2);
 	}
 
+	/**
+	 * initialize the first super
+	 */
 	private void initializeDB()
 	{
 		ModelLogic ml= ModelLogic.getInstance();
