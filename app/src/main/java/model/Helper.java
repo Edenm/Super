@@ -1,5 +1,7 @@
 package model;
 
+import android.content.Intent;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +28,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
+import ViewLogic.slidingmenu.R;
 import model.Item;
 import model.ModelLogic;
 import model.SuperMarket;
@@ -74,7 +77,8 @@ public class Helper {
 											     eElement.getElementsByTagName("UnitQty").item(0).getTextContent(), 
 											     Float.valueOf(eElement.getElementsByTagName("Quantity").item(0).getTextContent()), 
 											     Float.valueOf(eElement.getElementsByTagName("ItemPrice").item(0).getTextContent()));
-							ml.addNewItem(item, "המושבה 7 נשר");
+							Integer superAddress = R.string.supermarket_address;
+							ml.addNewItem(item, (superAddress.toString()));
 						
 						}
 					}

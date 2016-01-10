@@ -145,19 +145,22 @@ public class MainActivity extends TabActivity {
 		TabHost.TabSpec ts3 = mTabHost.newTabSpec("3");
 		intent=new Intent(this, ComparisonTabActivity.class);
 		ts3.setContent(intent);
-		ts3.setIndicator("השוואה");
+		CharSequence tab3Indicator = getString(R.string.tab3);
+		ts3.setIndicator(tab3Indicator);
 		mTabHost.addTab(ts3);
 
 		TabHost.TabSpec ts2 = mTabHost.newTabSpec("2");
 		intent=new Intent(this, SuperTabActivity.class);
 		ts2.setContent(intent);
-		ts2.setIndicator("סופר");
+		CharSequence tab2Indicator = getString(R.string.tab2);
+		ts2.setIndicator(tab2Indicator);
 		mTabHost.addTab(ts2);
 
 		TabHost.TabSpec ts1 = mTabHost.newTabSpec("1");
 		intent=new Intent(this, SearchTabActivity.class);
 		ts1.setContent(intent);
-		ts1.setIndicator("רשימה");
+		CharSequence tab1Indicator = getString(R.string.tab1);
+		ts1.setIndicator(tab1Indicator);
 		mTabHost.addTab(ts1);
 
 		mTabHost.setCurrentTab(2);
@@ -169,7 +172,9 @@ public class MainActivity extends TabActivity {
 	private void initializeDB()
 	{
 		ModelLogic ml= ModelLogic.getInstance();
-		SuperMarket sm= new SuperMarket("רמי לוי", "המושבה 7 נשר");
+		String ramiLevi = getString(R.string.rami_levi);
+		String superAddress = getString(R.string.supermarket_address);
+		SuperMarket sm= new SuperMarket(ramiLevi, superAddress);
 	}
 
 	/**

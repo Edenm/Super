@@ -50,26 +50,16 @@ public class ChooseProductActivity extends Activity {
         String wordToSearch = intent.getStringExtra("word");
 
         if (type.equals("MarketList")){
-            searchProduct.setText("רשימת קניות");
+            searchProduct.setText(R.string.market_list);
             loadDataByMarketList();
         }
         else{
-            searchProduct.setText(" חיפוש: "+wordToSearch);
+            String search = getString(R.string.search);
+            searchProduct.setText(search + ": " + wordToSearch);
             loadDataByWord(wordToSearch);
         }
 
         setListener();
-
-//        switch (type){
-//            case "MarketList": searchProduct.setText("רשימת קניות");
-//                               loadDataByMarketList();
-//                               break;
-//            case "Word":       searchProduct.setText(wordToSearch);
-//                               loadDataByWord(wordToSearch);
-//                               break;
-//            default:
-//                break;
-//        }
 
     }
 

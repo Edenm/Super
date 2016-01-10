@@ -1,8 +1,6 @@
 package view;
 
-/**
- * Created by Eden on 03-Jan-16.
- */
+
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -31,7 +29,9 @@ public class SuperTabActivity extends Activity {
         setContentView(R.layout.activity_tab_super);
 
         TextView superName= (TextView)findViewById(R.id.txtSuperName);
-        superName.setText("רמי לוי שיווק השקמה - נשר");
+        String ramiLeviSuperName = getString(R.string.shivuk_hashikma);
+        superName.setText(ramiLeviSuperName);
+
 
         ModelLogic ml = ModelLogic.getInstance();
 

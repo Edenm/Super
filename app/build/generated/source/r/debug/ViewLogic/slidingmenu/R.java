@@ -144,6 +144,14 @@ public final class R {
         public static final int drawer_close=0x7f080003;
         public static final int drawer_open=0x7f080004;
         public static final int hello_world=0x7f080005;
+        public static final int market_list=0x7f080006;
+        public static final int rami_levi=0x7f080007;
+        public static final int search=0x7f080008;
+        public static final int shivuk_hashikma=0x7f080009;
+        public static final int supermarket_address=0x7f08000a;
+        public static final int tab1=0x7f08000b;
+        public static final int tab2=0x7f08000c;
+        public static final int tab3=0x7f08000d;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 
