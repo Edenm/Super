@@ -5,18 +5,31 @@ package view;
  */
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.database.MatrixCursor;
+import android.graphics.AvoidXfermode;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import ViewLogic.slidingmenu.R;
 import model.Item;
 import model.MarketList;
+import model.ModelLogic;
+import view.adapter.AutoCompleteAdapter;
 import view.adapter.CustomListAdapter;
 
 /**
@@ -75,6 +88,14 @@ public class SearchTabActivity extends Activity {
 
         CustomListAdapter adapter = new CustomListAdapter(this, imgid, itemname, price, "list");
         list.setAdapter(adapter);
+
+
+
+
+        //ArrayAdapter <String> adapterToComp = new ArrayAdapter <String>(this, R.layout.activity_combo_autocomplete,itemsTocomplete);
+
+        //CursorAdapter adapterToComp2 = new CursorAdapter()
+        //productSearchView.setSuggestionsAdapter(adapterToComp);
     }
 
     /**
@@ -94,6 +115,10 @@ public class SearchTabActivity extends Activity {
             }
         });
 
+        SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        productSearchView.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+
         productSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -106,13 +131,46 @@ public class SearchTabActivity extends Activity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
-                return false;
+                loadAutoComplete(newText);
+                return true;
             }
         });
-
     }
 
+
+    private void loadAutoComplete(String query) {
+
+        ModelLogic model = ModelLogic.getInstance();
+        List<String> itemsTocomplete = new ArrayList<String>();
+        int counter=0;
+        for(Item i:model.getSysData().getItems().values()) {
+            itemsTocomplete.add(i.getItemName());
+            counter++;
+        }
+
+            // Cursor
+            String[] columns = new String[] { "_id", "text" };
+            Object[] temp = new Object[] { 0, "default" };
+
+            MatrixCursor cursor = new MatrixCursor(columns);
+
+            for(int i = 0; i < itemsTocomplete.size(); i++) {
+
+                temp[0] = i;
+                temp[1] = itemsTocomplete.get(i); //replaced s with i as s not used anywhere.
+
+                cursor.addRow(temp);
+
+            }
+
+            // SearchView
+            SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+//            final SearchView search = (SearchView) menu.findItem(R.id.search).getActionView();
+
+            productSearchView.setSuggestionsAdapter(new AutoCompleteAdapter(this, cursor, itemsTocomplete));
+
+    }
 
 
 
