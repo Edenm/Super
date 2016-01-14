@@ -4,20 +4,17 @@
     android:layout_height="match_parent">
     
     <TextView
-        android:id="@+id/txtLabel"
+        android:id="@+id/txtcommLabel"
          android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:textSize="16dp"
-        android:text="Find People View"/>
+        android:text="Communities View"/>
     
-    <ImageView android:layout_width="wrap_content"
+    <!--ImageView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtLabel"
-        android:src="@drawable/ic_people"
+        android:layout_below="@id/txtcommLabel"
+        android:src="@drawable/ic_communities"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
-    
+        android:layout_marginTop="10dp"/-->
 
 </RelativeLayout>
-<!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/fragment_find_people.xml -->

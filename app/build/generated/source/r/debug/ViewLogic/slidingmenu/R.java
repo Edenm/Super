@@ -73,11 +73,11 @@ public final class R {
         public static final int user=0x7f020023;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0027;
-        public static final int btnDec=0x7f0b001f;
-        public static final int btnInc=0x7f0b001d;
+        public static final int action_settings=0x7f0b0028;
+        public static final int btnDec=0x7f0b0020;
+        public static final int btnInc=0x7f0b001e;
         public static final int btnMoreSuper=0x7f0b0011;
-        public static final int btnRemove=0x7f0b0020;
+        public static final int btnRemove=0x7f0b0021;
         public static final int btnReturn=0x7f0b0003;
         public static final int btnSingIn=0x7f0b000a;
         public static final int counter=0x7f0b001b;
@@ -86,7 +86,7 @@ public final class R {
         public static final int etPass=0x7f0b0009;
         public static final int frame_container=0x7f0b000c;
         public static final int icon=0x7f0b0019;
-        public static final int imageButton=0x7f0b0026;
+        public static final int imageButton=0x7f0b0027;
         public static final int imageView=0x7f0b0007;
         public static final int item=0x7f0b0004;
         public static final int labelTxt=0x7f0b0005;
@@ -97,22 +97,23 @@ public final class R {
         public static final int listViewSearch=0x7f0b0015;
         public static final int listViewSuper=0x7f0b0018;
         public static final int list_slidermenu=0x7f0b000d;
-        public static final int priceTxt=0x7f0b0023;
-        public static final int prodImg=0x7f0b0021;
-        public static final int prodName=0x7f0b0022;
+        public static final int priceTxt=0x7f0b0024;
+        public static final int prodImg=0x7f0b0022;
+        public static final int prodName=0x7f0b0023;
         public static final int searchView=0x7f0b0013;
         public static final int searchView2=0x7f0b0016;
         public static final int tab1=0x7f0b0012;
         public static final int tab2=0x7f0b0000;
-        public static final int textSpace=0x7f0b0025;
+        public static final int textSpace=0x7f0b0026;
         public static final int title=0x7f0b001a;
-        public static final int txtCounter=0x7f0b001e;
-        public static final int txtLabel=0x7f0b001c;
-        public static final int txtNis=0x7f0b0024;
+        public static final int txtCounter=0x7f0b001f;
+        public static final int txtLabel=0x7f0b001d;
+        public static final int txtNis=0x7f0b0025;
         public static final int txtSearchProduct=0x7f0b0001;
         public static final int txtSuperName=0x7f0b0017;
         public static final int txtTitleMyList=0x7f0b0014;
         public static final int txtTitleSuper=0x7f0b0010;
+        public static final int txtcommLabel=0x7f0b001c;
     }
     public static final class layout {
         public static final int activity_choose_product=0x7f030000;
@@ -124,36 +125,36 @@ public final class R {
         public static final int activity_tab_super=0x7f030006;
         public static final int drawer_list_item=0x7f030007;
         public static final int dropbox_activity=0x7f030008;
-        public static final int fragment_community=0x7f030009;
-        public static final int fragment_find_people=0x7f03000a;
-        public static final int fragment_home=0x7f03000b;
-        public static final int fragment_pages=0x7f03000c;
-        public static final int fragment_photos=0x7f03000d;
-        public static final int fragment_whats_hot=0x7f03000e;
-        public static final int partial_incdec=0x7f03000f;
-        public static final int productlist=0x7f030010;
-        public static final int productlist_quantity=0x7f030011;
-        public static final int productlist_super=0x7f030012;
-        public static final int supermarketlist=0x7f030013;
+        public static final int fragment_activity_about=0x7f030009;
+        public static final int fragment_activity_change_address=0x7f03000a;
+        public static final int fragment_activity_contactus=0x7f03000b;
+        public static final int fragment_activity_update_profile=0x7f03000c;
+        public static final int fragment_home=0x7f03000d;
+        public static final int partial_incdec=0x7f03000e;
+        public static final int productlist=0x7f03000f;
+        public static final int productlist_quantity=0x7f030010;
+        public static final int productlist_super=0x7f030011;
+        public static final int supermarketlist=0x7f030012;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
     }
     public static final class string {
-        public static final int action_settings=0x7f090000;
-        public static final int app_name=0x7f090001;
-        public static final int desc_list_item_icon=0x7f090002;
-        public static final int drawer_close=0x7f090003;
-        public static final int drawer_open=0x7f090004;
-        public static final int hello_world=0x7f090005;
-        public static final int market_list=0x7f090006;
-        public static final int rami_levi=0x7f090007;
-        public static final int search=0x7f090008;
-        public static final int shivuk_hashikma=0x7f090009;
-        public static final int supermarket_address=0x7f09000a;
-        public static final int tab1=0x7f09000b;
-        public static final int tab2=0x7f09000c;
-        public static final int tab3=0x7f09000d;
+        public static final int aboutSuperZol=0x7f090000;
+        public static final int action_settings=0x7f090001;
+        public static final int app_name=0x7f090002;
+        public static final int desc_list_item_icon=0x7f090003;
+        public static final int drawer_close=0x7f090004;
+        public static final int drawer_open=0x7f090005;
+        public static final int hello_world=0x7f090006;
+        public static final int market_list=0x7f090007;
+        public static final int rami_levi=0x7f090008;
+        public static final int search=0x7f090009;
+        public static final int shivuk_hashikma=0x7f09000a;
+        public static final int supermarket_address=0x7f09000b;
+        public static final int tab1=0x7f09000c;
+        public static final int tab2=0x7f09000d;
+        public static final int tab3=0x7f09000e;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

@@ -60,6 +60,11 @@
             android:name="view.ChooseProductActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="view.AboutFragmentActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="view.MainActivity" >
+        </activity>
     </application>
 
 </manifest>

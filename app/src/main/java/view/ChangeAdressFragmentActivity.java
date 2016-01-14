@@ -11,15 +11,15 @@ import ViewLogic.slidingmenu.R;
 /**
  * TBD
  */
-public class PagesFragment extends Fragment {
+public class ChangeAdressFragmentActivity extends Fragment {
 	
-	public PagesFragment(){}
+	public ChangeAdressFragmentActivity(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_pages, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_activity_change_address, container, false);
          
         return rootView;
     }

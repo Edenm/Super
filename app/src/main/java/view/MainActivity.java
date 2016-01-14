@@ -15,6 +15,7 @@ import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -84,12 +85,12 @@ public class MainActivity extends TabActivity {
 		// Photos
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
 		// Communities, Will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
 		// Pages
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		// What's hot, We  will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
+		
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -202,6 +203,7 @@ public class MainActivity extends TabActivity {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
+		NavUtils.navigateUpFromSameTask(this);
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_settings:
@@ -233,26 +235,26 @@ public class MainActivity extends TabActivity {
 			fragment = new HomeFragment();
 			break;
 		case 1:
-			fragment = new FindPeopleFragment();
+			fragment = new ChangeAdressFragmentActivity();
 			break;
 		case 2:
-			fragment = new PhotosFragment();
+			fragment = new UpdateProfileFragmentActivity();
 			break;
 		case 3:
-			fragment = new CommunityFragment();
+			startActivity(new Intent(this, AboutFragmentActivity.class));
 			break;
 		case 4:
-			fragment = new PagesFragment();
+			fragment = new ContactFragmentActivity();
 			break;
 		case 5:
-			fragment = new WhatsHotFragment();
+			startActivity(new Intent(this,LoginActivity.class));
 			break;
 
 		default:
 			break;
 		}
 
-		if (fragment != null) {
+		/*if (fragment != null) {
 			FragmentManager fragmentManager = getFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.frame_container, fragment).commit();
@@ -265,7 +267,7 @@ public class MainActivity extends TabActivity {
 		} else {
 			// error in creating fragment
 			Log.e("MainActivity", "Error in creating fragment");
-		}
+		}*/
 	}
 
 	@Override

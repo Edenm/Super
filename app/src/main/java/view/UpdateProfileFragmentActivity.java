@@ -11,15 +11,15 @@ import ViewLogic.slidingmenu.R;
 /**
  * TBD
  */
-public class PhotosFragment extends Fragment {
+public class UpdateProfileFragmentActivity extends Fragment {
 	
-	public PhotosFragment(){}
+	public UpdateProfileFragmentActivity(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_photos, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_activity_update_profile, container, false);
          
         return rootView;
     }

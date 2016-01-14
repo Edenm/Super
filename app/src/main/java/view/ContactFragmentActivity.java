@@ -11,15 +11,15 @@ import ViewLogic.slidingmenu.R;
 /**
  * TBD
  */
-public class FindPeopleFragment extends Fragment {
+public class ContactFragmentActivity extends Fragment {
 	
-	public FindPeopleFragment(){}
+	public ContactFragmentActivity(){}
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.fragment_find_people, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_activity_contactus, container, false);
          
         return rootView;
     }
