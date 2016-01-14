@@ -4,6 +4,8 @@ package model;
  * Created by MOR on 1/9/2016.
  */
 
+import java.io.Serializable;
+
 /**
  * This class is represent one User in system
  * User class included all data about user like userName and password

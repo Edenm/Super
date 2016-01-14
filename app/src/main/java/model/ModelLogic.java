@@ -1,6 +1,13 @@
 package model;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import ViewLogic.slidingmenu.R;
 
 /**
  * the ModelLogic class is a Singelton contains SysData
@@ -8,11 +15,11 @@ import java.util.ArrayList;
  * add or remove Objects from our DB is managed here.
  */
 
-public class ModelLogic {
+public class ModelLogic implements Serializable {
 	
 	private static ModelLogic instance = null;
 	
-	public SysData data;
+	public static SysData data;
 
 	/**
 	 * singletone function
@@ -21,7 +28,11 @@ public class ModelLogic {
 	public static ModelLogic getInstance(){
 		if	(instance == null){
 			instance = new ModelLogic();
-			Helper.readJasonFile(instance);
+			//Helper.readJasonFile(instance);
+			//writeSer();
+			//Helper.readXmlFile(instance,"Ramilevi.xml","המושבה 7 נשר" );
+			readSer();
+
 		}
 		return instance;
 	}
@@ -104,6 +115,50 @@ public class ModelLogic {
 			}
 		}
 		return items;
+	}
+
+	/**
+	 * The method read data form srl file to the system when the system is up
+	 */
+	public static void readSer()  {
+		FileInputStream f_in = null;
+		ObjectInputStream inputStream = null;
+		//SysData sData = null;
+		try {
+
+			f_in = new FileInputStream("/storage/emulated/0/dbSuperZol/data.srl");
+			inputStream= new ObjectInputStream(f_in);
+			data=(SysData)inputStream.readObject();
+			System.out.println(data.getItems());
+		} catch (Exception ex) {
+		}
+		finally{
+			try {
+				inputStream.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+	/**
+	 * The method write data form the system to srl file when the system is close
+	 */
+	public static void writeSer() {
+		FileOutputStream f_out = null;
+		ObjectOutputStream outputStream = null;
+		try {
+			SysData sData = ModelLogic.getInstance().data;
+			f_out = new FileOutputStream("/storage/emulated/0/dbSuperZol/data.srl");
+			outputStream = new ObjectOutputStream(f_out);
+			outputStream.writeObject(data);
+
+		} catch (Exception ex) {
+		}
+		finally{
+			try {
+				outputStream.close();
+			} catch (Exception e) {
+			}
+		}
 	}
 
 }

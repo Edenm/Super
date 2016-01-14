@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -8,7 +9,7 @@ import java.util.HashMap;
  *  for each user we create a new Market list.
  *  TBD - save the MarketList for resume.
  */
-public class MarketList {
+public class MarketList implements Serializable {
 
     /** keep the instance of MarketList */
     public static MarketList instance;

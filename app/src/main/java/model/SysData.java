@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import java.util.Map;
  * TBD - save all users in DB.
  *
  */
-public class SysData {
+public class SysData implements Serializable {
 
 	/** Contains all items in system*/
 	Map <String,Item> items;

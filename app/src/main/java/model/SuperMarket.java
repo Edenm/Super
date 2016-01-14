@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * This class is represent one Super Market in system
  * SuperMarket class included all data about super market like name and address
  */
-public class SuperMarket {
+public class SuperMarket implements Serializable {
 
 	/** The name of super market*/
 	private String name;

@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,8 @@ import java.util.Map.Entry;
  * in each supermarket.
  */
 
-public class Item {
+public class Item implements Serializable {
+
 /*1 */	private Date priceUpdateDate;				//	<PriceUpdateDate>2015-12-29 08:15</PriceUpdateDate>
 /*2 */	private String itemCode;					//    <ItemCode>16000177710</ItemCode>
 /*3 */												//    <ItemType>1</ItemType>

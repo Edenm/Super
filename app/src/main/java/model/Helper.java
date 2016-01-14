@@ -45,7 +45,7 @@ public class Helper {
 	 * @param ml
 	 * @param fileName
 	 */
-		public static void readXmlFile(ModelLogic ml, String fileName)
+		public static void readXmlFile(ModelLogic ml, String fileName, String superAdress)
 		{
 			 try {
 					File fXmlFile = new File("/storage/emulated/0/dbSuperZol/", fileName);//new File(name);
@@ -77,8 +77,8 @@ public class Helper {
 											     eElement.getElementsByTagName("UnitQty").item(0).getTextContent(), 
 											     Float.valueOf(eElement.getElementsByTagName("Quantity").item(0).getTextContent()), 
 											     Float.valueOf(eElement.getElementsByTagName("ItemPrice").item(0).getTextContent()));
-							Integer superAddress = R.string.supermarket_address;
-							ml.addNewItem(item, (superAddress.toString()));
+
+							ml.addNewItem(item, (superAdress));
 						
 						}
 					}
