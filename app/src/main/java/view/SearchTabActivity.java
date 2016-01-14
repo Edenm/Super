@@ -131,7 +131,7 @@ public class SearchTabActivity extends Activity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                loadAutoComplete(newText);
+                //loadAutoComplete(newText);
                 return true;
             }
         });
