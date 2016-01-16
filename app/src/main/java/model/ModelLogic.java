@@ -1,13 +1,17 @@
 package model;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import ViewLogic.slidingmenu.R;
+import model.dropbox.manager.NetworkManager;
 
 /**
  * the ModelLogic class is a Singelton contains SysData
@@ -30,9 +34,9 @@ public class ModelLogic implements Serializable {
 			instance = new ModelLogic();
 			//Helper.readJasonFile(instance);
 			//writeSer();
-			//Helper.readXmlFile(instance,"Ramilevi.xml","המושבה 7 נשר" );
 			readSer();
-
+			//Helper.readXmlFile(instance, "Ramilevi.xml", "המושבה 7 נשר");
+			writeSer();
 		}
 		return instance;
 	}
@@ -117,15 +121,43 @@ public class ModelLogic implements Serializable {
 		return items;
 	}
 
+	public HashMap<Item, Float> getAllItemsBySuper(String superAdress)
+	{
+		HashMap <Item, Float> itemInSpecifiedSuper = new HashMap <Item, Float>();
+		ArrayList<Item> items = new ArrayList<Item>();
+		SuperMarket sm = new SuperMarket(superAdress);
+
+		for (Item i: data.getItems().values()){
+			for (Map.Entry<SuperMarket, Float> s:i.getPrices().entrySet()){
+				if (sm.equals(s.getKey())){
+					itemInSpecifiedSuper.put(i,s.getValue());
+				}
+			}
+		}
+
+		return itemInSpecifiedSuper;
+	}
+
+	public String [] getAllSuperNames()
+	{
+		Map<String, SuperMarket> superData =  data.getSupers();
+		String [] supers = new String[superData.size()];
+		int i = 0;
+		for (String s: superData.keySet()){
+			supers[i++] = s;
+		}
+
+		return supers;
+	}
+
+	/** -----------------------Serializable---------------------------*/
 	/**
 	 * The method read data form srl file to the system when the system is up
 	 */
 	public static void readSer()  {
 		FileInputStream f_in = null;
 		ObjectInputStream inputStream = null;
-		//SysData sData = null;
 		try {
-
 			f_in = new FileInputStream("/storage/emulated/0/dbSuperZol/data.srl");
 			inputStream= new ObjectInputStream(f_in);
 			data=(SysData)inputStream.readObject();
@@ -151,6 +183,9 @@ public class ModelLogic implements Serializable {
 			outputStream = new ObjectOutputStream(f_out);
 			outputStream.writeObject(data);
 
+			/** Upload file to dropbox*/
+			String localFilePath=NetworkManager.getInstance().getAppDirName()+"/"+"data.srl";
+			NetworkManager.getInstance().uploadRes(localFilePath);
 		} catch (Exception ex) {
 		}
 		finally{
@@ -159,6 +194,7 @@ public class ModelLogic implements Serializable {
 			} catch (Exception e) {
 			}
 		}
+
 	}
 
 }

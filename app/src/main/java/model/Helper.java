@@ -82,6 +82,9 @@ public class Helper {
 						
 						}
 					}
+
+					 /** After finish to read xml need to write new ser file to dropbox */
+					 ml.writeSer();
 				 } catch (Exception e) {
 				    e.printStackTrace();
 				 }

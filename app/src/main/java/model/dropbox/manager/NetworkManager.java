@@ -44,7 +44,7 @@ public class NetworkManager {
     private static final String APP_SECRET = "vqh379j1v54b5n9";;
     private DropboxAPI<AndroidAuthSession> mApi;
 
-    private String appDirName = Environment.getExternalStorageDirectory() + "/dbSuperZol";
+    private String appDirName = Environment.getExternalStorageDirectory() + "/dbSuperZol/";
     private File mDir = new File(appDirName);
     private String appDirNameOnDropbox = "/SuperZolData/";
     private File dbListFile;
@@ -57,10 +57,18 @@ public class NetworkManager {
 
 
     public static NetworkManager getInstance() {
+
         if (instance == null) {
             instance = new NetworkManager();
         }
         return instance;
+    }
+
+    public void changeDownload(String appDirName, String appDirNameOnDropbox)
+    {
+        this.appDirName = Environment.getExternalStorageDirectory() + appDirName;;
+        this.appDirNameOnDropbox = appDirNameOnDropbox;
+        mDir = new File(this.appDirName);
     }
 
     private NetworkManager() {

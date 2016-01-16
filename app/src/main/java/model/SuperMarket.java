@@ -15,6 +15,15 @@ public class SuperMarket implements Serializable {
 	//private Map <String,Item> items= new HashMap<>();
 
 	/**
+	 * Partial cto'r
+	 * @param adress
+	 */
+	public SuperMarket(String adress) {
+		super();
+		this.adress = adress;
+	}
+
+	/**
 	 * Full cto'r
 	 * @param name
 	 * @param adress

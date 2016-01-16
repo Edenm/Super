@@ -7,8 +7,6 @@ package model.dropbox;
 import java.io.File;
 
 import ViewLogic.slidingmenu.R;
-import model.Helper;
-import model.ModelLogic;
 import model.dropbox.manager.*;
 import view.MainActivity;
 import android.app.Activity;
@@ -20,8 +18,8 @@ import android.widget.Toast;
 
 /** This class is the connector activity that downloading all files from dropbox after the login
  * This class show rendering on the screen until finish downloading */
-public class DBSuper extends Activity implements NetworkListener {
-    private static final String TAG = "DBSuper";
+public class NewData extends Activity implements NetworkListener {
+    private static final String TAG = "NewData";
     private Context ctx = null;
     private ProgressDialog dialog = null;
 
@@ -33,8 +31,10 @@ public class DBSuper extends Activity implements NetworkListener {
         setContentView(R.layout.dropbox_activity);
 
         ctx = this;
+
         NetworkManager nm = NetworkManager.getInstance();
         nm.register(this);
+        nm.changeDownload("/RamiLevi/", "/SuperZolData/RamiLevi/");
         nm.downloadResources();
     }
 
@@ -71,11 +71,8 @@ public class DBSuper extends Activity implements NetworkListener {
             }
         });
 
-        ModelLogic ml = ModelLogic.getInstance();
-        Helper.readXmlFile(ml, "Ramilevi.xml", "המושבה 7 נשר");
         Intent mainIntent = new Intent(this,MainActivity.class);
         startActivity(mainIntent);
-
         //uploadFile();
 
 
