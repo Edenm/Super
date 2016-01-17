@@ -12,7 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.HashMap;
+import java.util.Map;
+
 import ViewLogic.slidingmenu.R;
+import model.MarketList;
+import model.ModelLogic;
+import model.SuperMarket;
 import view.adapter.CustomListAdapter;
 
 /**
@@ -22,11 +27,11 @@ import view.adapter.CustomListAdapter;
 public class ComparisonTabActivity extends Activity {
 
     ListView list;
-    String[] itemname = {"חלב דל לקטוז תנובה", "חלב תנובה 1% קרטון", "חלב טרה 3% שומן"};
-    String[] price = {"5.55", "7.08", "4.32"};
-    Integer[] imgid = { R.drawable.dallaktoz, R.drawable.dalshuman, R.drawable.tara};
-    String[] supername = {"רמי לוי שיווק השקמה - 250 ש''ח", "שופרסל דיל - 300 ש''ח", "יינות ביתן - 315 ש''ח"};
-    Integer[] logoid = { R.drawable.ramilevi_logo, R.drawable.supersal_logo, R.drawable.bitan_logo};
+    Integer[] logoid;  // = { R.drawable.ramilevi_logo, R.drawable.supersal_logo, R.drawable.bitan_logo};
+    String[] supername;  //ddd/ = {"רמי לוי שיווק השקמה - 250 ש''ח", "שופרסל דיל - 300 ש''ח", "יינות ביתן - 315 ש''ח"};
+    String[] amounts;//= {"5.55", "7.08", "4.32"};
+
+
 
     /**
      * On create
@@ -40,10 +45,35 @@ public class ComparisonTabActivity extends Activity {
         TextView title= (TextView) findViewById(R.id.txtTitleSuper);
         title.setText("שלושת הסופרים הכי זולים");
 
+        loadData();
+    }
 
-        CustomListAdapter adapter2 = new CustomListAdapter(this, logoid, supername, price, "superList");
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    private void loadData()
+    {
+        ModelLogic ml = ModelLogic.getInstance();
+        MarketList marketList = MarketList.getInstance();
+        Map <String,SuperMarket> supers = ml.getSysData().getSupers();
+
+        logoid = new Integer[supers.size()];
+        supername = new String[supers.size()];
+        amounts = new String[supers.size()];
+
+        int count = 0;
+        for (Map.Entry<String,SuperMarket> e:supers.entrySet())
+        {
+            logoid[count] = ml.getLogoBySuperName(e.getValue().getName());
+            supername[count] = e.getValue().getAdress()+" - "+marketList.getTotalPrice(e.getKey()).toString()+ " ש''ח " ;
+        }
+
+        CustomListAdapter adapter = new CustomListAdapter(this, logoid, supername, amounts, "superList");
         list = (ListView) findViewById(R.id.listViewBestSuper);
-        list.setAdapter(adapter2);
+        list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

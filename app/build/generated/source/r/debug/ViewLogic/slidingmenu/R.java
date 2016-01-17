@@ -77,7 +77,7 @@ public final class R {
         public static final int action_settings=0x7f0b0029;
         public static final int btnDec=0x7f0b0021;
         public static final int btnInc=0x7f0b001f;
-        public static final int btnMoreSuper=0x7f0b0011;
+        public static final int btnMoreSuper=0x7f0b0010;
         public static final int btnRemove=0x7f0b0022;
         public static final int btnReturn=0x7f0b0003;
         public static final int btnSearch=0x7f0b0013;
@@ -114,7 +114,7 @@ public final class R {
         public static final int txtSearchProduct=0x7f0b0001;
         public static final int txtSuperName=0x7f0b0018;
         public static final int txtTitleMyList=0x7f0b0015;
-        public static final int txtTitleSuper=0x7f0b0010;
+        public static final int txtTitleSuper=0x7f0b0011;
         public static final int txtcommLabel=0x7f0b001d;
     }
     public static final class layout {

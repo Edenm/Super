@@ -186,6 +186,11 @@ public class ModelLogic implements Serializable {
 		return items;
 	}
 
+	public Integer getLogoBySuperName(String name)
+	{
+		return data.getLogos().get(name);
+	}
+
 
 	/** -----------------------Serializable---------------------------*/
 	/**

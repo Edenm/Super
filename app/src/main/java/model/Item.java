@@ -192,13 +192,24 @@ public class Item implements Serializable {
 	public Float getBestPrice(){
 		Float bestPrice=0.0f;
 		//SuperMarket bestSuperMarket=null;
-		for (Entry<SuperMarket,Float> item : prices.entrySet()) {
-			if (item.getValue()<bestPrice){
-				bestPrice=item.getValue();
+		for (Entry<SuperMarket,Float> price : prices.entrySet()) {
+			if (price.getValue()<bestPrice){
+				bestPrice=price.getValue();
 				//bestSuperMarket=item.getKey();
 			}
 		}
 		return bestPrice;
+	}
+
+	/**
+	 * The method get adress of super
+	 * @param superAdress
+	 * @return the price of current item on that super
+	 */
+	public Float getPriceBySuper(String superAdress)
+	{
+		SuperMarket sm = new SuperMarket(superAdress);
+		return prices.get(sm);
 	}
 
 

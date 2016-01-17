@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *  this class included singelton of MarketList of user.
@@ -89,5 +90,17 @@ public class MarketList implements Serializable {
         Item temp = new Item(product);
         Integer amount = items.get(temp);
         return amount == null ? 0: amount;
+    }
+
+    /**
+     * @return The price of the market list
+     */
+    public Float getTotalPrice(String superAddress)
+    {
+        Float amount = 0.0f;
+        for (Map.Entry<Item,Integer> e: items.entrySet()){
+            amount += e.getKey().getPriceBySuper(superAddress)*e.getValue();
+        }
+        return amount;
     }
 }
