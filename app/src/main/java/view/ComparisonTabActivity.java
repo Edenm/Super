@@ -57,7 +57,7 @@ public class ComparisonTabActivity extends Activity {
     private void loadData()
     {
         ModelLogic ml = ModelLogic.getInstance();
-        MarketList marketList = MarketList.getInstance();
+        MarketList marketList = ModelLogic.getInstance().getMarketList();
         Map <String,SuperMarket> supers = ml.getSysData().getSupers();
 
         logoid = new Integer[supers.size()];
@@ -68,7 +68,7 @@ public class ComparisonTabActivity extends Activity {
         for (Map.Entry<String,SuperMarket> e:supers.entrySet())
         {
             logoid[count] = ml.getLogoBySuperName(e.getValue().getName());
-            supername[count] = e.getValue().getAdress()+" - "+marketList.getTotalPrice(e.getKey()).toString()+ " ש''ח " ;
+            supername[count] = e.getValue().getAdress()+" - "+String.format("%.02f", marketList.getTotalPrice(e.getKey()))+ " ש''ח " ;
         }
 
         CustomListAdapter adapter = new CustomListAdapter(this, logoid, supername, amounts, "superList");

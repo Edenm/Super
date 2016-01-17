@@ -1,6 +1,7 @@
 package model;
 
-import java.io.File;
+import android.widget.Toast;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -25,6 +26,8 @@ public class ModelLogic implements Serializable {
 	
 	public static SysData data;
 
+	public static MarketList marketList;
+
 	/**
 	 * singletone function
 	 * @return instance of ModelLogic
@@ -48,6 +51,7 @@ public class ModelLogic implements Serializable {
 	private ModelLogic() {
 		super();
 		data= new SysData();
+		marketList = new MarketList();
 	}
 
 	/**
@@ -103,6 +107,13 @@ public class ModelLogic implements Serializable {
 	 */
 	public SysData getSysData(){
 		return data;
+	}
+
+	/**
+	 * @return reference of marketList
+	 */
+	public MarketList getMarketList(){
+		return marketList;
 	}
 
 	/**
@@ -203,7 +214,6 @@ public class ModelLogic implements Serializable {
 			f_in = new FileInputStream("/storage/emulated/0/dbSuperZol/data.srl");
 			inputStream= new ObjectInputStream(f_in);
 			data=(SysData)inputStream.readObject();
-			System.out.println(data.getItems());
 		} catch (Exception ex) {
 		}
 		finally{
@@ -236,6 +246,50 @@ public class ModelLogic implements Serializable {
 			} catch (Exception e) {
 			}
 		}
+
+	}
+
+	/**
+	 * The method read last market list
+	 */
+	public static void loadMarketList()  {
+		FileInputStream f_in = null;
+		ObjectInputStream inputStream = null;
+		try {
+			f_in = new FileInputStream("/storage/emulated/0/dbSuperZol/marketlist.srl");
+			inputStream= new ObjectInputStream(f_in);
+			marketList=(MarketList)inputStream.readObject();
+		} catch (Exception ex) {
+		}
+		finally{
+			try {
+				inputStream.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+	/**
+	 * The method write data form the system to srl file when the system is close
+	 */
+	public static boolean saveMarketList() {
+		FileOutputStream f_out = null;
+		ObjectOutputStream outputStream = null;
+		boolean isSaved = false;
+		try {
+			SysData sData = ModelLogic.getInstance().data;
+			f_out = new FileOutputStream("/storage/emulated/0/dbSuperZol/marketlist.srl");
+			outputStream = new ObjectOutputStream(f_out);
+			outputStream.writeObject(marketList);
+			isSaved = true;
+		} catch (Exception ex) {
+		}
+		finally{
+			try {
+				outputStream.close();
+			} catch (Exception e) {
+			}
+		}
+		return isSaved;
 
 	}
 

@@ -66,6 +66,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="market_list">רשימת קניות</string>
     <string name="rami_levi">רמי לוי</string>
+    <string name="saveListMsg">"הרשימה נשמרה במערכת"</string>
     <string name="search">חיפוש</string>
     <string name="supermarket_address">המושבה 7 נשר</string>
     <string name="tab1">רשימה</string>

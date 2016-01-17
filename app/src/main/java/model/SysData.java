@@ -17,7 +17,6 @@ public class SysData implements Serializable {
 	private Map <String,Item> items;
 	/** Contains all super markets in system*/
 	private Map <String,SuperMarket> supers;
-
 	/** Contains logos of the supers*/
 	private Map <String,Integer> superLogos;
 

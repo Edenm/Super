@@ -89,7 +89,7 @@ public class ChooseProductActivity extends Activity {
      */
     private void loadDataByMarketList(){
 
-        MarketList ml = MarketList.getInstance();
+        MarketList ml = ModelLogic.getInstance().getMarketList();
 
         int counter = 0;
         HashMap<Item,Integer> listItem =  ml.getItems();

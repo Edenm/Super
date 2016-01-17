@@ -165,7 +165,7 @@ public class NetworkManager {
 
                 notifyAllDownloadsStarted();
 
-                String mErrorMsg = "All data is up to date";
+                String mErrorMsg = "כל המידע מעודכן להיום";
 
                 try {
 
@@ -193,7 +193,7 @@ public class NetworkManager {
 
                     if (!dirent.isDir || dirent.contents == null) {
                         // It's not a directory, or there's nothing in it
-                        mErrorMsg = "File or empty directory";
+                        mErrorMsg = "";//"File or empty directory";
                         return;
                     }
 
@@ -206,7 +206,7 @@ public class NetworkManager {
 
                     if (data.size() == 0) {
                         // No files in that directory
-                        mErrorMsg = "No files in that directory";
+                        mErrorMsg = "";//"No files in that directory";
                         return;
                     }
 
@@ -227,7 +227,7 @@ public class NetworkManager {
                     // unlinked.
                 } catch (DropboxPartialFileException e) {
                     // We canceled the operation
-                    mErrorMsg = "Download canceled";
+                    mErrorMsg = "הורדה הסתיימה";
                 } catch (DropboxServerException e) {
                     // Server-side exception. These are examples of what could
                     // happen,
@@ -262,7 +262,7 @@ public class NetworkManager {
                 } catch (DropboxIOException e) {
                     // Happens all the time, probably want to retry
                     // automatically.
-                    mErrorMsg = "Network error";
+                    mErrorMsg = "";//"Network error";
                 } catch (DropboxParseException e) {
                     // Probably due to Dropbox server restarting, should retry
                     mErrorMsg = "Dropbox error";

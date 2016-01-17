@@ -96,7 +96,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
             nextChild = ((ViewGroup)nextChild).getChildAt(1);
             TextView txtCounter = (TextView) nextChild.findViewById(R.id.txtCounter);
             String name = txtTitle.getText().toString();
-            String count = MarketList.getInstance().getQuantity(name).toString();
+            String count = ModelLogic.getInstance().getMarketList().getQuantity(name).toString();
             txtCounter.setText(count);
             setListeners();
         }
@@ -131,7 +131,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 ModelLogic ml = ModelLogic.getInstance();
                 Item tempItem = ml.getSysData().getItems().get(itemName);
 
-                MarketList tempMarketList = MarketList.getInstance();
+                MarketList tempMarketList = ModelLogic.getInstance().getMarketList();
                 tempMarketList.increaseCountOfItemMarketList(tempItem);
             }
         });
@@ -155,7 +155,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 ModelLogic ml = ModelLogic.getInstance();
                 Item tempItem = ml.getSysData().getItems().get(itemName);
 
-                MarketList tempMarketList = MarketList.getInstance();
+                MarketList tempMarketList = ModelLogic.getInstance().getMarketList();
                 tempMarketList.decreaseCountOfItemMarketList(tempItem, count);
             }
         });
@@ -179,7 +179,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
                 ModelLogic ml = ModelLogic.getInstance();
                 Item tempItem = ml.getSysData().getItems().get(itemName);
 
-                MarketList tempMarketList = MarketList.getInstance();
+                MarketList tempMarketList = ModelLogic.getInstance().getMarketList();
                 tempMarketList.removeItemFromMarketList(itemName);
 
                 ((SearchTabActivity) context).loadData();

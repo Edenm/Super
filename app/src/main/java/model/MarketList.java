@@ -19,20 +19,9 @@ public class MarketList implements Serializable {
     HashMap <Item,Integer> items;
 
     /**
-     * singletone function
-     * @return instance of MarketList
-     */
-    public static MarketList getInstance(){
-        if	(instance == null){
-            instance = new MarketList();
-        }
-        return instance;
-    }
-
-    /**
      * Private cto'r
      */
-    private MarketList() {
+    public MarketList() {
         super();
         items= new HashMap<Item, Integer>();
     }

@@ -172,10 +172,10 @@ public class MainActivity extends TabActivity {
 	 */
 	private void initializeDB()
 	{
-		ModelLogic ml= ModelLogic.getInstance();
-		String ramiLevi = getString(R.string.rami_levi);
-		String superAddress = getString(R.string.supermarket_address);
-		SuperMarket sm= new SuperMarket(ramiLevi, superAddress);
+//		ModelLogic ml= ModelLogic.getInstance();
+//		String ramiLevi = getString(R.string.rami_levi);
+//		String superAddress = getString(R.string.supermarket_address);
+//		SuperMarket sm= new SuperMarket(ramiLevi, superAddress);
 	}
 
 	/**

@@ -67,28 +67,30 @@ public final class R {
         public static final int pencil=0x7f02001d;
         public static final int ramilevi_logo=0x7f02001e;
         public static final int remove=0x7f02001f;
-        public static final int search=0x7f020020;
-        public static final int search_btn=0x7f020021;
-        public static final int supersal_logo=0x7f020022;
-        public static final int tara=0x7f020023;
-        public static final int user=0x7f020024;
+        public static final int save=0x7f020020;
+        public static final int search=0x7f020021;
+        public static final int search_btn=0x7f020022;
+        public static final int supersal_logo=0x7f020023;
+        public static final int tara=0x7f020024;
+        public static final int user=0x7f020025;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0029;
-        public static final int btnDec=0x7f0b0021;
-        public static final int btnInc=0x7f0b001f;
+        public static final int action_settings=0x7f0b002a;
+        public static final int btnDec=0x7f0b0022;
+        public static final int btnInc=0x7f0b0020;
         public static final int btnMoreSuper=0x7f0b0010;
-        public static final int btnRemove=0x7f0b0022;
+        public static final int btnRemove=0x7f0b0023;
         public static final int btnReturn=0x7f0b0003;
+        public static final int btnSave=0x7f0b0017;
         public static final int btnSearch=0x7f0b0013;
         public static final int btnSingIn=0x7f0b000a;
-        public static final int counter=0x7f0b001c;
+        public static final int counter=0x7f0b001d;
         public static final int drawer_layout=0x7f0b000b;
         public static final int etEmail=0x7f0b0008;
         public static final int etPass=0x7f0b0009;
         public static final int frame_container=0x7f0b000c;
-        public static final int icon=0x7f0b001a;
-        public static final int imageButton=0x7f0b0028;
+        public static final int icon=0x7f0b001b;
+        public static final int imageButton=0x7f0b0029;
         public static final int imageView=0x7f0b0007;
         public static final int item=0x7f0b0004;
         public static final int labelTxt=0x7f0b0005;
@@ -97,25 +99,25 @@ public final class R {
         public static final int listView=0x7f0b0002;
         public static final int listViewBestSuper=0x7f0b000f;
         public static final int listViewSearch=0x7f0b0016;
-        public static final int listViewSuper=0x7f0b0019;
+        public static final int listViewSuper=0x7f0b001a;
         public static final int list_slidermenu=0x7f0b000d;
-        public static final int priceTxt=0x7f0b0025;
-        public static final int prodImg=0x7f0b0023;
-        public static final int prodName=0x7f0b0024;
+        public static final int priceTxt=0x7f0b0026;
+        public static final int prodImg=0x7f0b0024;
+        public static final int prodName=0x7f0b0025;
         public static final int searchView=0x7f0b0014;
-        public static final int superSearchView=0x7f0b0017;
+        public static final int superSearchView=0x7f0b0018;
         public static final int tab1=0x7f0b0012;
         public static final int tab2=0x7f0b0000;
-        public static final int textSpace=0x7f0b0027;
-        public static final int title=0x7f0b001b;
-        public static final int txtCounter=0x7f0b0020;
-        public static final int txtLabel=0x7f0b001e;
-        public static final int txtNis=0x7f0b0026;
+        public static final int textSpace=0x7f0b0028;
+        public static final int title=0x7f0b001c;
+        public static final int txtCounter=0x7f0b0021;
+        public static final int txtLabel=0x7f0b001f;
+        public static final int txtNis=0x7f0b0027;
         public static final int txtSearchProduct=0x7f0b0001;
-        public static final int txtSuperName=0x7f0b0018;
+        public static final int txtSuperName=0x7f0b0019;
         public static final int txtTitleMyList=0x7f0b0015;
         public static final int txtTitleSuper=0x7f0b0011;
-        public static final int txtcommLabel=0x7f0b001d;
+        public static final int txtcommLabel=0x7f0b001e;
     }
     public static final class layout {
         public static final int activity_choose_product=0x7f030000;
@@ -151,11 +153,12 @@ public final class R {
         public static final int hello_world=0x7f090006;
         public static final int market_list=0x7f090007;
         public static final int rami_levi=0x7f090008;
-        public static final int search=0x7f090009;
-        public static final int supermarket_address=0x7f09000a;
-        public static final int tab1=0x7f09000b;
-        public static final int tab2=0x7f09000c;
-        public static final int tab3=0x7f09000d;
+        public static final int saveListMsg=0x7f090009;
+        public static final int search=0x7f09000a;
+        public static final int supermarket_address=0x7f09000b;
+        public static final int tab1=0x7f09000c;
+        public static final int tab2=0x7f09000d;
+        public static final int tab3=0x7f09000e;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

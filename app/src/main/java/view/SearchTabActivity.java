@@ -20,6 +20,7 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +44,8 @@ public class SearchTabActivity extends Activity {
     private AutoCompleteTextView productSearchView;
     /** Button to search product */
     private Button searchButton;
+    /** Button to save market list */
+    private Button btnSaveMarket;
     /** Contain all item names */
     private String [] itemNames;
 
@@ -57,6 +60,10 @@ public class SearchTabActivity extends Activity {
         list = (ListView) findViewById(R.id.listViewSearch);
         productSearchView = (AutoCompleteTextView) findViewById(R.id.searchView);
         searchButton = (Button) findViewById(R.id.btnSearch);
+        btnSaveMarket = (Button) findViewById(R.id.btnSave);
+
+        ModelLogic ml = ModelLogic.getInstance();
+        ml.loadMarketList();
 
         loadData();
         setListeners();
@@ -75,7 +82,7 @@ public class SearchTabActivity extends Activity {
      * Load all the data of search tab activity
      */
     public void loadData(){
-        MarketList ml = MarketList.getInstance();
+        MarketList ml = ModelLogic.getInstance().getMarketList();
 
 
         int counter = 0;
@@ -123,7 +130,7 @@ public class SearchTabActivity extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
-                String itemName = (String)parent.getItemAtPosition(pos);
+                String itemName = (String) parent.getItemAtPosition(pos);
                 onSearchAction(itemName);
             }
         });
@@ -135,9 +142,21 @@ public class SearchTabActivity extends Activity {
                 onSearchAction(word);
             }
         });
+
+        btnSaveMarket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ModelLogic.getInstance().saveMarketList())
+                    Toast.makeText(SearchTabActivity.this, R.string.saveListMsg, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
-
+    /**
+     * The method is helping for 2 listeners, find item in list adapter
+     * and to find item by any word
+     * @param wordToSearch
+     */
     private void onSearchAction(String wordToSearch)
     {
         ModelLogic ml = ModelLogic.getInstance();
@@ -147,8 +166,6 @@ public class SearchTabActivity extends Activity {
         quantityIntent.putExtra("word", wordToSearch);
         startActivity(quantityIntent);
     }
-
-
 
 }
 
