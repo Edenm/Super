@@ -16,6 +16,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import ViewLogic.slidingmenu.R;
 import model.Item;
@@ -32,6 +33,11 @@ public class SuperTabActivity extends Activity {
     /** The search view for search item */
     private AutoCompleteTextView superSearch;
 
+    /** Array of all super address*/
+    String [] supers;
+    /** Array of all string represent supers for adapter*/
+    String [] supersString;
+
     /**
      * On create
      * @param savedInstanceState
@@ -45,74 +51,57 @@ public class SuperTabActivity extends Activity {
 
         setListeners();
 
-
-        TextView superName= (TextView)findViewById(R.id.txtSuperName);
-        String ramiLeviSuperName = getString(R.string.shivuk_hashikma);
-        superName.setText(ramiLeviSuperName);
-
-
-        ModelLogic ml = ModelLogic.getInstance();
-
-        ArrayList <Item> items = new ArrayList <Item>();
-
-        for(Item i:ml.data.getItems().values()) {
-            items.add(i);
-        }
-
-        String[] itemname = new String[items.size()];
-        String[] price = new String[items.size()];
-        Integer[] imgid = new Integer[items.size()];
-        for(int i=0 ; i < items.size() ;i++) {
-            itemname[i]=items.get(i).getItemName() ;
-            price[i]=items.get(i).getItemPrice().toString() ;
-            imgid[i]= R.drawable.no_image;
-        }
-
-        CustomListAdapter adapter= new CustomListAdapter(this,  imgid,itemname , price,"super");
-        list = (ListView) findViewById(R.id.listViewSuper);
-        list.setAdapter(adapter);
-
     }
 
     /**
      * Set listenes of the list and of product in list
      */
     private void setListeners(){
-        String [] supers = ModelLogic.getInstance().getAllSuperNames();
+        supers = ModelLogic.getInstance().getAllSuperAddress();
+        supersString = ModelLogic.getInstance().getStringRepresentSuperNames();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.select_dialog_item, supers);
+                android.R.layout.select_dialog_item, supersString);
         superSearch.setAdapter(adapter);
 
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
-//                //TextView txtTitle = (TextView) (parent).findViewById(R.id.prodName);
-//                //String itemName = txtTitle.getText().toString();
-//                quantityIntent.putExtra("type", "MarketList");
-//                quantityIntent.putExtra("word", "1");
-//                startActivity(quantityIntent);
-//            }
-//        });
+        superSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        //SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id)
+            {
+                String superAdress = "";
+                String superText = (String)parent.getItemAtPosition(pos);
+                int location = 0;
+                for (String s:supersString) {
+                    if (s.equals(superText)) {
+                        superAdress = supers[location];
+                    }
+                    location++;
+                }
 
-        //superSearch.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+                TextView superName= (TextView)findViewById(R.id.txtSuperName);
+                superName.setText(supersString[pos]);
 
-//        superSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                //HashMap<Item, Float> itemsInSpecifiedSuper = ModelLogic.getInstance().getAllItemsBySuper(query);
-//
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                //loadAutoComplete(newText);
-//                return true;
-//            }
-//        });
+                ModelLogic ml = ModelLogic.getInstance();
+
+                HashMap<Item, Float> items = ml.getAllItemsBySuper(superAdress);
+
+                String[] itemname = new String[items.size()];
+                String[] price = new String[items.size()];
+                Integer[] imgid = new Integer[items.size()];
+                int count = 0;
+
+                for(Map.Entry<Item, Float> i:items.entrySet()) {
+                    itemname[count]=i.getKey().getItemName() ;
+                    price[count]=i.getValue().toString() ;
+                    imgid[count++]= R.drawable.no_image;
+                }
+
+                CustomListAdapter adapter= new CustomListAdapter(SuperTabActivity.this,  imgid,itemname , price,"super");
+                list = (ListView) findViewById(R.id.listViewSuper);
+                list.setAdapter(adapter);
+            }
+        });
+
     }
 }

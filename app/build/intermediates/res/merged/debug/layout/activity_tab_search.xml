@@ -12,15 +12,28 @@
         android:orientation="vertical"
         android:baselineAligned="false">
 
-        <SearchView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchView"
-            android:layout_gravity="center_horizontal"
-            android:layoutDirection="rtl"
-            android:baselineAligned="true"
-            android:queryHint="חפש מוצר"
-            android:background="@color/counter_text_color"/>
+            android:layout_height="50dp">
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnSearch"
+                android:background="@drawable/search_btn"
+                android:layout_gravity="right|center_vertical" />
+
+            <AutoCompleteTextView
+                android:layout_width="261dp"
+                android:layout_height="match_parent"
+                android:id="@+id/searchView"
+                android:layoutDirection="rtl"
+                android:baselineAligned="true"
+                android:queryHint="חפש סופר"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="left|center_vertical" />
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,5 +52,6 @@
             android:clickable="true" />
 
     </LinearLayout>
+
 </RelativeLayout>
 <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/activity_tab_search.xml -->

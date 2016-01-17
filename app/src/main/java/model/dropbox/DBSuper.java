@@ -72,7 +72,7 @@ public class DBSuper extends Activity implements NetworkListener {
         });
 
         ModelLogic ml = ModelLogic.getInstance();
-        Helper.readXmlFile(ml, "Ramilevi.xml", "המושבה 7 נשר");
+        Helper.readXmlFile(ml, "Ramilevi.xml", "דרך השלום 13 נשר");
         Intent mainIntent = new Intent(this,MainActivity.class);
         startActivity(mainIntent);
 
@@ -85,7 +85,7 @@ public class DBSuper extends Activity implements NetworkListener {
 
         // create testFile
         String localFilePath=NetworkManager.getInstance().getAppDirName()+"/"+"data.srl";
-        File localfile = new File(localFilePath);
+        //File localfile = new File(localFilePath);
         //String content = "abc2";
         //NetworkManager.getInstance().writeLocalCopy(localfile, content.getBytes());
 
@@ -104,11 +104,11 @@ public class DBSuper extends Activity implements NetworkListener {
     public void onUploadFinished(String status) {
         final String state = status;
 
-        runOnUiThread(new Runnable() {
-            public void run() {
-                Toast.makeText(ctx, "uploading " + state, Toast.LENGTH_LONG).show();
-            }
-        });
+//        runOnUiThread(new Runnable() {
+//            public void run() {
+//                Toast.makeText(ctx, "uploading " + state, Toast.LENGTH_LONG).show();
+//            }
+//        });
 
     }
 

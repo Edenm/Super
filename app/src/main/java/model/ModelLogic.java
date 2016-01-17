@@ -35,7 +35,8 @@ public class ModelLogic implements Serializable {
 			//Helper.readJasonFile(instance);
 			//writeSer();
 			readSer();
-			//Helper.readXmlFile(instance, "Ramilevi.xml", "המושבה 7 נשר");
+			//instance.addNewSuperMarket(new SuperMarket("רמי לוי","דרך השלום 13 נשר"));
+			//Helper.readXmlFile(instance, "Ramilevi.xml", "דרך השלום 13 נשר");
 			writeSer();
 		}
 		return instance;
@@ -121,6 +122,11 @@ public class ModelLogic implements Serializable {
 		return items;
 	}
 
+	/**
+	 * The method get super adress
+	 * @param superAdress
+	 * @return all item of the super with this address
+	 */
 	public HashMap<Item, Float> getAllItemsBySuper(String superAdress)
 	{
 		HashMap <Item, Float> itemInSpecifiedSuper = new HashMap <Item, Float>();
@@ -138,17 +144,48 @@ public class ModelLogic implements Serializable {
 		return itemInSpecifiedSuper;
 	}
 
-	public String [] getAllSuperNames()
+	/**
+	 * @return represent string for each super
+	 */
+	public String [] getStringRepresentSuperNames()
 	{
 		Map<String, SuperMarket> superData =  data.getSupers();
 		String [] supers = new String[superData.size()];
 		int i = 0;
-		for (String s: superData.keySet()){
-			supers[i++] = s;
+		for (SuperMarket s: superData.values()){
+			supers[i++] = s.getName() +"- "+s.getAdress();
 		}
-
 		return supers;
 	}
+
+	/**
+	 * @return all the super address
+	 */
+	public String [] getAllSuperAddress()
+	{
+		Map<String, SuperMarket> superData =  data.getSupers();
+		String [] supers = new String[superData.size()];
+		int i = 0;
+		for (SuperMarket s: superData.values()){
+			supers[i++] = s.getAdress();
+		}
+		return supers;
+	}
+
+	/**
+	 * @return all the item names
+	 */
+	public String [] getAllItemNames()
+	{
+		Map<String, Item> itemsData =  data.getItems();
+		String [] items = new String[itemsData.size()];
+		int i = 0;
+		for (Item s: itemsData.values()){
+			items[i++] = s.getItemName();
+		}
+		return items;
+	}
+
 
 	/** -----------------------Serializable---------------------------*/
 	/**

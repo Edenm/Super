@@ -40,8 +40,11 @@ public class SearchTabActivity extends Activity {
     /** The market list */
     private ListView list;
     /** The search view for search item */
-    private SearchView productSearchView;
-
+    private AutoCompleteTextView productSearchView;
+    /** Button to search product */
+    private Button searchButton;
+    /** Contain all item names */
+    private String [] itemNames;
 
     /**
      * On create
@@ -52,7 +55,8 @@ public class SearchTabActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_search);
         list = (ListView) findViewById(R.id.listViewSearch);
-        productSearchView = (SearchView) findViewById(R.id.searchView);
+        productSearchView = (AutoCompleteTextView) findViewById(R.id.searchView);
+        searchButton = (Button) findViewById(R.id.btnSearch);
 
         loadData();
         setListeners();
@@ -90,12 +94,6 @@ public class SearchTabActivity extends Activity {
         list.setAdapter(adapter);
 
 
-
-
-        //ArrayAdapter <String> adapterToComp = new ArrayAdapter <String>(this, R.layout.activity_combo_autocomplete,itemsTocomplete);
-
-        //CursorAdapter adapterToComp2 = new CursorAdapter()
-        //productSearchView.setSuggestionsAdapter(adapterToComp);
     }
 
     /**
@@ -115,63 +113,40 @@ public class SearchTabActivity extends Activity {
             }
         });
 
-        SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        itemNames = ModelLogic.getInstance().getAllItemNames();
 
-        productSearchView.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.select_dialog_item, itemNames);
+        productSearchView.setAdapter(adapter);
 
-        productSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        productSearchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
-                quantityIntent.putExtra("type","Word");
-                quantityIntent.putExtra("word",query);
-                startActivity(quantityIntent);
-                return true;
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id) {
+                String itemName = (String)parent.getItemAtPosition(pos);
+                onSearchAction(itemName);
             }
+        });
 
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onQueryTextChange(String newText) {
-                //loadAutoComplete(newText);
-                return true;
+            public void onClick(View v) {
+                String word = productSearchView.getText().toString();
+                onSearchAction(word);
             }
         });
     }
 
 
-    private void loadAutoComplete(String query) {
+    private void onSearchAction(String wordToSearch)
+    {
+        ModelLogic ml = ModelLogic.getInstance();
 
-        ModelLogic model = ModelLogic.getInstance();
-        List<String> itemsTocomplete = new ArrayList<String>();
-        int counter=0;
-        for(Item i:model.getSysData().getItems().values()) {
-            itemsTocomplete.add(i.getItemName());
-            counter++;
-        }
-
-            // Cursor
-            String[] columns = new String[] { "_id", "text" };
-            Object[] temp = new Object[] { 0, "default" };
-
-            MatrixCursor cursor = new MatrixCursor(columns);
-
-            for(int i = 0; i < itemsTocomplete.size(); i++) {
-
-                temp[0] = i;
-                temp[1] = itemsTocomplete.get(i); //replaced s with i as s not used anywhere.
-
-                cursor.addRow(temp);
-
-            }
-
-            // SearchView
-            SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
-//            final SearchView search = (SearchView) menu.findItem(R.id.search).getActionView();
-
-            productSearchView.setSuggestionsAdapter(new AutoCompleteAdapter(this, cursor, itemsTocomplete));
-
+        Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
+        quantityIntent.putExtra("type", "Word");
+        quantityIntent.putExtra("word", wordToSearch);
+        startActivity(quantityIntent);
     }
-
 
 
 

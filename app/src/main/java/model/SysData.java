@@ -69,7 +69,7 @@ public class SysData implements Serializable {
 	 */
 	private void fillSupers()
 	{
-		supers.put("המושבה 7 נשר", new SuperMarket("המושבה 7 נשר","רמי לוי" ));
+		supers.put("דרך השלום 13 נשר", new SuperMarket("רמי לוי","דרך השלום 13 נשר"));
 	}
 
 	/**
@@ -81,8 +81,6 @@ public class SysData implements Serializable {
 		superLogos.put("supersal", R.drawable.supersal_logo);
 		superLogos.put("bitan", R.drawable.bitan_logo);
 	}
-
-
 
 	/**
 	 * The method add item to system

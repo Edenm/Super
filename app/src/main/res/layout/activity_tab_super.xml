@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
-
 
     <LinearLayout
         android:id="@+id/tab2"
@@ -15,40 +16,36 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
             <AutoCompleteTextView
-                android:layout_width="240dp"
-                android:layout_height="48dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/superSearchView"
                 android:layoutDirection="rtl"
                 android:baselineAligned="true"
                 android:queryHint="חפש סופר"
-                android:background="@color/counter_text_color"/>
+                android:textColor="@color/colorPrimary"
+                android:drawableRight="@drawable/search"
+                android:layout_weight="0.91" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/txtFindSuper"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:text="חפש סופר: " />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layoutDirection="rtl"
+            android:title="Search"
             android:textAlignment="center"
             android:gravity="center_vertical"
             android:id="@+id/txtSuperName"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColorHint="@color/colorPrimary"/>
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="367dp"
             android:id="@+id/listViewSuper" />
 
     </LinearLayout>
