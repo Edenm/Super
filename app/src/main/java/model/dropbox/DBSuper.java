@@ -44,7 +44,7 @@ public class DBSuper extends Activity implements NetworkListener {
             runOnUiThread(new Runnable() {
                 public void run() {
                     dialog = new ProgressDialog(ctx);
-                    String downloadmessage = "downloading";
+                    String downloadmessage = "מעדכן נתונים";
                     dialog.setMessage(downloadmessage);
                     dialog.setCancelable(false);
                     dialog.show();
@@ -72,7 +72,8 @@ public class DBSuper extends Activity implements NetworkListener {
         });
 
         ModelLogic ml = ModelLogic.getInstance();
-        Helper.readXmlFile(ml, "Ramilevi.xml", "דרך השלום 13 נשר");
+        //Helper.readXmlFile(ml, "Ramilevi.xml", "דרך השלום 13 נשר");
+        //Helper.readXmlFile(ml, "Shopersal.xml", "שלמה המלך 55 חיפה");
         Intent mainIntent = new Intent(this,MainActivity.class);
         startActivity(mainIntent);
 

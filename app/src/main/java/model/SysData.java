@@ -17,8 +17,6 @@ public class SysData implements Serializable {
 	private Map <String,Item> items;
 	/** Contains all super markets in system*/
 	private Map <String,SuperMarket> supers;
-	/** Contains logos of the supers*/
-	private Map <String,Integer> superLogos;
 
 	/**
 	 * Full cto'r
@@ -26,9 +24,7 @@ public class SysData implements Serializable {
 	public SysData() {
 		items= new HashMap<String,Item>();
 		supers= new HashMap<String,SuperMarket>();
-		superLogos = new HashMap<String, Integer>();
 		fillSupers();
-		fillLogo();
 	}
 
 	/**
@@ -45,12 +41,6 @@ public class SysData implements Serializable {
 		return supers;
 	}
 
-	/**
-	 * @return superLogos
-	 */
-	public Map<String, Integer> getLogos(){
-		return superLogos;
-	}
 
 	/**
 	 * Initialize all supers in system
@@ -58,16 +48,7 @@ public class SysData implements Serializable {
 	private void fillSupers()
 	{
 		supers.put("דרך השלום 13 נשר", new SuperMarket("רמי לוי","דרך השלום 13 נשר"));
-	}
-
-	/**
-	 * Initialize all logo of supermarkets
-	 */
-	private void fillLogo()
-	{
-		superLogos.put("רמי לוי", R.drawable.ramilevi_logo);
-		superLogos.put("שופרסל", R.drawable.supersal_logo);
-		superLogos.put("יינות ביתן", R.drawable.bitan_logo);
+		supers.put("שלמה המלך 55 חיפה", new SuperMarket("שופרסל","שלמה המלך 55 חיפה"));
 	}
 
 	/**

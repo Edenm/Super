@@ -21,12 +21,15 @@ import model.dropbox.manager.NetworkManager;
  */
 
 public class ModelLogic implements Serializable {
-	
+	/** Instance of ModelLogic*/
 	private static ModelLogic instance = null;
-	
+	/** Instance of SysData*/
 	public static SysData data;
-
+	/** Instance of market list*/
 	public static MarketList marketList;
+
+	/** Contains logos of the supers*/
+	private Map <String,Integer> superLogos;
 
 	/**
 	 * singletone function
@@ -38,6 +41,8 @@ public class ModelLogic implements Serializable {
 			//Helper.readJasonFile(instance);
 			//writeSer();
 			readSer();
+
+			//instance.addNewSuperMarket(new SuperMarket("שופרסל", "שלמה המלך 55 חיפה"));
 			//instance.addNewSuperMarket(new SuperMarket("רמי לוי","דרך השלום 13 נשר"));
 			//Helper.readXmlFile(instance, "Ramilevi.xml", "דרך השלום 13 נשר");
 			writeSer();
@@ -52,6 +57,18 @@ public class ModelLogic implements Serializable {
 		super();
 		data= new SysData();
 		marketList = new MarketList();
+		superLogos = new HashMap<String, Integer>();
+		fillLogo();
+	}
+
+	/**
+	 * Initialize all logo of supermarkets
+	 */
+	private void fillLogo()
+	{
+		superLogos.put("רמי לוי", R.drawable.ramilevi_logo);
+		superLogos.put("שופרסל", R.drawable.bitan_logo);
+		superLogos.put("יינות ביתן", R.drawable.bitan_logo);
 	}
 
 	/**
@@ -199,7 +216,7 @@ public class ModelLogic implements Serializable {
 
 	public Integer getLogoBySuperName(String name)
 	{
-		return data.getLogos().get(name);
+		return superLogos.get(name);
 	}
 
 

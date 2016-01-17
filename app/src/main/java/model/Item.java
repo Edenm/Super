@@ -209,7 +209,8 @@ public class Item implements Serializable {
 	public Float getPriceBySuper(String superAdress)
 	{
 		SuperMarket sm = new SuperMarket(superAdress);
-		return prices.get(sm);
+		Float f = prices.get(sm);
+		return f==null ? 0.0f : f;
 	}
 
 

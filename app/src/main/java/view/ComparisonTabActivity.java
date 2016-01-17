@@ -68,7 +68,7 @@ public class ComparisonTabActivity extends Activity {
         for (Map.Entry<String,SuperMarket> e:supers.entrySet())
         {
             logoid[count] = ml.getLogoBySuperName(e.getValue().getName());
-            supername[count] = e.getValue().getAdress()+" - "+String.format("%.02f", marketList.getTotalPrice(e.getKey()))+ " ש''ח " ;
+            supername[count++] = e.getValue().getAdress()+" - "+String.format("%.02f", marketList.getTotalPrice(e.getKey()))+ " ש''ח " ;
         }
 
         CustomListAdapter adapter = new CustomListAdapter(this, logoid, supername, amounts, "superList");
