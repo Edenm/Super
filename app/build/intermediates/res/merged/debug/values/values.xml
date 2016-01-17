@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <array name="nav_drawer_icons">
         <item>@drawable/ic_action</item>
@@ -18,35 +18,35 @@
         <item>צור קשר</item>
         <item>התנתק</item>
     </string-array>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="background_material_light">#e7e1e1</color>
     <color name="black">#fb0e0e0d</color>
     <color name="colorAccent">#2f2d2d</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/color.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="grey"> #d9d9d9</color>
     <color name="haki">#c1c1a4</color>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/color.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="list_background">#303030</color>
     <color name="list_background_pressed">#992416</color>
     <color name="list_divider">#272727</color>
     <color name="list_item_title">#fff</color>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="white">#ffffff</color>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="aboutSuperZol">
         \n\n\n
@@ -72,7 +72,7 @@
     <string name="tab1">רשימה</string>
     <string name="tab2">סופר</string>
     <string name="tab3">השוואה</string>
-    <!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--

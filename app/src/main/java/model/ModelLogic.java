@@ -1,7 +1,7 @@
 package model;
 
 import android.widget.Toast;
-
+import android.content.SharedPreferences;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -100,6 +100,7 @@ public class ModelLogic implements Serializable {
 			data.addSuperMarket(sm);
 		}
 	}
+
 
 	/**
 	 * The method print all data in system.

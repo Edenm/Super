@@ -61,14 +61,33 @@
             android:textStyle="bold"
             android:password="true"
             android:drawableLeft="@drawable/password"/>
-        <Button
-            android:id="@+id/btnSingIn"
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="4dp"
-            android:text="Sign Up"
-            android:textStyle="bold"
-            android:onClick="setOnSignUpListerner" />
+            android:layout_gravity="right"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnSingUp"
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="4dp"
+                android:text="Sign Up"
+                android:textStyle="bold"
+                android:layout_weight="0.83" />
+
+            <Button
+                android:id="@+id/btnSignIn"
+                android:layout_width="171dp"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="4dp"
+                android:text="Sign In"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </LinearLayout>
 </FrameLayout>

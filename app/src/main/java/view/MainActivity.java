@@ -235,10 +235,10 @@ public class MainActivity extends TabActivity {
 			fragment = new HomeFragment();
 			break;
 		case 1:
-			fragment = new ChangeAdressFragmentActivity();
+			startActivity(new Intent(this,ChangeAdressFragmentActivity.class));
 			break;
 		case 2:
-			fragment = new UpdateProfileFragmentActivity();
+			startActivity(new Intent(this,UpdateProfileFragmentActivity.class));
 			break;
 		case 3:
 			startActivity(new Intent(this, AboutFragmentActivity.class));

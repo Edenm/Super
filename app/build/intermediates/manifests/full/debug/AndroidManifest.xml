@@ -69,6 +69,16 @@
             android:label="@string/app_name"
             android:parentActivityName="view.MainActivity" >
         </activity>
+        <activity
+            android:name="view.ChangeAdressFragmentActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="view.MainActivity" >
+        </activity>
+        <activity
+            android:name="view.UpdateProfileFragmentActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="view.MainActivity" >
+        </activity>
     </application>
 
 </manifest>
