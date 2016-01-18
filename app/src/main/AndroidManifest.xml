@@ -52,6 +52,10 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
 
+            <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyDcK4ZflcWTIziLKwuKOrxq_4suYDkFHUk"/>
+
         </activity>
         <activity
             android:name="view.SuperTabActivity"
@@ -80,6 +84,7 @@
             android:label="@string/app_name"
             android:parentActivityName="view.MainActivity" >
         </activity>
+
     </application>
 
 </manifest>

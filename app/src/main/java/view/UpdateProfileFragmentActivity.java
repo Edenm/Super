@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ import model.dropbox.DBSuper;
  */
 public class UpdateProfileFragmentActivity extends FragmentActivity {
 
+    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+
     private static String USERNAME = "user";
     private static String PASSWORD = "password";
     private static String ADRESS = "address";
@@ -34,7 +37,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
 
     EditText etUser;
     EditText etPass;
-    EditText etAdress;
+    AutoCompleteTextView atAdress;
 
 
     @Override
@@ -48,11 +51,23 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         btnRegister = (Button)findViewById(R.id.btnReg);
         etUser = (EditText)findViewById(R.id.etEmail);
         etPass = (EditText)findViewById(R.id.etPass);
-        etAdress = (EditText)findViewById(R.id.etAdress);
+        atAdress = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView);
 
         btnRegister.setOnClickListener(registerListener);
 
+        /*try {
+            Intent intent =
+                    new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                            .build(this);
+            startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
+        } catch (GooglePlayServicesRepairableException e) {
+            // TODO: Handle the error.
+        } catch (GooglePlayServicesNotAvailableException e) {
+            // TODO: Handle the error.
+        }*/
+
     }
+
 
 
     private View.OnClickListener registerListener = new View.OnClickListener() {
@@ -61,7 +76,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
 
             String userName = etUser.getText().toString();
             String password = etPass.getText().toString();
-            String address = etAdress.getText().toString();
+            //String address = etAdress.getText().toString();
 
             if (!checkValidityOfData(userName,password))
             {
@@ -70,7 +85,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
 
                 SavePreferences(USERNAME, userName);
                 SavePreferences(PASSWORD, password);
-                SavePreferences(ADRESS, address);
+                //SavePreferences(ADRESS, address);
 
                 Intent intent = new Intent(UpdateProfileFragmentActivity.this, DBSuper.class);
                 startActivity(intent);

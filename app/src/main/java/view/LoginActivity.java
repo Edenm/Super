@@ -37,8 +37,8 @@ public class LoginActivity extends Activity {
     private static String USERNAME = "user";
     private static String PASSWORD = "password";
     private SharedPreferences prefs = null;
-
-
+    String user;
+    String password;
 
     /**
      * on create
@@ -58,12 +58,13 @@ public class LoginActivity extends Activity {
         etUsername = (EditText)findViewById(R.id.etEmail);
         etPassword = (EditText)findViewById(R.id.etPass);
 
-        String user = prefs.getString(USERNAME, null);
-
+        user = prefs.getString(USERNAME, null);
+        password = prefs.getString(PASSWORD,null);
 
         if (user != null)
         {
             etUsername.setText(user);
+            etPassword.setText(password);
             signup.setEnabled(false);
         }else
         {
@@ -89,20 +90,20 @@ public class LoginActivity extends Activity {
         @Override
         public void onClick(View v) {
 
-            String password = etPassword.getText().toString();
 
-            if (checkValidateOfPassword(password))
-            {
+
+            /*if (checkValidateOfPassword(password))
+            {*/
                 Intent intent = new Intent(LoginActivity.this, DBSuper.class);
                 startActivity(intent);
-            }else
+            /*}else
             {
                 Toast.makeText(getApplicationContext(), "user name or password are invalid" , Toast.LENGTH_LONG).show();
-            }
+            }*/
         }
     };
 
-    private boolean checkValidateOfPassword(String password){
+    /*private boolean checkValidateOfPassword(String password){
         boolean result;
         String pass = prefs.getString(PASSWORD, null);
 
@@ -112,7 +113,7 @@ public class LoginActivity extends Activity {
             result = false;
         }
         return result;
-    }
+    }*/
 
     /*public static void writeUserJasonFile(String username, String password) {
         JSONObject jsonUser = new JSONObject();

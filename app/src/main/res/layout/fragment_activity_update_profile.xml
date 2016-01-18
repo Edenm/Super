@@ -98,11 +98,12 @@
                 android:id="@+id/txtAdress"
                 android:layout_gravity="center_vertical" />
 
-            <EditText
-                android:layout_width="223dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/etAdress"
-                android:layout_gravity="center_vertical" />
+            <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"/>
+
         </LinearLayout>
 
     </LinearLayout>
