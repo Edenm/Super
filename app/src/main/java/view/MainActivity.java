@@ -1,8 +1,11 @@
 package view;
 
 import ViewLogic.slidingmenu.R;
+import model.Helper;
 import model.ModelLogic;
 import model.SuperMarket;
+import model.dropbox.manager.NetworkListener;
+import model.dropbox.manager.NetworkManager;
 import view.adapter.NavDrawerListAdapter;
 
 import java.util.ArrayList;
@@ -10,6 +13,7 @@ import java.util.ArrayList;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -24,11 +28,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 /**
  * This class is manage all tabs and fragment in the app
  */
-public class MainActivity extends TabActivity {
+public class MainActivity extends TabActivity implements NetworkListener {
 	/** The DrawerLayout */
 	private DrawerLayout mDrawerLayout;
 	/** The list view of drawer */
@@ -52,12 +57,14 @@ public class MainActivity extends TabActivity {
 	/** The tab host */
 	TabHost mTabHost;
 
+	Context ctx;
+
 	/**
 	 * On create
 	 * @param savedInstanceState
 	 */
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -161,6 +168,41 @@ public class MainActivity extends TabActivity {
 		mTabHost.addTab(ts1);
 
 		mTabHost.setCurrentTab(2);
+	}
+
+	@Override
+	public void onDownloadStarted() {
+
+	}
+
+	@Override
+	public void onDownloadFinished(String status) {
+		final String state = status;
+		runOnUiThread(new Runnable() {
+			public void run() {
+				Toast.makeText(ctx, state, Toast.LENGTH_LONG).show();
+				ModelLogic ml = ModelLogic.getInstance();
+				ml.addNewSuperMarket(new SuperMarket("שופרסל", "שלמה המלך 55 חיפה"));
+				ml.addNewSuperMarket(new SuperMarket("רמי לוי", "דרך השלום 13 נשר"));
+				//Helper.readXmlFile(instance, "Ramilevi.xml", "דרך השלום 13 נשר");
+				Helper.readAllXml("Ramilevi", "דרך השלום 13 נשר");
+				Helper.readAllXml("Shopersal", "שלמה המלך 55 חיפה");
+				ml.writeSer();
+			}
+		});
+
+		Intent mainIntent = new Intent(this,MainActivity.class);
+		startActivity(mainIntent);
+	}
+
+	@Override
+	public void onUploadStarted() {
+
+	}
+
+	@Override
+	public void onUploadFinished(String status) {
+
 	}
 
 	/**

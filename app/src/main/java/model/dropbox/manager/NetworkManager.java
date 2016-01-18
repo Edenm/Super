@@ -151,6 +151,17 @@ public class NetworkManager {
 
     }
 
+    public File getAppDir(String folder) {
+        String appDirName = Environment.getExternalStorageDirectory() + "/dbSuperZol/"+folder+"/";
+        File mDir = new File(appDirName);
+        // create app dir on local storage
+        if (!mDir.exists()) {
+            mDir.mkdirs();
+        }
+        return mDir;
+
+    }
+
     /**
      * Here we show getting metadata for a directory and downloading a file in a
      * background thread, trying to show typical exception handling and flow of
@@ -204,6 +215,8 @@ public class NetworkManager {
                         data.add(ent);
                     }
 
+                    data.addAll(getFilesList(dirent));
+
                     if (data.size() == 0) {
                         // No files in that directory
                         mErrorMsg = "";//"No files in that directory";
@@ -214,9 +227,11 @@ public class NetworkManager {
                     for (int i = 0; i < data.size(); i++) {
                         Entry ent = data.get(i);
                         String path = ent.path;
-                        String rev = ent.rev;
-                        addMd5(path, rev);
-                        getUrl(path);
+                        if (path.indexOf(".")!=-1) {
+                            String rev = ent.rev;
+                            addMd5(path, rev);
+                            getUrl(path);
+                        }
 
                     }
 
@@ -281,6 +296,44 @@ public class NetworkManager {
         });
 
         downloadThread.start();
+    }
+
+
+    private ArrayList<Entry> getFilesList(Entry dirent){
+        ArrayList<Entry> list = new ArrayList<Entry>();
+
+        if(dirent == null){
+            return list;
+        }
+
+        if( dirent.contents == null){
+            return list;
+        }
+
+        for (Entry ent : dirent.contents)
+        {
+            if(ent==null){
+                continue;
+            }
+
+            if(ent.isDir)
+            {
+                Entry subdirent;
+                try {
+                    subdirent = mApi.metadata(ent.path.toString(), 1000, null, true, null);
+                    list.addAll(getFilesList(subdirent));
+                } catch (DropboxException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            else
+            {
+                list.add(ent);
+            }
+
+        }
+        return list;
     }
 
     public static void releaseInstance() {
@@ -401,10 +454,21 @@ public class NetworkManager {
 
             } else {
 
-                File appDir = getAppDir();
                 OutputStream outputStream;
+                String tempUrl = new String(url);
+                int count = tempUrl.length() - tempUrl.replace("/", "").length();
+                File f = null;
 
-                outputStream = new FileOutputStream(new File(appDir, fileName));
+                if (count==3)
+                {
+                    tempUrl = getFolderFromUrl(url);
+                    outputStream = new FileOutputStream(new File(getAppDir(tempUrl), fileName));
+                }
+                else
+                {
+                    outputStream = new FileOutputStream(new File(getAppDir(), fileName));
+                }
+
 
 				/*
 				 Downloads a file from Dropbox, copying it to the output stream. Returns the DropboxAPI.DropboxFileInfo for the file.
@@ -484,7 +548,20 @@ public class NetworkManager {
             return new byte[0];
         }
 
-        File f = new File(getAppDir(), localUrl);
+        String tempUrl = new String(url);
+        int count = tempUrl.length() - tempUrl.replace("/", "").length();
+
+        File f = null;
+        if (count==3)
+        {
+            tempUrl = getFolderFromUrl(tempUrl);
+
+            f = new File(getAppDir(tempUrl), localUrl);
+        }
+        else{
+            f = new File(getAppDir(), localUrl);
+        }
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream(4096);
 
         InputStream in = null;
@@ -512,8 +589,22 @@ public class NetworkManager {
         return stream.toByteArray();
     }
 
-    private String getLocalMd5(String key) {
+    private String getLocalMd5(String key)
+    {
         return localmd5Table.get(key);
+    }
+
+    private String getFolderFromUrl(String url)
+    {
+        String tempUrl = new String(url);
+        int index = tempUrl.indexOf("/");
+        tempUrl = tempUrl.substring(index+1);
+        index = tempUrl.indexOf("/");
+        tempUrl = tempUrl.substring(index+1);
+        index = tempUrl.indexOf("/");
+        tempUrl = tempUrl.substring(0, index);
+
+        return tempUrl;
     }
 
 

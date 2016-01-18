@@ -40,15 +40,31 @@ import model.dropbox.manager.NetworkManager;
 public class Helper {
 
 	/**
+	 * This method get folder name of super with xml files and read all of them to specified super
+	 * @param folderName
+	 * @param superAdress
+	 */
+	public static void readAllXml(String folderName, String superAdress)
+	{
+		ModelLogic ml = ModelLogic.getInstance();
+		File fXmlFileDir = new File("/storage/emulated/0/dbSuperZol/"+folderName+"/");
+		for (final File fileEntry : fXmlFileDir.listFiles()) {
+			readXmlFile(ml, fileEntry, superAdress,folderName);
+		}
+	}
+
+
+	/**
 	 * This method get instance of model logic and the name of xml file,
 	 * The method read all the data from the xml into the model logic Structures
 	 * @param ml
-	 * @param fileName
+	 * @param fXmlFile
+	 * @param superAdress
+	 * @param typeOfSuper
 	 */
-		public static void readXmlFile(ModelLogic ml, String fileName, String superAdress)
+		public static void readXmlFile(ModelLogic ml, File fXmlFile, String superAdress, String typeOfSuper)
 		{
 			 try {
-					File fXmlFile = new File("/storage/emulated/0/dbSuperZol/", fileName);//new File(name);
 					DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 					DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 					Document doc = dBuilder.parse(fXmlFile);
@@ -66,7 +82,18 @@ public class Helper {
 							Element eElement = (Element) nNode;
 					
 							String target = eElement.getElementsByTagName("PriceUpdateDate").item(0).getTextContent();
+
 							DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							if (typeOfSuper.equals("Ramilevi"))
+							{
+								df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							}
+							if (typeOfSuper.equals("Shopersal"))
+							{
+								df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+							}
+
+
 							Date result =  df.parse(target);
 							
 							Item item = new Item(result,

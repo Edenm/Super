@@ -42,10 +42,6 @@ public class ModelLogic implements Serializable {
 			//writeSer();
 			readSer();
 
-			//instance.addNewSuperMarket(new SuperMarket("שופרסל", "שלמה המלך 55 חיפה"));
-			//instance.addNewSuperMarket(new SuperMarket("רמי לוי","דרך השלום 13 נשר"));
-			//Helper.readXmlFile(instance, "Ramilevi.xml", "דרך השלום 13 נשר");
-			writeSer();
 		}
 		return instance;
 	}
@@ -308,6 +304,22 @@ public class ModelLogic implements Serializable {
 			}
 		}
 		return isSaved;
+
+	}
+
+	/**
+	 * The method update the db dropbox
+	 */
+	private void uploadFile() {
+
+		// create testFile
+		String localFilePath=NetworkManager.getInstance().getAppDirName()+"/"+"data.srl";
+		//File localfile = new File(localFilePath);
+		//String content = "abc2";
+		//NetworkManager.getInstance().writeLocalCopy(localfile, content.getBytes());
+
+		// try to upload
+		NetworkManager.getInstance().uploadRes(localFilePath);
 
 	}
 
