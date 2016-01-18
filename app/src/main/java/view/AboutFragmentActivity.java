@@ -7,7 +7,7 @@ import android.widget.TextView;
 import ViewLogic.slidingmenu.R;
 
 /**
- * TBD
+ * this Activity is for giving details to user about us - SuperZol
  */
 public class AboutFragmentActivity extends FragmentActivity {
 
@@ -22,17 +22,4 @@ public class AboutFragmentActivity extends FragmentActivity {
         abouts.setText(aboutSuperzol);
 
     }
-
-
-	/*@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-
-        //LayoutInflater lf = getActivity().getLayoutInflater();
-        View rootView = inflater.inflate(R.layout.fragment_activity_about, container, false);
-
-        //about.getDisplay();
-         
-        return rootView;
-    }*/
 }

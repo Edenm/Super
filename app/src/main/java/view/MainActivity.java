@@ -80,17 +80,13 @@ public class MainActivity extends TabActivity {
 		// adding nav drawer items to array
 		// Home
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-		// Find People
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-		// Photos
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		// Communities, Will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
-		// Pages
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		// What's hot, We  will add a counter here
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
-		
+		// Update Profile
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(0, -1)));
+		// About Us
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(0, -1)));
+		// Log-of
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(0, -1)));
+
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -130,7 +126,7 @@ public class MainActivity extends TabActivity {
 			displayView(0);
 		}
 
-		initializeDB();
+		//initializeDB();
 	}
 
 	/**
@@ -165,17 +161,6 @@ public class MainActivity extends TabActivity {
 		mTabHost.addTab(ts1);
 
 		mTabHost.setCurrentTab(2);
-	}
-
-	/**
-	 * initialize the first super
-	 */
-	private void initializeDB()
-	{
-//		ModelLogic ml= ModelLogic.getInstance();
-//		String ramiLevi = getString(R.string.rami_levi);
-//		String superAddress = getString(R.string.supermarket_address);
-//		SuperMarket sm= new SuperMarket(ramiLevi, superAddress);
 	}
 
 	/**
@@ -235,39 +220,17 @@ public class MainActivity extends TabActivity {
 			fragment = new HomeFragment();
 			break;
 		case 1:
-			startActivity(new Intent(this,ChangeAdressFragmentActivity.class));
-			break;
-		case 2:
 			startActivity(new Intent(this,UpdateProfileFragmentActivity.class));
 			break;
-		case 3:
+		case 2:
 			startActivity(new Intent(this, AboutFragmentActivity.class));
 			break;
-		case 4:
-			fragment = new ContactFragmentActivity();
-			break;
-		case 5:
+		case 3:
 			startActivity(new Intent(this,LoginActivity.class));
 			break;
-
 		default:
 			break;
 		}
-
-		/*if (fragment != null) {
-			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-
-			// update selected item and title, then close the drawer
-			mDrawerList.setItemChecked(position, true);
-			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
-			mDrawerLayout.closeDrawer(mDrawerList);
-		} else {
-			// error in creating fragment
-			Log.e("MainActivity", "Error in creating fragment");
-		}*/
 	}
 
 	@Override

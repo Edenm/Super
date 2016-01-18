@@ -4,18 +4,11 @@
     <eat-comment/>
     <array name="nav_drawer_icons">
         <item>@drawable/ic_action</item>
-        <item>@drawable/ic_action</item>
-        <item>@drawable/ic_action</item>
-        <item>@drawable/ic_action</item>
-        <item>@drawable/ic_action</item>
-        <item>@drawable/ic_action</item>
     </array>
     <string-array name="nav_drawer_items">
         <item>SuperZol</item>
-        <item>עדכן כתובת</item>
         <item>החלף פרופיל</item>
         <item>אודות</item>
-        <item>צור קשר</item>
         <item>התנתק</item>
     </string-array>
     <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/colors.xml -->
@@ -46,6 +39,9 @@
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="header_margin">64dp</dimen>
+    <dimen name="view_horizontal_margin">8dp</dimen>
+    <dimen name="view_vertical_margin">8dp</dimen>
     <!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="aboutSuperZol">
@@ -60,14 +56,21 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="app_name">SuperZol</string>
+    <string name="button_register">Register</string>
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="drawer_close">Setting Closed</string>
     <string name="drawer_open">Setting Opened</string>
     <string name="hello_world">Hello world!</string>
+    <string name="invalid_data">שם המשתמש או הסיסמא אינם תקינים</string>
+    <string name="label_adress">Adress:</string>
+    <string name="label_email">Email address:</string>
+    <string name="label_password">Password:</string>
+    <string name="label_radius">Choose Radius:</string>
     <string name="market_list">רשימת קניות</string>
     <string name="rami_levi">רמי לוי</string>
     <string name="saveListMsg">"הרשימה נשמרה במערכת"</string>
     <string name="search">חיפוש</string>
+    <string name="str_atv_places">Enter Place Here</string>
     <string name="supermarket_address">המושבה 7 נשר</string>
     <string name="tab1">רשימה</string>
     <string name="tab2">סופר</string>

@@ -10,10 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import ViewLogic.slidingmenu.R;
-import model.Helper;
-import model.Item;
-import model.ModelLogic;
-import model.SuperMarket;
 import model.dropbox.DBSuper;
 
 /**
@@ -34,9 +30,12 @@ public class LoginActivity extends Activity {
     /** the password **/
     EditText etPassword;
 
+    /** Shared prefernces for user Acount **/
     private static String USERNAME = "user";
     private static String PASSWORD = "password";
     private SharedPreferences prefs = null;
+
+    /** Global variables **/
     String user;
     String password;
 
@@ -58,23 +57,27 @@ public class LoginActivity extends Activity {
         etUsername = (EditText)findViewById(R.id.etEmail);
         etPassword = (EditText)findViewById(R.id.etPass);
 
+        /** get the user and password from SharedPrefernce - if its the first time will get null **/
         user = prefs.getString(USERNAME, null);
         password = prefs.getString(PASSWORD,null);
 
+        /** check if is not the first time of the user in the app **/
         if (user != null)
         {
+            /** enabled only the sign in button . the user dont need to add is username or password **/
             etUsername.setText(user);
             etPassword.setText(password);
             signup.setEnabled(false);
         }else
         {
+            /** the first time of the user - enabled only registration **/
             signin.setEnabled(false);
             etUsername.setEnabled(false);
             etPassword.setEnabled(false);
         }
     }
     /**
-     * Listener of signup button
+     * Listener of signup button for registration
      */
     private View.OnClickListener signUpListener = new View.OnClickListener() {
         @Override
@@ -85,70 +88,14 @@ public class LoginActivity extends Activity {
         }
 
     };
-
+    /**
+     * Listener of signin button for regular sing in
+     */
     private View.OnClickListener signInListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-
-
-            /*if (checkValidateOfPassword(password))
-            {*/
-                Intent intent = new Intent(LoginActivity.this, DBSuper.class);
-                startActivity(intent);
-            /*}else
-            {
-                Toast.makeText(getApplicationContext(), "user name or password are invalid" , Toast.LENGTH_LONG).show();
-            }*/
+        Intent intent = new Intent(LoginActivity.this, DBSuper.class);
+        startActivity(intent);
         }
     };
-
-    /*private boolean checkValidateOfPassword(String password){
-        boolean result;
-        String pass = prefs.getString(PASSWORD, null);
-
-        if ((pass.equals(password))) {
-            result = true;
-        }else {
-            result = false;
-        }
-        return result;
-    }*/
-
-    /*public static void writeUserJasonFile(String username, String password) {
-        JSONObject jsonUser = new JSONObject();
-        try {
-
-            jsonUser.put("userName", username);
-            jsonUser.put("password", password);
-            jsonUser.put("address", null);
-            jsonUser.put("marketList", null);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Helper.writeFile(jsonUser.toString(), "User.txt");
-    }*/
-
-        /*String path= "/storage/emulated/0/dbSuperZol/User";
-        File file = new File(path);*/
-
-       /* if ( file.exists() )
-        {
-            if (checkValidate(ml,userName, password)) {
-                Intent intent = new Intent(LoginActivity.this,DBSuper.class);
-                startActivity(intent);
-            }
-            else{
-                Toast.makeText(getApplicationContext(), "user name or password are invalid" , Toast.LENGTH_LONG).show();
-            }
-
-        }
-        else
-        {
-            writeUserJasonFile(userName, password);
-            Intent intent = new Intent(LoginActivity.this,DBSuper.class);
-            startActivity(intent);
-        }*/
-
 }
