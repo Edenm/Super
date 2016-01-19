@@ -34,7 +34,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/etEmail" />
 
@@ -46,7 +46,8 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
+
             android:ems="10"
             android:id="@+id/etPass" />
 
@@ -55,12 +56,13 @@
             android:layout_height="wrap_content"
             android:text="@string/label_adress" />
 
-        <AutoCompleteTextView
+        <fragment
+            android:id="@+id/autocomplete_fragment"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/etAdress" />
+            android:layout_height="wrap_content" />
+
+
 
         <TextView
             android:layout_width="wrap_content"

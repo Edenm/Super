@@ -182,11 +182,10 @@ public class MainActivity extends TabActivity implements NetworkListener {
 			public void run() {
 				Toast.makeText(ctx, state, Toast.LENGTH_LONG).show();
 				ModelLogic ml = ModelLogic.getInstance();
-				ml.addNewSuperMarket(new SuperMarket("שופרסל", "שלמה המלך 55 חיפה"));
-				ml.addNewSuperMarket(new SuperMarket("רמי לוי", "דרך השלום 13 נשר"));
-				//Helper.readXmlFile(instance, "Ramilevi.xml", "דרך השלום 13 נשר");
-				Helper.readAllXml("Ramilevi", "דרך השלום 13 נשר");
-				Helper.readAllXml("Shopersal", "שלמה המלך 55 חיפה");
+				//ml.addNewSuperMarket(new SuperMarket("שופרסל", "שלמה המלך 55 חיפה"));
+				//ml.addNewSuperMarket(new SuperMarket("רמי לוי", "דרך השלום 13 נשר"));
+				//Helper.readAllXml("Ramilevi", "דרך השלום 13 נשר");
+				//Helper.readAllXml("Shopersal", "שלמה המלך 55 חיפה");
 				ml.writeSer();
 			}
 		});
