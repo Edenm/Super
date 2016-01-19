@@ -34,7 +34,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/etEmail" />
 
@@ -46,7 +46,8 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
+
             android:ems="10"
             android:id="@+id/etPass" />
 
@@ -55,12 +56,11 @@
             android:layout_height="wrap_content"
             android:text="@string/label_adress" />
 
-        <AutoCompleteTextView
+        <PlaceAutocompleteFragment
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/etAdress" />
+            android:id="@+id/place_autocomplete_fragment" />
 
         <TextView
             android:layout_width="wrap_content"

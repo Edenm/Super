@@ -8,10 +8,17 @@
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item >SuperZol</item>
-        <item >החלף פרופיל</item>
+        <item>עדכן פרופיל</item>
         <item >אודות</item>
         <item >התנתק</item>
     </string-array>
+
+    <string-array name="radius_choices">
+        <item>0-10</item>
+        <item>10-20</item>
+        <item>20+</item>
+    </string-array>
+
 
     <!--app name and Main activity strings -->
     <string name="app_name">SuperZol</string>

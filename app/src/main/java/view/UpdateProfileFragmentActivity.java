@@ -50,7 +50,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
     private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
     private static final String OUT_JSON = "/json";
-    private static final String API_KEY = "AIzaSyCbi6ggzrslzrFVjXkyHOPHTkj7QkYuH9k";
+    private static final String API_KEY = "AIzaSyCLk8zfUv1KNqCF9ZRts7UX6wXKoes6OYM";
 
     /** ShredPreferences for editing and save in memory **/
     private static String USERNAME = "user";
@@ -78,14 +78,29 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         btnRegister = (Button)findViewById(R.id.registerButton);
         etUser = (EditText)findViewById(R.id.etEmail);
         etPass = (EditText)findViewById(R.id.etPass);
-        atvPlaces = (AutoCompleteTextView)findViewById(R.id.etAdress);
+        //atvPlaces = (AutoCompleteTextView)findViewById(R.id.etAdress);
 
         btnRegister.setOnClickListener(registerListener);
 
 
-        atvPlaces.setThreshold(1);
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-        atvPlaces.addTextChangedListener(new TextWatcher() {
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName());
+
+                String placeDetailsStr = place.getName() + "\n"
+                        + place.getId() + "\n"
+                        + place.getLatLng().toString() + "\n"
+                        + place.getAddress() + "\n"
+                        + place.getAttributions();
+                txtPlaceDetails.setText(placeDetailsStr);
+            }
+
+        /*atvPlaces.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -103,7 +118,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
             public void afterTextChanged(Editable s) {
                 // TODO Auto-generated method stub
             }
-        });
+        });*/
     }
 
     /** A method to download json data from url */
