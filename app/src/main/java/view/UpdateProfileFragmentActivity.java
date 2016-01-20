@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
@@ -21,18 +24,19 @@ import model.dropbox.DBSuper;
  */
 public class UpdateProfileFragmentActivity extends FragmentActivity {
 
-    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-
-    private static final String LOG_TAG = "Google Places Autocomplete";
-    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
-    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
-    private static final String OUT_JSON = "/json";
-    private static final String API_KEY = "AIzaSyCLk8zfUv1KNqCF9ZRts7UX6wXKoes6OYM";
+//    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
+//
+//    private static final String LOG_TAG = "Google Places Autocomplete";
+//    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+//    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
+//    private static final String OUT_JSON = "/json";
+//    private static final String API_KEY = "AIzaSyCLk8zfUv1KNqCF9ZRts7UX6wXKoes6OYM";
 
     /** ShredPreferences for editing and save in memory **/
     private static String USERNAME = "user";
     private static String PASSWORD = "password";
     private static String ADRESS = "address";
+    private static String RADIUS = "radius";
     private SharedPreferences prefs;
 
 
@@ -40,6 +44,10 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     Button btnRegister;
     EditText etUser;
     EditText etPass;
+    TextView tAdressAfterChoose;
+    Spinner spRadius;
+    String placeDetailsStr;
+    ArrayAdapter adapterFillClass;
 
 
     @Override
@@ -52,12 +60,30 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         btnRegister = (Button)findViewById(R.id.registerButton);
         etUser = (EditText)findViewById(R.id.etEmail);
         etPass = (EditText)findViewById(R.id.etPass);
-        //atvPlaces = (AutoCompleteTextView)findViewById(R.id.etAdress);
+        tAdressAfterChoose = (TextView)findViewById(R.id.txtAfterAdress);
+        spRadius = (Spinner)findViewById(R.id.spRadius);
 
         btnRegister.setOnClickListener(registerListener);
+        /** set the combo-box choises from array in string.xml **/
+        adapterFillClass = ArrayAdapter.createFromResource(this,
+                R.array.radius_choices,
+                android.R.layout.simple_spinner_dropdown_item);
+        spRadius.setAdapter(adapterFillClass);
+
+        int cameFrom = getIntent().getIntExtra("calling-activity", 0);
+
+        switch (cameFrom)
+        {
+            case MainActivity.MAIN:
+                setUserDetails();
+                break;
+            default:
+                break;
+        }
 
 
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+        /** set the placesAutoComplete of google for choosing address by user **/
+        final PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -66,12 +92,14 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
                 // TODO: Get info about the selected place.
                 //Log.i(TAG, "Place: " + place.getName());
 
-                String placeDetailsStr = place.getName() + "\n"
+                placeDetailsStr = place.getName() + "\n"
                         + place.getId() + "\n"
                         + place.getLatLng().toString() + "\n"
                         + place.getAddress() + "\n"
                         + place.getAttributions();
-                //txtPlaceDetails.setText(placeDetailsStr);
+                tAdressAfterChoose.setText(placeDetailsStr);
+                autocompleteFragment.setUserVisibleHint(false);
+                tAdressAfterChoose.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -89,7 +117,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
             /** get the user choices for email, password and address **/
             String userName = etUser.getText().toString();
             String password = etPass.getText().toString();
-            //String address = etAdress.getText().toString();
+            String address = placeDetailsStr;
 
             /** check validate of data **/
             if (!checkValidityOfData(userName,password))
@@ -100,7 +128,8 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
                 /** save the user name, password and address to SharedPreference **/
                 SavePreferences(USERNAME, userName);
                 SavePreferences(PASSWORD, password);
-                //SavePreferences(ADRESS, address);
+                SavePreferences(ADRESS, address);
+                SavePreferences(RADIUS, spRadius.getSelectedItem().toString());
 
                 /** start the SuperZol app **/
                 Intent intent = new Intent(UpdateProfileFragmentActivity.this, DBSuper.class);
@@ -140,5 +169,12 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         return validity;
     }
 
+    private void setUserDetails() {
+        etUser.setText(prefs.getString(USERNAME, null));
+        etPass.setText(prefs.getString(PASSWORD, null));
+        tAdressAfterChoose.setText(prefs.getString(ADRESS, null));
+        int spinnerPosition = adapterFillClass.getPosition(prefs.getString(RADIUS, null));
+        spRadius.setSelection(spinnerPosition);
+    }
 
 }

@@ -30,6 +30,8 @@ public class LoginActivity extends Activity {
     /** the password **/
     EditText etPassword;
 
+    public final static int LOGIN  = 1002;
+
     /** Shared prefernces for user Acount **/
     private static String USERNAME = "user";
     private static String PASSWORD = "password";
@@ -82,8 +84,9 @@ public class LoginActivity extends Activity {
     private View.OnClickListener signUpListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-            startActivity(new Intent(LoginActivity.this, UpdateProfileFragmentActivity.class));
+            Intent intent = new Intent(LoginActivity.this, UpdateProfileFragmentActivity.class);
+            intent.putExtra("calling-activity",LOGIN);
+            startActivity(intent);
 
         }
 

@@ -41,6 +41,8 @@ public class MainActivity extends TabActivity implements NetworkListener {
 	/** The action bar drawer toggle */
 	private ActionBarDrawerToggle mDrawerToggle;
 
+	public final static int MAIN = 1001;
+
 	/** nav drawer title */
 	private CharSequence mDrawerTitle;
 
@@ -261,7 +263,9 @@ public class MainActivity extends TabActivity implements NetworkListener {
 			fragment = new HomeFragment();
 			break;
 		case 1:
-			startActivity(new Intent(this,UpdateProfileFragmentActivity.class));
+			Intent updateIntent = new Intent(this,UpdateProfileFragmentActivity.class);
+			updateIntent.putExtra("calling-activity",MAIN);
+			startActivity(updateIntent);
 			break;
 		case 2:
 			startActivity(new Intent(this, AboutFragmentActivity.class));
