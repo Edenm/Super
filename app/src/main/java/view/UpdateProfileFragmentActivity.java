@@ -44,7 +44,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     Button btnRegister;
     EditText etUser;
     EditText etPass;
-    TextView tAdressAfterChoose;
+    //TextView tAdressAfterChoose;
     Spinner spRadius;
     String placeDetailsStr;
     ArrayAdapter adapterFillClass;
@@ -60,7 +60,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         btnRegister = (Button)findViewById(R.id.registerButton);
         etUser = (EditText)findViewById(R.id.etEmail);
         etPass = (EditText)findViewById(R.id.etPass);
-        tAdressAfterChoose = (TextView)findViewById(R.id.txtAfterAdress);
+       // tAdressAfterChoose = (TextView)findViewById(R.id.txtAfterAdress);
         spRadius = (Spinner)findViewById(R.id.spRadius);
 
         btnRegister.setOnClickListener(registerListener);
@@ -97,9 +97,9 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
                         + place.getLatLng().toString() + "\n"
                         + place.getAddress() + "\n"
                         + place.getAttributions();
-                tAdressAfterChoose.setText(placeDetailsStr);
-                autocompleteFragment.setUserVisibleHint(false);
-                tAdressAfterChoose.setVisibility(View.VISIBLE);
+                //tAdressAfterChoose.setText(placeDetailsStr);
+                //autocompleteFragment.setUserVisibleHint(false);
+                //tAdressAfterChoose.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -172,7 +172,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     private void setUserDetails() {
         etUser.setText(prefs.getString(USERNAME, null));
         etPass.setText(prefs.getString(PASSWORD, null));
-        tAdressAfterChoose.setText(prefs.getString(ADRESS, null));
+        //tAdressAfterChoose.setText(prefs.getString(ADRESS, null));
         int spinnerPosition = adapterFillClass.getPosition(prefs.getString(RADIUS, null));
         spRadius.setSelection(spinnerPosition);
     }
