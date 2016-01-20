@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
@@ -36,6 +35,8 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     private static String USERNAME = "user";
     private static String PASSWORD = "password";
     private static String ADRESS = "address";
+    private static Double LAT = 0.0;
+    private static Double LONG = 0.0;
     private static String RADIUS = "radius";
     private SharedPreferences prefs;
 
@@ -98,8 +99,15 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
                         + place.getAddress() + "\n"
                         + place.getAttributions();
                 //tAdressAfterChoose.setText(placeDetailsStr);
-                //autocompleteFragment.setUserVisibleHint(false);
+                autocompleteFragment.setUserVisibleHint(false);
                 //tAdressAfterChoose.setVisibility(View.VISIBLE);
+                //autocompleteFragment.getView().setVisibility(View.INVISIBLE);
+                //autocompleteFregment.getView().setText("Adress");
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putLong(String.valueOf(LAT), Double.doubleToLongBits(place.getLatLng().latitude));
+                editor.putLong(String.valueOf(LONG), Double.doubleToLongBits(place.getLatLng().longitude));
+                editor.commit();
             }
 
             @Override

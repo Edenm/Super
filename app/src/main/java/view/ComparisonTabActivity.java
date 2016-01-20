@@ -6,6 +6,7 @@ package view;
 
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.HashMap;
 import java.util.Map;
-
 import ViewLogic.slidingmenu.R;
 import model.MarketList;
 import model.ModelLogic;
@@ -31,7 +31,15 @@ public class ComparisonTabActivity extends Activity {
     String[] supername;  //ddd/ = {"רמי לוי שיווק השקמה - 250 ש''ח", "שופרסל דיל - 300 ש''ח", "יינות ביתן - 315 ש''ח"};
     String[] amounts;//= {"5.55", "7.08", "4.32"};
 
+    /** sharedPreferences parameters **/
+    private static Double LAT = 0.0;
+    private static Double LONG = 0.0;
+    private static String RADIUS = "radius";
+    private SharedPreferences prefs;
 
+    /** Global variables **/
+    Double latitude,longitude;
+    long radius;
 
     /**
      * On create
@@ -42,9 +50,11 @@ public class ComparisonTabActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_comparison);
 
+        prefs = getSharedPreferences("ACCOUNT", MODE_PRIVATE);
         TextView title= (TextView) findViewById(R.id.txtTitleSuper);
         title.setText("שלושת הסופרים הכי זולים");
 
+        getLocationData();
         loadData();
     }
 
@@ -82,10 +92,15 @@ public class ComparisonTabActivity extends Activity {
                 HashMap<String, Object> obj = (HashMap<String, Object>) parent.getAdapter().getItem(position);
                 String name = (String) obj.get("name");
 
-                String pName=parent.getItemAtPosition(position).toString();
+                String pName = parent.getItemAtPosition(position).toString();
             }
         });
     }
-
+    private void getLocationData()
+    {
+        latitude = Double.longBitsToDouble(prefs.getLong(String.valueOf(LAT), Double.doubleToLongBits(0.0)));
+        longitude = Double.longBitsToDouble(prefs.getLong(String.valueOf(LONG), Double.doubleToLongBits(0.0)));
+        //radius = Double.doubleToLongBits(prefs.getLong(String.valueOf(RADIUS),Double.doubleToLongBits(0.0)));
+    }
 }
 
