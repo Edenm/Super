@@ -31,6 +31,8 @@ public class ModelLogic implements Serializable {
 	/** Contains logos of the supers*/
 	private Map <String,Integer> superLogos;
 
+	public static boolean isLoadData = false;
+
 	/**
 	 * singletone function
 	 * @return instance of ModelLogic
@@ -38,10 +40,9 @@ public class ModelLogic implements Serializable {
 	public static ModelLogic getInstance(){
 		if	(instance == null){
 			instance = new ModelLogic();
-			//Helper.readJasonFile(instance);
-			//writeSer();
-			readSer();
 
+			readSer();
+			isLoadData = true;
 		}
 		return instance;
 	}
@@ -55,6 +56,7 @@ public class ModelLogic implements Serializable {
 		marketList = new MarketList();
 		superLogos = new HashMap<String, Integer>();
 		fillLogo();
+		fillSuper();
 	}
 
 	/**
@@ -65,6 +67,12 @@ public class ModelLogic implements Serializable {
 		superLogos.put("רמי לוי", R.drawable.ramilevi_logo);
 		superLogos.put("שופרסל", R.drawable.bitan_logo);
 		superLogos.put("יינות ביתן", R.drawable.bitan_logo);
+	}
+
+	private void fillSuper()
+	{
+		addNewSuperMarket(new SuperMarket("שופרסל", "שלמה המלך 55 חיפה", 32.811407, 34.960210));
+		addNewSuperMarket(new SuperMarket("רמי לוי", "דרך השלום 13 נשר", 32.770157, 35.047340));
 	}
 
 	/**
@@ -148,6 +156,29 @@ public class ModelLogic implements Serializable {
 	}
 
 	/**
+	 * The method collect all super in current radius
+	 * @param lat
+	 * @param lon
+	 * @param radius
+	 * @return all the supers that
+	 */
+	public HashMap <String,SuperMarket> getAllSupersByRadius(Double lat, Double lon, Integer radius)
+	{
+		HashMap <String, SuperMarket> closeSuper = new HashMap<String, SuperMarket>();
+
+		for (SuperMarket sm:data.getSupers().values())
+		{
+			Double distance = Helper.getDistance(lat,sm.getLat(),lon,sm.getLon(),0,0);
+			if (distance <= radius)
+			{
+				closeSuper.put(sm.getAdress(),sm);
+			}
+		}
+
+		return closeSuper;
+	}
+
+	/**
 	 * The method get super adress
 	 * @param superAdress
 	 * @return all item of the super with this address
@@ -196,6 +227,8 @@ public class ModelLogic implements Serializable {
 		}
 		return supers;
 	}
+
+
 
 	/**
 	 * @return all the item names

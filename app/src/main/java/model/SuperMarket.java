@@ -6,13 +6,16 @@ import java.io.Serializable;
  * This class is represent one Super Market in system
  * SuperMarket class included all data about super market like name and address
  */
-public class SuperMarket implements Serializable {
+public class SuperMarket{
 
 	/** The name of super market*/
 	private String name;
 	/** The adress of super market*/
 	private String adress;
-	//private Map <String,Item> items= new HashMap<>();
+	/** GEO location lat */
+	private Double lat;
+	/** GEO location lon */
+	private Double lon;
 
 	/**
 	 * Partial cto'r
@@ -28,10 +31,12 @@ public class SuperMarket implements Serializable {
 	 * @param name
 	 * @param adress
 	 */
-	public SuperMarket(String name, String adress) {
+	public SuperMarket(String name, String adress, Double lat, Double lon ) {
 		super();
 		this.name = name;
 		this.adress = adress;
+		this.lat = lat;
+		this.lon = lon;
 	}
 
 	/**
@@ -48,9 +53,20 @@ public class SuperMarket implements Serializable {
 		return adress;
 	}
 
-	//public Map<String, Item> getItems() {
-	//	return items;
-	//}
+	/**
+	 * @return lat
+	 */
+	public Double getLat() {
+		return lat;
+	}
+
+	/**
+	 * @return lon
+	 */
+	public Double getLon() {
+		return lon;
+	}
+
 
 	/**
 	 * Hash map function

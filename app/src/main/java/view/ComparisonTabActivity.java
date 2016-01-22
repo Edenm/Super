@@ -32,14 +32,14 @@ public class ComparisonTabActivity extends Activity {
     String[] amounts;//= {"5.55", "7.08", "4.32"};
 
     /** sharedPreferences parameters **/
-    private static Double LAT = 0.0;
-    private static Double LONG = 0.0;
-    private static String RADIUS = "radius";
+    private static String LAT = "LAT";
+    private static String LONG = "LONG";
+    private static String RADIUS = "RADIUS";
     private SharedPreferences prefs;
 
     /** Global variables **/
     Double latitude,longitude;
-    long radius;
+    Integer radius;
 
     /**
      * On create
@@ -52,9 +52,8 @@ public class ComparisonTabActivity extends Activity {
 
         prefs = getSharedPreferences("ACCOUNT", MODE_PRIVATE);
         TextView title= (TextView) findViewById(R.id.txtTitleSuper);
-        title.setText("שלושת הסופרים הכי זולים");
 
-        getLocationData();
+        setLocationData();
         loadData();
     }
 
@@ -68,7 +67,7 @@ public class ComparisonTabActivity extends Activity {
     {
         ModelLogic ml = ModelLogic.getInstance();
         MarketList marketList = ModelLogic.getInstance().getMarketList();
-        Map <String,SuperMarket> supers = ml.getSysData().getSupers();
+        Map <String,SuperMarket> supers = ml.getAllSupersByRadius(latitude,longitude,radius);
 
         logoid = new Integer[supers.size()];
         supername = new String[supers.size()];
@@ -96,11 +95,11 @@ public class ComparisonTabActivity extends Activity {
             }
         });
     }
-    private void getLocationData()
+    private void setLocationData()
     {
-        latitude = Double.longBitsToDouble(prefs.getLong(String.valueOf(LAT), Double.doubleToLongBits(0.0)));
-        longitude = Double.longBitsToDouble(prefs.getLong(String.valueOf(LONG), Double.doubleToLongBits(0.0)));
-        //radius = Double.doubleToLongBits(prefs.getLong(String.valueOf(RADIUS),Double.doubleToLongBits(0.0)));
+        latitude = Double.valueOf(prefs.getString(LAT, "0.0"));
+        longitude = Double.valueOf(prefs.getString(LONG, "0.0"));
+        radius = Integer.valueOf(prefs.getString(RADIUS, "0"));
     }
 }
 

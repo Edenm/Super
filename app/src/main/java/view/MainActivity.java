@@ -70,6 +70,10 @@ public class MainActivity extends TabActivity implements NetworkListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+        NetworkManager nm = NetworkManager.getInstance();
+        nm.register(this);
+        onDownloadFinished("");
+
 		setTabs();
 
 		mTitle = mDrawerTitle = getTitle();
@@ -173,27 +177,26 @@ public class MainActivity extends TabActivity implements NetworkListener {
 	}
 
 	@Override
+	public void onBackPressed() {
+
+	}
+
+	@Override
 	public void onDownloadStarted() {
 
 	}
 
 	@Override
 	public void onDownloadFinished(String status) {
-		final String state = status;
 		runOnUiThread(new Runnable() {
 			public void run() {
-				Toast.makeText(ctx, state, Toast.LENGTH_LONG).show();
 				ModelLogic ml = ModelLogic.getInstance();
-				//ml.addNewSuperMarket(new SuperMarket("שופרסל", "שלמה המלך 55 חיפה"));
-				//ml.addNewSuperMarket(new SuperMarket("רמי לוי", "דרך השלום 13 נשר"));
-				//Helper.readAllXml("Ramilevi", "דרך השלום 13 נשר");
-				//Helper.readAllXml("Shopersal", "שלמה המלך 55 חיפה");
+				Helper.readAllXml("Ramilevi", "דרך השלום 13 נשר");
+				Helper.readAllXml("Shopersal", "שלמה המלך 55 חיפה");
 				ml.writeSer();
 			}
 		});
 
-		Intent mainIntent = new Intent(this,MainActivity.class);
-		startActivity(mainIntent);
 	}
 
 	@Override

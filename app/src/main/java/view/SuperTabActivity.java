@@ -75,12 +75,13 @@ public class SuperTabActivity extends Activity {
                 for (String s:supersString) {
                     if (s.equals(superText)) {
                         superAdress = supers[location];
+                        break;
                     }
                     location++;
                 }
 
                 TextView superName= (TextView)findViewById(R.id.txtSuperName);
-                superName.setText(supersString[pos]);
+                superName.setText(supersString[location]);
 
                 ModelLogic ml = ModelLogic.getInstance();
 

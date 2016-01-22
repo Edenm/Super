@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import ViewLogic.slidingmenu.R;
+import model.ModelLogic;
 import model.dropbox.DBSuper;
 
 /**
@@ -97,8 +98,14 @@ public class LoginActivity extends Activity {
     private View.OnClickListener signInListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-        Intent intent = new Intent(LoginActivity.this, DBSuper.class);
-        startActivity(intent);
+        if (ModelLogic.isLoadData){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+        else{
+            Intent intent = new Intent(LoginActivity.this, DBSuper.class);
+            startActivity(intent);
+        }
         }
     };
 }

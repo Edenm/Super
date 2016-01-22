@@ -32,7 +32,6 @@ public class SysData implements Serializable {
 		//users = new HashMap<String, User>();
 		user = null;
 		superLogos = new HashMap<String, Integer>();
-		fillSupers();
 	}
 
 	/**
@@ -47,16 +46,6 @@ public class SysData implements Serializable {
 	 */
 	public Map<String, SuperMarket> getSupers() {
 		return supers;
-	}
-
-
-	/**
-	 * Initialize all supers in system
-	 */
-	private void fillSupers()
-	{
-		supers.put("דרך השלום 13 נשר", new SuperMarket("רמי לוי","דרך השלום 13 נשר"));
-		supers.put("שלמה המלך 55 חיפה", new SuperMarket("שופרסל","שלמה המלך 55 חיפה"));
 	}
 
 	/**

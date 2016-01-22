@@ -1,7 +1,9 @@
 package view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -9,10 +11,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 
 import ViewLogic.slidingmenu.R;
@@ -23,31 +31,26 @@ import model.dropbox.DBSuper;
  */
 public class UpdateProfileFragmentActivity extends FragmentActivity {
 
-//    int PLACE_AUTOCOMPLETE_REQUEST_CODE = 1;
-//
-//    private static final String LOG_TAG = "Google Places Autocomplete";
-//    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
-//    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
-//    private static final String OUT_JSON = "/json";
-//    private static final String API_KEY = "AIzaSyCLk8zfUv1KNqCF9ZRts7UX6wXKoes6OYM";
+   int PLACE_PICKER_REQUEST = 1;
 
     /** ShredPreferences for editing and save in memory **/
     private static String USERNAME = "user";
     private static String PASSWORD = "password";
     private static String ADRESS = "address";
-    private static Double LAT = 0.0;
-    private static Double LONG = 0.0;
-    private static String RADIUS = "radius";
+    private static String LAT = "LAT";
+    private static String LONG = "LONG";
+    private static String RADIUS = "RADIUS";
     private SharedPreferences prefs;
-
 
     /** Global variables **/
     Button btnRegister;
     EditText etUser;
     EditText etPass;
-    //TextView tAdressAfterChoose;
+
+    String type = "";
+
+    TextView addressTextView;
     Spinner spRadius;
-    String placeDetailsStr;
     ArrayAdapter adapterFillClass;
 
 
@@ -58,13 +61,15 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         setContentView(R.layout.fragment_activity_update_profile);
         prefs = getSharedPreferences("ACCOUNT", MODE_PRIVATE);
 
-        btnRegister = (Button)findViewById(R.id.registerButton);
-        etUser = (EditText)findViewById(R.id.etEmail);
-        etPass = (EditText)findViewById(R.id.etPass);
-       // tAdressAfterChoose = (TextView)findViewById(R.id.txtAfterAdress);
-        spRadius = (Spinner)findViewById(R.id.spRadius);
+        btnRegister = (Button) findViewById(R.id.registerButton);
+        etUser = (EditText) findViewById(R.id.etEmail);
+        etPass = (EditText) findViewById(R.id.etPass);
+        addressTextView = (TextView) findViewById(R.id.txtAddres);
+        spRadius = (Spinner) findViewById(R.id.spRadius);
 
         btnRegister.setOnClickListener(registerListener);
+        addressTextView.setOnClickListener(addressListener);
+
         /** set the combo-box choises from array in string.xml **/
         adapterFillClass = ArrayAdapter.createFromResource(this,
                 R.array.radius_choices,
@@ -73,77 +78,126 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
 
         int cameFrom = getIntent().getIntExtra("calling-activity", 0);
 
-        switch (cameFrom)
-        {
+        switch (cameFrom) {
             case MainActivity.MAIN:
+                btnRegister.setText(R.string.button_update);
+                type = "update";
                 setUserDetails();
                 break;
             default:
+                type = "register";
+                btnRegister.setText(R.string.button_register);
                 break;
         }
+    }
+
 
 
         /** set the placesAutoComplete of google for choosing address by user **/
-        final PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
-                getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+//        final PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+//                                       getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                // TODO: Get info about the selected place.
-                //Log.i(TAG, "Place: " + place.getName());
+//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//                // TODO: Get info about the selected place.
+//
+//                placeDetailsStr = place.getName() + "\n"
+//                        + place.getId() + "\n"
+//                        + place.getLatLng().toString() + "\n"
+//                        + place.getAddress() + "\n"
+//                        + place.getAttributions();
+//                //tAdressAfterChoose.setText(placeDetailsStr);
+//                autocompleteFragment.setUserVisibleHint(false);
+//                //tAdressAfterChoose.setVisibility(View.VISIBLE);
+//                //autocompleteFragment.getView().setVisibility(View.INVISIBLE);
+//                //autocompleteFregment.getView().setText("Adress");
+//
+//                SavePreferences(LAT, String.valueOf(place.getLatLng().latitude));
+//                SavePreferences(LONG, String.valueOf(place.getLatLng().longitude));
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//
+//            }
+//        });
 
-                placeDetailsStr = place.getName() + "\n"
-                        + place.getId() + "\n"
-                        + place.getLatLng().toString() + "\n"
-                        + place.getAddress() + "\n"
-                        + place.getAttributions();
-                //tAdressAfterChoose.setText(placeDetailsStr);
-                autocompleteFragment.setUserVisibleHint(false);
-                //tAdressAfterChoose.setVisibility(View.VISIBLE);
-                //autocompleteFragment.getView().setVisibility(View.INVISIBLE);
-                //autocompleteFregment.getView().setText("Adress");
 
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putLong(String.valueOf(LAT), Double.doubleToLongBits(place.getLatLng().latitude));
-                editor.putLong(String.valueOf(LONG), Double.doubleToLongBits(place.getLatLng().longitude));
-                editor.commit();
+    private View.OnClickListener addressListener = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            activatePlacePicker();
+        }
+    };
+
+    private void activatePlacePicker()
+    {
+        PLACE_PICKER_REQUEST = 1;
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+        try {
+            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                //String toastMsg = String.format("Place: %s", place.getName());
+                //Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+
+                addressTextView.setText(place.getAddress());
+                SavePreferences(LAT, String.valueOf(place.getLatLng().latitude));
+                SavePreferences(LAT, String.valueOf(place.getLatLng().latitude));
+                SavePreferences(LONG, String.valueOf(place.getLatLng().longitude));
             }
-
-            @Override
-            public void onError(Status status) {
-
-            }
-        });
+        }
     }
 
 
         private View.OnClickListener registerListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-            /** get the user choices for email, password and address **/
-            String userName = etUser.getText().toString();
-            String password = etPass.getText().toString();
-            String address = placeDetailsStr;
+                /** get the user choices for email, password and address **/
+                String userName = etUser.getText().toString();
+                String password = etPass.getText().toString();
+                String address = addressTextView.getText().toString();
+                String radius = spRadius.getSelectedItem().toString();
 
-            /** check validate of data **/
-            if (!checkValidityOfData(userName,password))
-            {
-                Toast.makeText(UpdateProfileFragmentActivity.this, R.string.invalid_data, Toast.LENGTH_LONG).show();
-            }else {
+                /** check validate of data **/
+                try{
+                    checkValidityOfData(userName, password);
 
-                /** save the user name, password and address to SharedPreference **/
-                SavePreferences(USERNAME, userName);
-                SavePreferences(PASSWORD, password);
-                SavePreferences(ADRESS, address);
-                SavePreferences(RADIUS, spRadius.getSelectedItem().toString());
+                    /** save the user name, password and address to SharedPreference **/
+                    SavePreferences(USERNAME, userName);
+                    SavePreferences(PASSWORD, password);
+                    SavePreferences(ADRESS, address);
+                    SavePreferences(RADIUS, radius);
 
-                /** start the SuperZol app **/
-                Intent intent = new Intent(UpdateProfileFragmentActivity.this, DBSuper.class);
-                startActivity(intent);
+                    if (type.equals("update"))
+                    {
+                        /** Message update success **/
+                        Toast.makeText(UpdateProfileFragmentActivity.this, "הפרטים התעדכנו בהצלחה", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        /** start the SuperZol app **/
+                        Intent intent = new Intent(UpdateProfileFragmentActivity.this, DBSuper.class);
+                        startActivity(intent);
+                    }
+
+
+                }catch (Exception e){
+                    Toast.makeText(UpdateProfileFragmentActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
-        }
         };
 
     /** save data to SharedPreferences **/
@@ -162,25 +216,23 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     }
 
     /** check validity of data e.g - Mail is like standard, password is more than 8 characters **/
-    public boolean checkValidityOfData(String user, String pass)
+    public void checkValidityOfData(String user, String pass) throws Exception
     {
-        boolean validity = true;
-        if (user.isEmpty() || pass.isEmpty()) {
-            validity = false;
+        if (user.isEmpty() || pass.isEmpty() || addressTextView.getText().toString().isEmpty()/*or adress not empty */) {
+            throw new Exception("כל השדות הם שדות חובה");
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(user).matches()){
-            validity = false;
+            throw new Exception("מייל לא תקין");
         }
         if (pass.length() < 8) {
-            validity = false;
+            throw new Exception("סיסמא לא תקינה");
         }
-        return validity;
     }
 
     private void setUserDetails() {
         etUser.setText(prefs.getString(USERNAME, null));
         etPass.setText(prefs.getString(PASSWORD, null));
-        //tAdressAfterChoose.setText(prefs.getString(ADRESS, null));
+        addressTextView.setText(prefs.getString(ADRESS, null));
         int spinnerPosition = adapterFillClass.getPosition(prefs.getString(RADIUS, null));
         spRadius.setSelection(spinnerPosition);
     }

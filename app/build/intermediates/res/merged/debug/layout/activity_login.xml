@@ -36,18 +36,19 @@
         android:layout_centerInParent="true"
         android:padding="10dp"
         android:id="@+id/linearLayout"
-        android:layout_gravity="left|bottom">
+        android:layout_gravity="right|bottom">
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:hint="Email"
+            android:hint="@string/label_email"
             android:textColorHint="@color/black"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:drawableLeft="@drawable/mail"/>
+            android:gravity="right"
+            android:drawableRight="@drawable/mail"/>
 
         <EditText
             android:id="@+id/etPass"
@@ -55,12 +56,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-2dp"
             android:padding="10dp"
-            android:hint="Password"
+            android:hint="@string/label_password"
             android:textColorHint="@color/black"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:password="true"
-            android:drawableLeft="@drawable/password"/>
+            android:gravity="right"
+            android:drawableRight="@drawable/password"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -75,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="4dp"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:textStyle="bold"
                 android:layout_weight="0.83" />
 
@@ -85,10 +87,10 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="4dp"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
 </FrameLayout>
-<!-- From: file:/C:/Users/MOR/AndroidStudioProjects/Super/app/src/main/res/layout/activity_login.xml -->
+<!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/activity_login.xml -->
