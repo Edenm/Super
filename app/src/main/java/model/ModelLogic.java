@@ -322,12 +322,12 @@ public class ModelLogic implements Serializable {
 		ObjectOutputStream outputStream = null;
 		boolean isSaved = false;
 		try {
-			SysData sData = ModelLogic.getInstance().data;
 			f_out = new FileOutputStream("/storage/emulated/0/dbSuperZol/marketlist.srl");
 			outputStream = new ObjectOutputStream(f_out);
 			outputStream.writeObject(marketList);
 			isSaved = true;
 		} catch (Exception ex) {
+			ex.getMessage();
 		}
 		finally{
 			try {
