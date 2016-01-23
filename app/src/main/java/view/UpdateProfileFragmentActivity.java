@@ -31,7 +31,7 @@ import model.dropbox.DBSuper;
  */
 public class UpdateProfileFragmentActivity extends FragmentActivity {
 
-   int PLACE_PICKER_REQUEST = 1;
+    int PLACE_PICKER_REQUEST = 1;
 
     /** ShredPreferences for editing and save in memory **/
     private static String USERNAME = "user";
@@ -68,7 +68,8 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         spRadius = (Spinner) findViewById(R.id.spRadius);
 
         btnRegister.setOnClickListener(registerListener);
-        addressTextView.setOnClickListener(addressListener);
+        addressTextView.setOnClickListener(clickAddressListener);
+        addressTextView.setOnFocusChangeListener(focusAddressListener);
 
         /** set the combo-box choises from array in string.xml **/
         adapterFillClass = ArrayAdapter.createFromResource(this,
@@ -91,40 +92,14 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         }
     }
 
+    private View.OnFocusChangeListener focusAddressListener = new View.OnFocusChangeListener(){
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            activatePlacePicker();
+        }
+    };
 
-
-        /** set the placesAutoComplete of google for choosing address by user **/
-//        final PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
-//                                       getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-
-//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-//            @Override
-//            public void onPlaceSelected(Place place) {
-//                // TODO: Get info about the selected place.
-//
-//                placeDetailsStr = place.getName() + "\n"
-//                        + place.getId() + "\n"
-//                        + place.getLatLng().toString() + "\n"
-//                        + place.getAddress() + "\n"
-//                        + place.getAttributions();
-//                //tAdressAfterChoose.setText(placeDetailsStr);
-//                autocompleteFragment.setUserVisibleHint(false);
-//                //tAdressAfterChoose.setVisibility(View.VISIBLE);
-//                //autocompleteFragment.getView().setVisibility(View.INVISIBLE);
-//                //autocompleteFregment.getView().setText("Adress");
-//
-//                SavePreferences(LAT, String.valueOf(place.getLatLng().latitude));
-//                SavePreferences(LONG, String.valueOf(place.getLatLng().longitude));
-//            }
-//
-//            @Override
-//            public void onError(Status status) {
-//
-//            }
-//        });
-
-
-    private View.OnClickListener addressListener = new View.OnClickListener(){
+    private View.OnClickListener clickAddressListener = new View.OnClickListener(){
 
         @Override
         public void onClick(View v) {
@@ -150,9 +125,6 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
-                //String toastMsg = String.format("Place: %s", place.getName());
-                //Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
-
                 addressTextView.setText(place.getAddress());
                 SavePreferences(LAT, String.valueOf(place.getLatLng().latitude));
                 SavePreferences(LAT, String.valueOf(place.getLatLng().latitude));
@@ -162,43 +134,43 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     }
 
 
-        private View.OnClickListener registerListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private View.OnClickListener registerListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 
-                /** get the user choices for email, password and address **/
-                String userName = etUser.getText().toString();
-                String password = etPass.getText().toString();
-                String address = addressTextView.getText().toString();
-                String radius = spRadius.getSelectedItem().toString();
+            /** get the user choices for email, password and address **/
+            String userName = etUser.getText().toString();
+            String password = etPass.getText().toString();
+            String address = addressTextView.getText().toString();
+            String radius = spRadius.getSelectedItem().toString();
 
-                /** check validate of data **/
-                try{
-                    checkValidityOfData(userName, password);
+            /** check validate of data **/
+            try{
+                checkValidityOfData(userName, password);
 
-                    /** save the user name, password and address to SharedPreference **/
-                    SavePreferences(USERNAME, userName);
-                    SavePreferences(PASSWORD, password);
-                    SavePreferences(ADRESS, address);
-                    SavePreferences(RADIUS, radius);
+                /** save the user name, password and address to SharedPreference **/
+                SavePreferences(USERNAME, userName);
+                SavePreferences(PASSWORD, password);
+                SavePreferences(ADRESS, address);
+                SavePreferences(RADIUS, radius);
 
-                    if (type.equals("update"))
-                    {
-                        /** Message update success **/
-                        Toast.makeText(UpdateProfileFragmentActivity.this, "הפרטים התעדכנו בהצלחה", Toast.LENGTH_LONG).show();
-                    }
-                    else{
-                        /** start the SuperZol app **/
-                        Intent intent = new Intent(UpdateProfileFragmentActivity.this, DBSuper.class);
-                        startActivity(intent);
-                    }
-
-
-                }catch (Exception e){
-                    Toast.makeText(UpdateProfileFragmentActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                if (type.equals("update"))
+                {
+                    /** Message update success **/
+                    Toast.makeText(UpdateProfileFragmentActivity.this, "הפרטים התעדכנו בהצלחה", Toast.LENGTH_LONG).show();
                 }
+                else{
+                    /** start the SuperZol app **/
+                    Intent intent = new Intent(UpdateProfileFragmentActivity.this, DBSuper.class);
+                    startActivity(intent);
+                }
+
+
+            }catch (Exception e){
+                Toast.makeText(UpdateProfileFragmentActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
-        };
+        }
+    };
 
     /** save data to SharedPreferences **/
     public void SavePreferences(String key, String value) {
@@ -229,6 +201,9 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         }
     }
 
+    /**
+     * The method set all details of user in preference
+     */
     private void setUserDetails() {
         etUser.setText(prefs.getString(USERNAME, null));
         etPass.setText(prefs.getString(PASSWORD, null));

@@ -40,7 +40,6 @@ public class ModelLogic implements Serializable {
 	public static ModelLogic getInstance(){
 		if	(instance == null){
 			instance = new ModelLogic();
-
 			readSer();
 			isLoadData = true;
 		}
@@ -65,7 +64,7 @@ public class ModelLogic implements Serializable {
 	private void fillLogo()
 	{
 		superLogos.put("רמי לוי", R.drawable.ramilevi_logo);
-		superLogos.put("שופרסל", R.drawable.bitan_logo);
+		superLogos.put("שופרסל", R.drawable.supersal_logo);
 		superLogos.put("יינות ביתן", R.drawable.bitan_logo);
 	}
 

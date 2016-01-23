@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-    <TextView
-        android:id="@+id/txtcommLabel"
-         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:text="Communities View"/>
-    
-    <!--ImageView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtcommLabel"
-        android:src="@drawable/ic_communities"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/-->
+    android:layout_height="match_parent"
+    android:background="@color/grey">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imgAbout"
+        android:src="@drawable/about"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 </RelativeLayout>
-<!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super/app/src/main/res/layout/fragment_activity_about.xml -->
+<!-- From: file:/C:/Users/Eden/AndroidStudioProjects/Super-Zol/app/src/main/res/layout/fragment_activity_about.xml -->

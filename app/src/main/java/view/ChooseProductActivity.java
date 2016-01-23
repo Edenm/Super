@@ -74,6 +74,12 @@ public class ChooseProductActivity extends Activity {
         String[] itemname = new String[items.size()];
         String[] price = new String[items.size()];
         Integer[] imgid = new Integer[items.size()];
+
+        if (items.size()==0){
+            String notFound = getString(R.string.not_found_item);
+            searchProduct.setText(notFound+ " " + wordToSearch);
+        }
+
         for(int i=0 ; i < items.size() ;i++) {
             itemname[i]=items.get(i).getItemName() ;
             price[i]=items.get(i).getItemPrice().toString() ;

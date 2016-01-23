@@ -91,14 +91,12 @@ public class MainActivity extends TabActivity implements NetworkListener {
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 
 		// adding nav drawer items to array
-		// Home
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
 		// Update Profile
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(0, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
 		// About Us
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(0, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(0, -1)));
 		// Log-of
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(0, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(0, -1)));
 
 
 		// Recycle the typed array
@@ -136,10 +134,8 @@ public class MainActivity extends TabActivity implements NetworkListener {
 
 		if (savedInstanceState == null) {
 			// on first time display view for first nav item
-			displayView(0);
+			//displayView(0);
 		}
-
-		//initializeDB();
 	}
 
 	/**
@@ -196,7 +192,6 @@ public class MainActivity extends TabActivity implements NetworkListener {
 				ml.writeSer();
 			}
 		});
-
 	}
 
 	@Override
@@ -234,12 +229,16 @@ public class MainActivity extends TabActivity implements NetworkListener {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		NavUtils.navigateUpFromSameTask(this);
+
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_settings:
+			Intent updateIntent = new Intent(this,UpdateProfileFragmentActivity.class);
+			updateIntent.putExtra("calling-activity",MAIN);
+			startActivity(updateIntent);
 			return true;
 		default:
+			NavUtils.navigateUpFromSameTask(this);
 			return super.onOptionsItemSelected(item);
 		}
 	}
@@ -263,17 +262,14 @@ public class MainActivity extends TabActivity implements NetworkListener {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new HomeFragment();
-			break;
-		case 1:
 			Intent updateIntent = new Intent(this,UpdateProfileFragmentActivity.class);
 			updateIntent.putExtra("calling-activity",MAIN);
 			startActivity(updateIntent);
 			break;
-		case 2:
+		case 1:
 			startActivity(new Intent(this, AboutFragmentActivity.class));
 			break;
-		case 3:
+		case 2:
 			startActivity(new Intent(this,LoginActivity.class));
 			break;
 		default:

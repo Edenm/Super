@@ -272,7 +272,7 @@ public class NetworkManager {
                     // language
                     mErrorMsg = e.body.userError;
                     if (mErrorMsg == null) {
-                        mErrorMsg = e.body.error;
+                        mErrorMsg = "";// e.body.error;
                     }
                 } catch (DropboxIOException e) {
                     // Happens all the time, probably want to retry
@@ -283,12 +283,12 @@ public class NetworkManager {
                     mErrorMsg = "Dropbox error";
                 } catch (DropboxException e) {
                     // Unknown error
-                    mErrorMsg = "Unknown error";
+                    mErrorMsg = "";//"Unknown error";
 
                 } catch (Throwable e) {
                     // file not found
                     e.printStackTrace();
-                    mErrorMsg = "Unknown error";
+                    mErrorMsg = "";//"Unknown error";
                 }
 
                 notifyAllDownloadsFinished(mErrorMsg);

@@ -112,8 +112,6 @@ public class SearchTabActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
-                //TextView txtTitle = (TextView) (parent).findViewById(R.id.prodName);
-                //String itemName = txtTitle.getText().toString();
                 quantityIntent.putExtra("type", "MarketList");
                 quantityIntent.putExtra("word", "1");
                 startActivity(quantityIntent);

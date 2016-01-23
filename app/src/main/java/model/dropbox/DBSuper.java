@@ -74,23 +74,8 @@ public class DBSuper extends Activity implements NetworkListener {
         Intent mainIntent = new Intent(this,MainActivity.class);
         startActivity(mainIntent);
 
-        //uploadFile();
-
 
     }
-
-//    private void uploadFile() {
-//
-//        // create testFile
-//        String localFilePath=NetworkManager.getInstance().getAppDirName()+"/"+"data.srl";
-//        //File localfile = new File(localFilePath);
-//        //String content = "abc2";
-//        //NetworkManager.getInstance().writeLocalCopy(localfile, content.getBytes());
-//
-//        // try to upload
-//        NetworkManager.getInstance().uploadRes(localFilePath);
-//
-//    }
 
     @Override
     public void onUploadStarted() {
@@ -102,11 +87,6 @@ public class DBSuper extends Activity implements NetworkListener {
     public void onUploadFinished(String status) {
         final String state = status;
 
-//        runOnUiThread(new Runnable() {
-//            public void run() {
-//                Toast.makeText(ctx, "uploading " + state, Toast.LENGTH_LONG).show();
-//            }
-//        });
 
     }
 

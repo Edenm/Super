@@ -11,15 +11,9 @@ import ViewLogic.slidingmenu.R;
  */
 public class AboutFragmentActivity extends FragmentActivity {
 
-    TextView abouts;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_activity_about);
-        abouts = (TextView)findViewById(R.id.txtcommLabel);
-        String aboutSuperzol = getString(R.string.aboutSuperZol);
-        abouts.setText(aboutSuperzol);
-
     }
 }
