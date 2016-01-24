@@ -205,14 +205,18 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     /** check validity of data e.g - Mail is like standard, password is more than 8 characters **/
     public void checkValidityOfData(String user, String pass) throws Exception
     {
+        String invlidMsg;
         if (user.isEmpty() || pass.isEmpty() || addressTextView.getText().toString().isEmpty()/*or adress not empty */) {
-            throw new Exception("כל השדות הם שדות חובה");
+            invlidMsg = getString(R.string.invalid_input);
+            throw new Exception(invlidMsg);
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(user).matches()){
-            throw new Exception("מייל לא תקין");
+            invlidMsg = getString(R.string.invalid_mail);
+            throw new Exception(invlidMsg);
         }
         if (pass.length() < 8) {
-            throw new Exception("סיסמא לא תקינה");
+            invlidMsg = getString(R.string.invalid_pass);
+            throw new Exception(invlidMsg);
         }
     }
 
