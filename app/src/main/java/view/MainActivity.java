@@ -33,7 +33,7 @@ import android.widget.Toast;
 /**
  * This class is manage all tabs and fragment in the app
  */
-public class MainActivity extends TabActivity implements NetworkListener {
+public class MainActivity extends TabActivity {
 	/** The DrawerLayout */
 	private DrawerLayout mDrawerLayout;
 	/** The list view of drawer */
@@ -69,10 +69,6 @@ public class MainActivity extends TabActivity implements NetworkListener {
 	protected void onCreate(Bundle savedInstanceState)  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-        NetworkManager nm = NetworkManager.getInstance();
-        nm.register(this);
-        onDownloadFinished("");
 
 		setTabs();
 
@@ -136,6 +132,8 @@ public class MainActivity extends TabActivity implements NetworkListener {
 			// on first time display view for first nav item
 			//displayView(0);
 		}
+
+		onDownloadFinished();
 	}
 
 	/**
@@ -174,34 +172,26 @@ public class MainActivity extends TabActivity implements NetworkListener {
 
 	@Override
 	public void onBackPressed() {
-
+		Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+		startActivity(intent);
 	}
 
-	@Override
-	public void onDownloadStarted() {
 
-	}
+	/**
+	 * The method read all updated xml
+	 */
+	public void onDownloadFinished() {
 
-	@Override
-	public void onDownloadFinished(String status) {
-		runOnUiThread(new Runnable() {
+		Thread thread = new Thread(new Runnable() {
+			@Override
 			public void run() {
 				ModelLogic ml = ModelLogic.getInstance();
-				Helper.readAllXml("Ramilevi", "דרך השלום 13 נשר");
-				Helper.readAllXml("Shopersal", "שלמה המלך 55 חיפה");
-				ml.writeSer();
+				//Helper.readAllXml("Ramilevi", "דרך השלום 13 נשר");
+				//Helper.readAllXml("Shopersal", "שלמה המלך 55 חיפה");
+				//ml.writeSer();
 			}
 		});
-	}
-
-	@Override
-	public void onUploadStarted() {
-
-	}
-
-	@Override
-	public void onUploadFinished(String status) {
-
+		thread.start();
 	}
 
 	/**

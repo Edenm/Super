@@ -69,6 +69,7 @@ public class SuperTabActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View arg1, int pos, long id)
             {
+                superSearch.setText("");
                 String superAdress = "";
                 String superText = (String)parent.getItemAtPosition(pos);
                 int location = 0;

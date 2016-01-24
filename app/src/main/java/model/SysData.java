@@ -18,20 +18,12 @@ public class SysData implements Serializable {
 	/** Contains all super markets in system*/
 	private Map <String,SuperMarket> supers;
 
-	/** Contains the user details **/
-	private User user;
-	/** Contains logos of the supers*/
-	private Map <String,Integer> superLogos;
-
 	/**
 	 * Full cto'r
 	 */
 	public SysData() {
 		items= new HashMap<String,Item>();
 		supers= new HashMap<String,SuperMarket>();
-		//users = new HashMap<String, User>();
-		user = null;
-		superLogos = new HashMap<String, Integer>();
 	}
 
 	/**

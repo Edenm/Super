@@ -158,7 +158,7 @@ public class SearchTabActivity extends Activity {
     private void onSearchAction(String wordToSearch)
     {
         ModelLogic ml = ModelLogic.getInstance();
-
+        productSearchView.setText("");
         Intent quantityIntent = new Intent(SearchTabActivity.this, ChooseProductActivity.class);
         quantityIntent.putExtra("type", "Word");
         quantityIntent.putExtra("word", wordToSearch);

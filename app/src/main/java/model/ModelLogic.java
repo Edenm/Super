@@ -27,7 +27,6 @@ public class ModelLogic implements Serializable {
 	public static SysData data;
 	/** Instance of market list*/
 	public static MarketList marketList;
-
 	/** Contains logos of the supers*/
 	private Map <String,Integer> superLogos;
 

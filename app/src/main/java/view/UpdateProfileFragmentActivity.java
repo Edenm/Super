@@ -46,9 +46,7 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
     Button btnRegister;
     EditText etUser;
     EditText etPass;
-
     String type = "";
-
     TextView addressTextView;
     Spinner spRadius;
     ArrayAdapter adapterFillClass;
@@ -67,10 +65,15 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         addressTextView = (TextView) findViewById(R.id.txtAddres);
         spRadius = (Spinner) findViewById(R.id.spRadius);
 
-        btnRegister.setOnClickListener(registerListener);
-        addressTextView.setOnClickListener(clickAddressListener);
-        addressTextView.setOnFocusChangeListener(focusAddressListener);
+        setListener();
+        loadData();
+    }
 
+    /**
+     * The method load all data in this activity
+     */
+    private void loadData()
+    {
         /** set the combo-box choises from array in string.xml **/
         adapterFillClass = ArrayAdapter.createFromResource(this,
                 R.array.radius_choices,
@@ -92,21 +95,65 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         }
     }
 
-    private View.OnFocusChangeListener focusAddressListener = new View.OnFocusChangeListener(){
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            activatePlacePicker();
-        }
-    };
+    /**
+     * The method se all listener
+     */
+    private void setListener()
+    {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /** get the user choices for email, password and address **/
+                String userName = etUser.getText().toString();
+                String password = etPass.getText().toString();
+                String address = addressTextView.getText().toString();
+                String radius = spRadius.getSelectedItem().toString();
 
-    private View.OnClickListener clickAddressListener = new View.OnClickListener(){
+                /** check validate of data **/
+                try {
+                    checkValidityOfData(userName, password);
 
-        @Override
-        public void onClick(View v) {
-            activatePlacePicker();
-        }
-    };
+                    /** save the user name, password and address to SharedPreference **/
+                    SavePreferences(USERNAME, userName);
+                    SavePreferences(PASSWORD, password);
+                    SavePreferences(ADRESS, address);
+                    SavePreferences(RADIUS, radius);
 
+                    if (type.equals("update")) {
+                        /** Message update success **/
+                        Toast.makeText(UpdateProfileFragmentActivity.this, "הפרטים התעדכנו בהצלחה", Toast.LENGTH_LONG).show();
+                    } else {
+                        /** start the SuperZol app **/
+                        Intent intent = new Intent(UpdateProfileFragmentActivity.this, DBSuper.class);
+                        startActivity(intent);
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(UpdateProfileFragmentActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        addressTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activatePlacePicker();
+            }
+        });
+
+        addressTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                activatePlacePicker();
+            }
+        });
+
+    }
+
+    /**
+     * The method get request from google api picker
+     */
     private void activatePlacePicker()
     {
         PLACE_PICKER_REQUEST = 1;
@@ -121,6 +168,12 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         }
     }
 
+    /**
+     * The method check abd save the result from google api picker
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
@@ -133,44 +186,6 @@ public class UpdateProfileFragmentActivity extends FragmentActivity {
         }
     }
 
-
-    private View.OnClickListener registerListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-            /** get the user choices for email, password and address **/
-            String userName = etUser.getText().toString();
-            String password = etPass.getText().toString();
-            String address = addressTextView.getText().toString();
-            String radius = spRadius.getSelectedItem().toString();
-
-            /** check validate of data **/
-            try{
-                checkValidityOfData(userName, password);
-
-                /** save the user name, password and address to SharedPreference **/
-                SavePreferences(USERNAME, userName);
-                SavePreferences(PASSWORD, password);
-                SavePreferences(ADRESS, address);
-                SavePreferences(RADIUS, radius);
-
-                if (type.equals("update"))
-                {
-                    /** Message update success **/
-                    Toast.makeText(UpdateProfileFragmentActivity.this, "הפרטים התעדכנו בהצלחה", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    /** start the SuperZol app **/
-                    Intent intent = new Intent(UpdateProfileFragmentActivity.this, DBSuper.class);
-                    startActivity(intent);
-                }
-
-
-            }catch (Exception e){
-                Toast.makeText(UpdateProfileFragmentActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }
-    };
 
     /** save data to SharedPreferences **/
     public void SavePreferences(String key, String value) {
