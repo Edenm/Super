@@ -132,8 +132,6 @@ public class MainActivity extends TabActivity {
 			// on first time display view for first nav item
 			//displayView(0);
 		}
-
-		onDownloadFinished();
 	}
 
 	/**
